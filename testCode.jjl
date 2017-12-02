@@ -1,0 +1,25 @@
+$comment
+$**************************
+*
+* block comments
+*
+**************************$
+$sample code
+
+
+$variable declarations
+define testVariable as 20;
+
+define testFunction as (testVariable) {
+  display "this is my testVariable" + testVariable + "\n";
+  displayln;
+  result (testVariable + 1);
+}
+
+floop(x = 0; x < testVariable; x++) {
+    display x;
+}
+
+define x as 0;
+wloop(x < testVariable)
+  x++;
