@@ -16,10 +16,40 @@ define testFunction as (testVariable) {
   result (testVariable + 1);
 }
 
-floop(x = 0; x < testVariable; x++) {
+floop(define x as 0; x < testVariable; x++) {
     display x;
 }
 
 define x as 0;
 wloop(x < testVariable)
   x++;
+
+
+$ arrays
+define size as 10;
+define array a as [1, 2, 3, 4, 5];
+define array b as allocate(size); $how to do this?
+$dynamically allocate size array?
+floop(define temp as 0; x < length(a); temp++) {
+    display a[temp];
+}
+
+$ conditionals
+$**************************
+* x1 asas x2
+* x1 < x2
+* x1 > x2
+* x1 <= x2
+* x1 >= x2
+* and(x1, x2)
+* or(x1, x2)
+* isnot(x1)
+* true
+* false
+**************************$
+if (a[0] asas 1)
+  display "a[0] is 1";
+elseif (a[0] <= 2)
+  display "a[0] is <= 1";
+elseif (a[0] > -1)
+  display "a[0] is > -1";
