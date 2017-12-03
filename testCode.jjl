@@ -16,6 +16,7 @@ define testFunction as (testVariable) {
   result (testVariable + 1);
 }
 
+$ loops and iterations
 floop(define x as 0; x < testVariable; x++) {
     display x;
 }
@@ -24,6 +25,13 @@ define x as 0;
 wloop(x < testVariable)
   x++;
 
+$break?
+wloop(true) {
+  x++;
+  if(x asas testVariable)
+    break
+
+}
 
 $ arrays
 define size as 10;
@@ -96,15 +104,12 @@ define map(func, list) {
     cons(f(car(list)), map(f, cdr(1)))
 }
 
-map :=
-  lambda[ f, l :
-            if[ l = nil ?
-                nil
-              : else
-                cons(f(car(l)), map(f,cdr(l)))
-              ]
-          ]
-    :;
+
+
+$ need to do lambda
+$function that returns a function
+$ dispatch
+
 
 
 $ lists
