@@ -43,7 +43,8 @@ $**************************
 * x1 >= x2
 * and(x1, x2)
 * or(x1, x2)
-* isnot(x1)
+* not(x1)
+* !as
 * true
 * false
 **************************$
@@ -53,3 +54,16 @@ elseif (a[0] <= 2)
   display "a[0] is <= 1";
 elseif (a[0] > -1)
   display "a[0] is > -1";
+elseif (and(a[0] asas 1, b[0] asas 1))
+  display "a[0] and b[0] are both 1";
+elseif (or(a[0] > 1, b[0] > 1))
+  display "a[0] or b[0] is greater than 1";
+elseif(not(a[0] < 1))
+  display "a[0] is not < 1";
+elseif(a[0] !as b[0])
+  display "a[0] is not = to b[0]";
+elseif(true)
+  display "true keyword";
+elseif(not(false))
+  display "false keyword";
+  
