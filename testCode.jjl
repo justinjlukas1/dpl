@@ -47,6 +47,10 @@ $**************************
 * !as
 * true
 * false
+*
+* nil or NULL
+*
+* if something is nil
 **************************$
 if (a[0] asas 1)
   display "a[0] is 1";
@@ -66,4 +70,41 @@ elseif(true)
   display "true keyword";
 elseif(not(false))
   display "false keyword";
-  
+else
+  nil
+
+
+$ functions
+
+define square(x)  {
+  result (x * x);
+}
+
+define list l as (1,2,3);
+
+$ (define (map proc items)
+$    (if (null? items)
+$      nil
+$      (cons (proc (car items)) (map (proc (cdr items))))))
+
+$ map (lambda (x) (sscale S x)) @
+
+define map(func, list) {
+  if(not (list))
+    nil
+  else
+    cons(f(car(list)), map(f, cdr(1)))
+}
+
+map :=
+  lambda[ f, l :
+            if[ l = nil ?
+                nil
+              : else
+                cons(f(car(l)), map(f,cdr(l)))
+              ]
+          ]
+    :;
+
+
+$ lists
