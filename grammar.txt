@@ -1,9 +1,9 @@
-body :	O_BRACE statements C_BRACE
+body  : O_BRACE statements C_BRACE
 
-statements	:	statement
-|	statement statements
+statements  : statement
+            | statement statements
 
-statement	:	expression COMMA
+statement   : expression COMMA
 |	definition COMMA
 |	ifStatement
 |	RETURN expression

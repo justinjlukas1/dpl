@@ -8,38 +8,38 @@ $sample code
 
 
 $variable declarations
-define testVariable as 20;
+define testVariable as 20
 
 define testFunction as (testVariable) {
-  display (+ "this is my testVariable" testVariable "\n");
-  displayln;
-  result (+ testVariable 1);
+  display (+ "this is my testVariable" testVariable "\n")
+  displayln
+  result (+ testVariable 1)
 }
 
 $ loops and iterations
-floop(define x as 0; x < testVariable; ++x) {
-    display x;
+floop((define x as 0) (< x testVariable) (++x)) {
+    display x
 }
 
-define x as 0;
+define x as 0
 wloop(< x testVariable)
-  ++x;
+  ++x
 
 $break?
 wloop(true) {
-  ++x;
+  ++x
   if(asas x testVariable)
     break
 
 }
 
 $ arrays
-define size as 10;
-define array a as [1, 2, 3, 4, 5];
-define array b as allocate(size); $how to do this?
+define size as 10
+define array a as [1 2 3 4 5]
+define array b as allocate(size)  $how to do this?
 $dynamically allocate size array?
-floop(define temp as 0; ( < x length(a)); ++temp) {
-    display a[temp];
+floop((define temp as 0) (< x length(a)) (++temp)) {
+    display a[temp]
 }
 
 $ conditionals
@@ -49,8 +49,8 @@ $**************************
 * > x1 x2
 * <= x1 x2
 * >= x1 x2
-* and(x1, x2)
-* or(x1, x2)
+* and(x1 x2)
+* or(x1 x2)
 * not(x1)
 * !as x
 * abs(x1)
@@ -62,25 +62,25 @@ $**************************
 * if something is nil
 **************************$
 if (asas a[0] 1)
-  display "a[0] is 1";
+  display "a[0] is 1"
 elseif (<= a[0] 2)
-  display "a[0] is <= 1";
+  display "a[0] is <= 1"
 elseif (> a[0] -1)
-  display "a[0] is > -1";
-elseif (and(asas a[0] 1, asas b[0] 1))
-  display "a[0] and b[0] are both 1";
-elseif (or(> a[0] 1, > b[0] 1))
-  display "a[0] or b[0] is greater than 1";
+  display "a[0] is > -1"
+elseif (and(asas a[0] 1 asas b[0] 1))
+  display "a[0] and b[0] are both 1"
+elseif (or(> a[0] 1 > b[0] 1))
+  display "a[0] or b[0] is greater than 1"
 elseif(not(< a[0] 1))
-  display "a[0] is not < 1";
+  display "a[0] is not < 1"
 elseif(!as a[0] b[0])
-  display "a[0] is not = to b[0]";
+  display "a[0] is not = to b[0]"
 elseif(true)
-  display "true keyword";
+  display "true keyword"
 elseif(not(false))
-  display "false keyword";
+  display "false keyword"
 elseif(true)
-  abs(x1);
+  abs(x1)
 else
   nil
 
@@ -88,10 +88,10 @@ else
 $ functions
 
 define square(x)  {
-  result (* x x);
+  result (* x x)
 }
 
-define list l as (1,2,3);
+define list l as (1 2 3)
 
 $ (define (map proc items)
 $    (if (null? items)
@@ -100,11 +100,11 @@ $      (cons (proc (car items)) (map (proc (cdr items))))))
 
 $ map (lambda (x) (sscale S x)) @
 
-define map(func, list) {
+define map(func list) {
   if(not (list))
     nil
   else
-    cons(f(car(list)), map(f, cdr(1)))
+    cons(f(car(list)) map(f cdr(1)))
 }
 
 
