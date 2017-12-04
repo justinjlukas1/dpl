@@ -11,24 +11,24 @@ $variable declarations
 define testVariable as 20;
 
 define testFunction as (testVariable) {
-  display "this is my testVariable" + testVariable + "\n";
+  display (+ "this is my testVariable" testVariable "\n");
   displayln;
-  result (testVariable + 1);
+  result (+ testVariable 1);
 }
 
 $ loops and iterations
-floop(define x as 0; x < testVariable; x++) {
+floop(define x as 0; x < testVariable; ++x) {
     display x;
 }
 
 define x as 0;
-wloop(x < testVariable)
-  x++;
+wloop(< x testVariable)
+  ++x;
 
 $break?
 wloop(true) {
-  x++;
-  if(x asas testVariable)
+  ++x;
+  if(asas x testVariable)
     break
 
 }
@@ -38,21 +38,21 @@ define size as 10;
 define array a as [1, 2, 3, 4, 5];
 define array b as allocate(size); $how to do this?
 $dynamically allocate size array?
-floop(define temp as 0; x < length(a); temp++) {
+floop(define temp as 0; ( < x length(a)); ++temp) {
     display a[temp];
 }
 
 $ conditionals
 $**************************
-* x1 asas x2
-* x1 < x2
-* x1 > x2
-* x1 <= x2
-* x1 >= x2
+* asas x1 x2
+* < x1 x2
+* > x1 x2
+* <= x1 x2
+* >= x1 x2
 * and(x1, x2)
 * or(x1, x2)
 * not(x1)
-* !as
+* !as x
 * true
 * false
 *
@@ -60,19 +60,19 @@ $**************************
 *
 * if something is nil
 **************************$
-if (a[0] asas 1)
+if (asas a[0] 1)
   display "a[0] is 1";
-elseif (a[0] <= 2)
+elseif (<= a[0] 2)
   display "a[0] is <= 1";
-elseif (a[0] > -1)
+elseif (> a[0] -1)
   display "a[0] is > -1";
-elseif (and(a[0] asas 1, b[0] asas 1))
+elseif (and(asas a[0] 1, asas b[0] 1))
   display "a[0] and b[0] are both 1";
-elseif (or(a[0] > 1, b[0] > 1))
+elseif (or(> a[0] 1, > b[0] 1))
   display "a[0] or b[0] is greater than 1";
-elseif(not(a[0] < 1))
+elseif(not(< a[0] 1))
   display "a[0] is not < 1";
-elseif(a[0] !as b[0])
+elseif(!as a[0] b[0])
   display "a[0] is not = to b[0]";
 elseif(true)
   display "true keyword";
@@ -85,7 +85,7 @@ else
 $ functions
 
 define square(x)  {
-  result (x * x);
+  result (* x x);
 }
 
 define list l as (1,2,3);
@@ -105,7 +105,17 @@ define map(func, list) {
 }
 
 
+define plus4 (x)  {
+result (+ x 4)
+}
 
+$equivalent to
+
+define plus4  {
+  lambda (x)  {
+    result (+ x 4)
+  }
+}
 $ need to do lambda
 $function that returns a function
 $ dispatch
