@@ -1,0 +1,54 @@
+body :	O_BRACE statements C_BRACE
+
+statements	:	statement
+|	statement statements
+
+statement	:	expression COMMA
+|	definition COMMA
+|	ifStatement
+|	RETURN expression
+
+expression	:	unary
+|	unary operator expression
+
+definition	:	DEF VARIABLE
+|	DEF VARIABLE expression
+|	DEF VARIABLE list body //function def
+|	DEF VARIABLE lambda //lambda def
+
+lambda :	LAMBDA list body
+
+ifStatement : IF expression body optIfElse
+
+unary :	INTEGER
+|	STRING
+|	BOOLEAN
+|	VARIABLE
+|	MINUS unary
+|	list
+|	O_PAREN expression C_PAREN
+|	VARIABLE list //function call
+|	lambda list //lambda call
+
+operator	:	PLUS
+|	MINUS
+|	MULTIPLY
+|	DIVIDE
+|	EQUALS //=, numeric equality
+|	LESS_THAN
+|	GREATER_THAN
+|	INDEX //#
+|	AND
+|	OR
+|	NOT
+|	EXPONENT
+
+optIfElse	:	ELSE body
+|	ELSE ifStatement
+|	*empty*
+
+list :	O_BRACE optListItems C_BRACE
+
+optListItems:	expression
+|	expression COMMA optListItems
+|	*empty*
