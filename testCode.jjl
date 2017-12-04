@@ -54,10 +54,6 @@ $**************************
 * not(x1)
 * !as x
 * abs(x1)
-* true
-* false
-*
-* nil or NULL
 *
 * if something is nil
 **************************$
