@@ -7,8 +7,7 @@ statement       : expression
                 |	definition
                 | assignment
                 |	ifStatement
-                | forLoop
-                | whileLoop
+                | loop
                 |	RESULT expression
 
 expression      : unary
@@ -29,13 +28,9 @@ unary           : INTEGER
                 | O_PAREN expression C_PAREN
                 | EX_POINT unary  //! x1
                 | MINUS unary
-|	MINUS unary
-|	list
-|	O_PAREN expression C_PAREN
-|	VARIABLE list //function call
-|	lambda list //lambda call
-//              | arrayInit
+                | arrayInit
 
+arrayInit       : O_BRACKET listItem C_BRACKET
 object          : VARIABLE
                 | VARIABLE DOT object
 
@@ -51,44 +46,45 @@ listItem        : expression
                 | expression listItem
                 | NULL
 
-definition	:	DEF VARIABLE
-|	DEF VARIABLE expression
-|	DEF VARIABLE list body //function def
-|	DEF VARIABLE lambda //lambda def
+definition	    :	DEFINE object
+                |	DEFINE object AS expression
+                |	DEFINE object AS procedure
 
-lambda :	LAMBDA list body
+assignment	    :	SET object TO expression
+                |	SET object TO procedure
 
-ifStatement : IF expression body optIfElse
+ifStatement     : IF unary optBlock optIfElse
 
-unary :	INTEGER
-|	STRING
-|	BOOLEAN
-|	VARIABLE
-|	MINUS unary
-|	list
-|	O_PAREN expression C_PAREN
-|	VARIABLE list //function call
-|	lambda list //lambda call
+optBlock        : body
+                |statement
 
-operator	:	PLUS
-|	MINUS
-|	MULTIPLY
-|	DIVIDE
-|	EQUALS //=, numeric equality
-|	LESS_THAN
-|	GREATER_THAN
-|	INDEX //#
-|	AND
-|	OR
-|	NOT
-|	EXPONENT
+optIfElse       : NULL
+                | ELSE ifStatement
+                | ELSE body
 
-optIfElse	:	ELSE body
-|	ELSE ifStatement
-|	*empty*
+//forLoop       : FLOOP O_PAREN unary
 
-list :	O_BRACE optListItems C_BRACE
 
-optListItems:	expression
-|	expression COMMA optListItems
-|	*empty*
+loop            : LOOP O_PAREN optVar unary optExp C_PAREN optBlock
+
+optVar          : NULL
+                | VARIABLE unary
+
+optExp          : NULL
+                | expression
+
+operator        :	PLUS
+                |	MINUS
+                |	MULTIPLY
+                |	DIVIDE
+                |	EQUALS //=, numeric equality
+                |	LESS_THAN
+                |	GREATER_THAN
+                | LTE // >=
+                | GTE  // <=
+                |	INDEX //#   //how to handle array[x] lookup is # foo 2
+                |	AND
+                |	OR
+                |	NOT
+                |	EXPONENT
+                | MODULO

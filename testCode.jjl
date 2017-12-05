@@ -18,31 +18,61 @@ define testFunction as (testVariable) {
 }
 
 $ loops and iterations
-floop((define x as 0) (< x testVariable) (set x to (+ x 1))) {
-    display x
+$floop(x 0 (< x testVariable)(+ x 1))
+$    display x
+
+$define fLoopTest as 0
+
+$traditional for loops
+loop(x 0 (< x 10) (x++))
+  display x
+
+loop(x 0 (< x 10) (x++))  {
+  display x
 }
 
-define x as 0
-wloop(< x testVariable)
+$traditional while loop
+loop(< x 10)  {
+  display x
   set x to (+ x 1)
+}
+
+$for loop without definition
+loop((< x 10) (x++))
+  display x
+
+loop((< x 10) (x++))  {
+  display x
+}
+
+$for loop without expression
+
+loop(x 0 (< x 10))  {
+  display x
+  set x to (+ x 1)
+}
+
+
+
+$define x as 0
+$wloop(< x testVariable)
+$  set x to (+ x 1)
 
 $break?
-wloop(true) {
-  set x to (+ x 1)
-  if(= x testVariable)
-    break
+$wloop(true) {
+$  set x to (+ x 1)
+$  if(= x testVariable)  {break}
 
-}
+$}
 
 $ arrays
 define size as 10
 define a as [1 2 3 4 5]
 define b as allocate(size)  $how to do this?
 $dynamically allocate size array?
-floop((define temp as 0) (< x length(a)) set temp to (+ temp 1)) {
-    display a[temp]
+loop(temp 0 (< x length(a)) (+ temp 1)) {
+    display # temp x
 }
-set a[4] to 9
 
 $ conditionals
 $**************************
@@ -59,28 +89,17 @@ $**************************
 *
 * if something is nil
 **************************$
-if (= a[0] 1)
-  display "a[0] is 1"
-elseif (<= a[0] 2)
-  display "a[0] is <= 1"
-elseif (> a[0] -1)
-  display "a[0] is > -1"
-elseif (and (= a[0] 1) (= b[0] 1))
-  display "a[0] and b[0] are both 1"
-elseif (or (> a[0] 1) (> b[0] 1))
-  display "a[0] or b[0] is greater than 1"
-elseif(not (< a[0] 1))
-  display "a[0] is not < 1"
-elseif(!= a[0] b[0])
-  display "a[0] is not = to b[0]"
-elseif(true)
-  display "true keyword"
-elseif(not false)
-  display "false keyword"
-elseif(true)
-  (abs x1)
-else
-  nil
+if (= a[0] 1) {display "a[0] is 1"}
+else if (<= a[0] 2) {display "a[0] is <= 1"}
+else if (> a[0] -1) {display "a[0] is > -1"}
+else if (and (= a[0] 1) (= b[0] 1)) {display "a[0] and b[0] are both 1"}
+else if (or (> a[0] 1) (> b[0] 1))  {display "a[0] or b[0] is greater than 1"}
+else if(not (< a[0] 1)) {display "a[0] is not < 1"}
+else if(!= a[0] b[0]) {display "a[0] is not = to b[0]"}
+else if(true) {display "true keyword"}
+else if(not false)  {display "false keyword"}
+else if(true) {abs x1}
+else  {nil}
 
 
 $ functions
