@@ -8,6 +8,7 @@ $sample code
 
 
 $variable declarations
+
 define testVariable as 20
 
 define testFunction as (testVariable) {
@@ -17,73 +18,74 @@ define testFunction as (testVariable) {
 }
 
 $ loops and iterations
-floop((define x as 0) (< x testVariable) (++x)) {
+floop((define x as 0) (< x testVariable) (set x to (+ x 1))) {
     display x
 }
 
 define x as 0
 wloop(< x testVariable)
-  ++x
+  set x to (+ x 1)
 
 $break?
 wloop(true) {
-  ++x
-  if(asas x testVariable)
+  set x to (+ x 1)
+  if(= x testVariable)
     break
 
 }
 
 $ arrays
 define size as 10
-define array a as [1 2 3 4 5]
-define array b as allocate(size)  $how to do this?
+define a as [1 2 3 4 5]
+define b as allocate(size)  $how to do this?
 $dynamically allocate size array?
-floop((define temp as 0) (< x length(a)) (++temp)) {
+floop((define temp as 0) (< x length(a)) set temp to (+ temp 1)) {
     display a[temp]
 }
+set a[4] to 9
 
 $ conditionals
 $**************************
-* asas x1 x2
+* = x1 x2
 * < x1 x2
 * > x1 x2
 * <= x1 x2
 * >= x1 x2
-* and(x1 x2)
-* or(x1 x2)
-* not(x1)
-* !as x
-* abs(x1)
+* and x1 x2
+* or x1 x2
+* not x1
+* != x
+* abs x1
 *
 * if something is nil
 **************************$
-if (asas a[0] 1)
+if (= a[0] 1)
   display "a[0] is 1"
 elseif (<= a[0] 2)
   display "a[0] is <= 1"
 elseif (> a[0] -1)
   display "a[0] is > -1"
-elseif (and(asas a[0] 1 asas b[0] 1))
+elseif (and (= a[0] 1) (= b[0] 1))
   display "a[0] and b[0] are both 1"
-elseif (or(> a[0] 1 > b[0] 1))
+elseif (or (> a[0] 1) (> b[0] 1))
   display "a[0] or b[0] is greater than 1"
-elseif(not(< a[0] 1))
+elseif(not (< a[0] 1))
   display "a[0] is not < 1"
-elseif(!as a[0] b[0])
+elseif(!= a[0] b[0])
   display "a[0] is not = to b[0]"
 elseif(true)
   display "true keyword"
-elseif(not(false))
+elseif(not false)
   display "false keyword"
 elseif(true)
-  abs(x1)
+  (abs x1)
 else
   nil
 
 
 $ functions
 
-define square(x)  {
+define square as (x)  {
   result (* x x)
 }
 
@@ -96,21 +98,21 @@ $      (cons (proc (car items)) (map (proc (cdr items))))))
 
 $ map (lambda (x) (sscale S x)) @
 
-define map(func list) {
-  if(not (list))
+define map as (func list) {
+  if(not list)
     nil
   else
-    cons(f(car(list)) map(f cdr(1)))
+    cons(f(car list) map(f (cdr 1)))
 }
 
 
-define plus4 (x)  {
+define plus4 as (x)  {
 result (+ x 4)
 }
 
 $equivalent to
 
-define plus4  {
+define plus4  as () {
   lambda (x)  {
     result (+ x 4)
   }

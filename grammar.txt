@@ -1,15 +1,55 @@
-body  : O_BRACE statements C_BRACE
+body            : O_BRACE statements C_BRACE
 
-statements  : statement
-            | statement statements
+statements      : statement
+                | statement statements
 
-statement   : expression COMMA
-|	definition COMMA
-|	ifStatement
-|	RETURN expression
+statement       : expression
+                |	definition
+                | assignment
+                |	ifStatement
+                | forLoop
+                | whileLoop
+                |	RESULT expression
 
-expression	:	unary
-|	unary operator expression
+expression      : unary
+                | binary
+
+binary          : operator expression optBinaryItems
+
+optBinaryItems  : expression
+                | NULL
+
+unary           : INTEGER
+                |	REAL
+                | STRING
+                | functionCall
+                | lambda
+                | list
+                |	object
+                | O_PAREN expression C_PAREN
+                | EX_POINT unary  //! x1
+                | MINUS unary
+|	MINUS unary
+|	list
+|	O_PAREN expression C_PAREN
+|	VARIABLE list //function call
+|	lambda list //lambda call
+//              | arrayInit
+
+object          : VARIABLE
+                | VARIABLE DOT object
+
+functionCall    : object list
+
+lambda          : LAMBDA procedure
+
+procedure       : list body
+
+list            : O_PAREN listItem C_PAREN
+
+listItem        : expression
+                | expression listItem
+                | NULL
 
 definition	:	DEF VARIABLE
 |	DEF VARIABLE expression
