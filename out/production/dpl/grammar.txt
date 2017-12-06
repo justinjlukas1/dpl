@@ -1,0 +1,90 @@
+body            : O_BRACE statements C_BRACE
+
+statements      : statement
+                | statement statements
+
+statement       : expression
+                |	definition
+                | assignment
+                |	ifStatement
+                | loop
+                |	RESULT expression
+
+expression      : unary
+                | binary
+
+binary          : operator expression optBinaryItems
+
+optBinaryItems  : expression
+                | NULL
+
+unary           : INTEGER
+                |	REAL
+                | STRING
+                | functionCall
+                | lambda
+                | list
+                |	object
+                | O_PAREN expression C_PAREN
+                | EX_POINT unary  //! x1
+                | MINUS unary
+                | arrayInit
+
+arrayInit       : O_BRACKET listItem C_BRACKET
+object          : VARIABLE
+                | VARIABLE DOT object
+
+functionCall    : object list
+
+lambda          : LAMBDA procedure
+
+procedure       : list body
+
+list            : O_PAREN listItem C_PAREN
+
+listItem        : expression
+                | expression listItem
+                | NULL
+
+definition	    :	DEFINE object
+                |	DEFINE object AS expression
+                |	DEFINE object AS procedure
+
+assignment	    :	SET object TO expression
+                |	SET object TO procedure
+
+ifStatement     : IF unary optBlock optIfElse
+
+optBlock        : body
+                |statement
+
+optIfElse       : NULL
+                | ELSE ifStatement
+                | ELSE body
+
+//forLoop       : FLOOP O_PAREN unary
+
+
+loop            : LOOP O_PAREN optVar unary optExp C_PAREN optBlock
+
+optVar          : NULL
+                | VARIABLE unary
+
+optExp          : NULL
+                | expression
+
+operator        :	PLUS
+                |	MINUS
+                |	MULTIPLY
+                |	DIVIDE
+                |	EQUALS //=, numeric equality
+                |	LESS_THAN
+                |	GREATER_THAN
+                | LTE // >=
+                | GTE  // <=
+                |	INDEX //#   //how to handle array[x] lookup is # foo 2
+                |	AND
+                |	OR
+                |	NOT
+                |	EXPONENT
+                | MODULO
