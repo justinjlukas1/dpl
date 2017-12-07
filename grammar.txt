@@ -4,11 +4,12 @@ statements      : statement
                 | statement statements
 
 statement       : expression
-                |	definition
+                | definition
                 | assignment
-                |	ifStatement
+                | ifStatement
                 | loop
-                |	RESULT expression
+                | RESULT expression
+                | comments
 
 expression      : unary
                 | binary
@@ -19,12 +20,12 @@ optBinaryItems  : expression
                 | NULL
 
 unary           : INTEGER
-                |	REAL
+                | REAL
                 | STRING
                 | functionCall
                 | lambda
                 | list
-                |	object
+                | object
                 | O_PAREN expression C_PAREN
                 | EX_POINT unary  //! x1
                 | MINUS unary
@@ -46,17 +47,17 @@ listItem        : expression
                 | expression listItem
                 | NULL
 
-definition	    :	DEFINE object
-                |	DEFINE object AS expression
-                |	DEFINE object AS procedure
+definition	    : DEFINE object
+                | DEFINE object AS expression
+                | DEFINE object AS procedure
 
-assignment	    :	SET object TO expression
-                |	SET object TO procedure
+assignment	    : SET object TO expression
+                | SET object TO procedure
 
 ifStatement     : IF unary optBlock optIfElse
 
 optBlock        : body
-                |statement
+                | statement
 
 optIfElse       : NULL
                 | ELSE ifStatement
@@ -73,18 +74,28 @@ optVar          : NULL
 optExp          : NULL
                 | expression
 
-operator        :	PLUS
-                |	MINUS
-                |	MULTIPLY
-                |	DIVIDE
-                |	EQUALS //=, numeric equality
-                |	LESS_THAN
-                |	GREATER_THAN
+operator        : PLUS
+                | MINUS
+                | MULTIPLY
+                | DIVIDE
+                | EQUALS //=, numeric equality
+                | LESS_THAN
+                | GREATER_THAN
                 | LTE // >=
                 | GTE  // <=
-                |	INDEX //#   //how to handle array[x] lookup is # foo 2
-                |	AND
-                |	OR
-                |	NOT
-                |	EXPONENT
+                | INDEX //#   //how to handle array[x] lookup is # foo 2
+                | AND
+                | OR
+                | NOT
+                | EXPONENT
                 | MODULO
+
+comments        : DOLLAR_SIGN optBlockComment
+
+optBlockComment : STAR *stuff* STAR DOLLAR_SIGN
+                | STUFF NEWLINE
+
+displayOpt      : DISPLAY optDisplayItems
+                | displayln optDisplayItems NEWLINE
+
+optDisplayItems : unary optDisplayItems

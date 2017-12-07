@@ -1,414 +1,417 @@
-//BenScriptLexer.java
-//https://github.com/benjaminRomano/BenScript/blob/master/code/src/org/bromano/benscript/lexer/BenScriptLexer.java
-
+import java.io.EOFException;
 import java.util.List;
 import java.util.ArrayList;
 
+
 public class Lexer {
-    private String text;
-    private int linePos;
-    private int end;
+    FileInput file;
+    Lexeme currentLexeme;
+    private boolean endOfFile;
+    private int currentLine;
 
-    public Lexer(String source) {
-        this.text = source;
-        this.linePos = 0;
-        this.end = source.length();
+    public Lexer(String var1) {
+        this.file = new FileInput(var1);
+        this.endOfFile = false;
+        this.currentLine = 1;
+        this.advance();
     }
 
-    public List<Lexeme> getLexes() {
-        List<Lexeme> lexemes = new ArrayList<>();
+    public Lexeme getCurrentLexeme() {
+        return this.currentLexeme;
+    }
 
-        Lexeme lexeme = this.lex();
+    public void setCurrentLexeme(Lexeme var1) {
+        this.currentLexeme = var1;
+    }
 
-        while(lexeme != null) {
-            lexemes.add(lexeme);
+    public void scanner() {
+        this.currentLexeme.display();
 
-            lexeme = this.lex();
+        while(this.currentLexeme.type != kind.ENDofINPUT) {
+            this.advance();
+            this.currentLexeme.display();
         }
 
-        return lexemes;
     }
 
-    public Lexeme lex() {
-
-        while (true) {
-
-            if (this.linePos >= this.end) {
-                return null;
-            }
-
-            char ch = this.text.charAt(this.linePos);
-
-            switch (ch) {
-                case '\n':
-                case '\t':
-                case ' ':
-                    this.linePos++;
-                    continue;
-                case '+':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.Plus, "+");
-                case '-':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.Minus, "-");
-                case '*':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.Multiply, "*");
-                case '/':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.Divide, "/");
-                case '<':
-                    this.linePos++;
-
-                    if (checkNextChar('=')) {
-                        this.linePos++;
-                        return new Lexeme(Lexeme.kind.LessThanEqual, "<=");
-                    }
-
-                    return new Lexeme(Lexeme.kind.LessThan, "<");
-                case '>':
-                    this.linePos++;
-
-                    if (checkNextChar('=')) {
-                        this.linePos++;
-                        return new Lexeme(Lexeme.kind.GreaterThanEqual, ">=");
-                    }
-
-                    return new Lexeme(Lexeme.kind.GreaterThan, ">");
-                case '=':
-                    this.linePos++;
-
-                    if (checkNextChar('=')) {
-                        this.linePos++;
-                        return new Lexeme(Lexeme.kind.EqualEqual, "==");
-                    }
-
-                    return new Lexeme(Lexeme.kind.Equal, "=");
-                case '!':
-                    this.linePos++;
-
-                    if (checkNextChar('=')) {
-                        this.linePos++;
-                        return new Lexeme(Lexeme.kind.ExclamationEqual, "!=");
-                    }
-                    // Something Bad happened if this is called...
-                    return null;
-                case ',':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.Comma, ",");
-                case '.':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.Dot, ".");
-                case ':':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.Colon, ":");
-                case ';':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.SemiColon,";");
-                case '(':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.OpenParen, "(");
-                case ')':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.CloseParen, ")");
-                case '[':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.OpenBracket, "[");
-                case ']':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.CloseBracket, "]");
-                case '{':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.OpenCurly, "{");
-                case '}':
-                    this.linePos++;
-                    return new Lexeme(Lexeme.kind.CloseCurly, "}");
-                case '0':
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                    String s = readInteger();
-                    return new Lexeme(Lexeme.kind.Integerkind, s);
-                default:
-                    String a = readString();
-                    return createKeywordOrStringLexeme(a);
-            }
-
-        }
-    }
-
-    private boolean checkNextChar(char match) {
-
-        return this.linePos < this.end && this.text.charAt(this.linePos) == match;
-    }
-
-    private String readInteger() {
-
-        StringBuilder i = new StringBuilder();
-
-        while (this.linePos < this.end) {
-            char c = this.text.charAt(this.linePos);
-            this.linePos++;
-
-            if (c >= '0' && c <= '9') {
-                i.append(c);
-            }
-            else {
-                break;
+    public void advance() {
+        if (this.endOfFile) {
+            this.currentLexeme = new Lexeme(kind.ENDofINPUT, this.currentLine);
+        } else {
+            try {
+                this.currentLexeme = this.lex();
+            } catch (EOFException var2) {
+                this.currentLexeme = new Lexeme(kind.ENDofINPUT, this.currentLine);
             }
         }
 
-        return i.toString();
     }
 
-    private String readString() {
-
-        StringBuilder i = new StringBuilder();
-
-        while (this.linePos < this.end) {
-            char c = this.text.charAt(this.linePos);
-            this.linePos++;
-
-            // Needed to remove leading " on string
-            if (c == '\"') {
-                c = this.text.charAt(this.linePos);
-                this.linePos++;
-            }
-
-            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
-                i.append(c);
-            }
-            else {
-                break;
-            }
-        }
-
-        return i.toString();
-    }
-
-    private Lexeme createKeywordOrStringLexeme(String value) {
-        switch (value) {
-            case "if":
-                return new Lexeme(Lexeme.kind.IfKeyword, "if");
-            case "else":
-                return new Lexeme(Lexeme.kind.ElseKeyword, "else");
-            case "for":
-                return new Lexeme(Lexeme.kind.ForKeyword, "for");
-            case "func":
-                return new Lexeme(Lexeme.kind.FuncKeyword, "func");
-            case "return":
-                return new Lexeme(Lexeme.kind.ReturnKeyword, "return");
-            case "var":
-                String varName = readString();
-                return new Lexeme(Lexeme.kind.VarKeyword, varName);
+    public Lexeme lex() throws EOFException {
+        this.file.skipWhitespace();
+        Character var1 = this.file.readNextRawCharacter();
+        switch(var1) {
+            case '\n':
+                this.currentLine = this.currentLine + 1;
+                return new Lexeme(kind.NEWLINE, this.currentLine - 1);
+            case '(':
+                return new Lexeme(kind.O_PAREN, this.currentLine);
+            case ')':
+                return new Lexeme(kind.C_PAREN, this.currentLine);
+            case '[':
+                return new Lexeme(kind.O_BRACE, this.currentLine);
+            case ']':
+                return new Lexeme(kind.C_BRACE, this.currentLine);
+            case '{':
+                return new Lexeme(kind.O_BRACKET, this.currentLine);
+            case '}':
+                return new Lexeme(kind.C_BRACKET, this.currentLine);
+            case '$':
+                return lexComment();
+        //don't need to include a value
+            case '!':
+                this.file.skipWhitespace();
+                var1 = this.file.readNextRawCharacter();
+                if (var1 == '=') {
+                    return new Lexeme(kind.NOTEQUALSEX, this.currentLine);
+                }
+                else {
+                    this.file.pushbackCharacter(var1);
+                    return new Lexeme(kind.NOTEX, this.currentLine);
+                }
+            case '<':
+                this.file.skipWhitespace();
+                var1 = this.file.readNextRawCharacter();
+                if (var1 == '=') {
+                    return new Lexeme(kind.LTE, this.currentLine);
+                }
+                else {
+                    this.file.pushbackCharacter(var1);
+                    return new Lexeme(kind.LESS_THAN, this.currentLine);
+                }
+            case '>':
+                this.file.skipWhitespace();
+                var1 = this.file.readNextRawCharacter();
+                if (var1 == '=') {
+                    return new Lexeme(kind.GTE, this.currentLine);
+                }
+                else {
+                    this.file.pushbackCharacter(var1);
+                    return new Lexeme(kind.GREATER_THAN, this.currentLine);
+                }
+            case '+':
+                this.file.skipWhitespace();
+                var1 = this.file.readNextRawCharacter();
+                if (var1 == '=') {
+                    return new Lexeme(kind.PLUS_EQUALS, this.currentLine);
+                }
+                else if (var1 == '+') {
+                    return new Lexeme(kind.INC, this.currentLine);
+                }
+                else {
+                    this.file.pushbackCharacter(var1);
+                    return new Lexeme(kind.PLUS, this.currentLine);
+                }
+            case '-':   //subtract vs. negative number
+                this.file.skipWhitespace();
+                var1 = this.file.readNextRawCharacter();
+                if (var1 == '=') {
+                    return new Lexeme(kind.MINUS_EQUALS, this.currentLine);
+                }
+                else if (var1 == '-') {
+                    return new Lexeme(kind.DEC, this.currentLine);
+                }
+                else if(Character.isDigit(var1)){
+                    this.file.pushbackCharacter(var1);
+                    return this.lexNumber();
+                }
+                else {
+                    this.file.pushbackCharacter(var1);
+                    return new Lexeme(kind.MINUS, this.currentLine);
+                }
+            case '%':
+                return new Lexeme(kind.MODULO, this.currentLine);
+            case '*':
+                var1 = this.file.readNextCharacter();
+                if (var1 == '=') {
+                    return new Lexeme(kind.MULTIPLYEQUALS, this.currentLine);
+                }
+                else {
+                    this.file.pushbackCharacter(var1);
+                    return new Lexeme(kind.MULTIPLY, this.currentLine);
+                }
+            case '/':
+                var1 = this.file.readNextCharacter();
+                if (var1 == '=') {
+                    return new Lexeme(kind.DIVIDEEQUALS, this.currentLine);
+                }
+                else {
+                    this.file.pushbackCharacter(var1);
+                    return new Lexeme(kind.DIVIDE, this.currentLine);
+                }
+            case '.':
+                return new Lexeme(kind.DOT, this.currentLine);
+            case '^':
+                var1 = this.file.readNextCharacter();
+                if (var1 == '=') {
+                    return new Lexeme(kind.EXPONENTEQUALS, this.currentLine);
+                }
+                else {
+                    this.file.pushbackCharacter(var1);
+                    return new Lexeme(kind.EXPONENT, this.currentLine);
+                }
+            case '=':
+                return new Lexeme(kind.EQUALS, this.currentLine);
+            case '#':
+                return new Lexeme(kind.INDEX, this.currentLine);
+            case '\"':
+                return lexString();
             default:
-                return new Lexeme(Lexeme.kind.Stringkind, value);
+                if (!Character.isDigit(var1) && var1 != '-') {  //non number
+                    if (Character.isLetter(var1)) {
+                        this.file.pushbackCharacter(var1);
+                        return this.lexVarOrKeyword();
+                    } else {    //neither a number, letter, or keyword
+                        return var1 == '"' ? this.lexString() : new Lexeme(kind.UNKNOWN, this.currentLine);
+                    }
+                } else {    //number
+                    this.file.pushbackCharacter(var1);
+                    return this.lexNumber();
+                }
         }
+    }
+
+    private Lexeme lexVarOrKeyword() throws EOFException {
+        String var2 = new String();
+        Character var1 = this.file.readNextRawCharacter();
+
+        while(Character.isLetterOrDigit(var1) && !this.endOfFile) {
+            var2 = var2.concat(Character.toString(var1));
+
+            try {
+                var1 = this.file.readNextRawCharacter();
+            } catch (EOFException var4) {
+                this.endOfFile = true;
+            }
+        }
+        this.file.pushbackCharacter(var1);
+        if (var2.equals("define")) {
+            return new Lexeme(kind.RESULT, this.currentLine);
+        } else if (var2.equals("NULL")) {
+            return new Lexeme(kind.NULL, this.currentLine);
+        } else if (var2.equals("define")) {
+            return new Lexeme(kind.DEFINE, this.currentLine);
+        } else if (var2.equals("as")) {
+            return new Lexeme(kind.AS, this.currentLine);
+        } else if (var2.equals("set")) {
+            return new Lexeme(kind.SET, this.currentLine);
+        } else if (var2.equals("to")) {
+            return new Lexeme(kind.TO, this.currentLine);
+        } else if (var2.equals("if")) {
+            return new Lexeme(kind.IF, this.currentLine);
+        } else if (var2.equals("else")) {
+            return new Lexeme(kind.ELSE, this.currentLine);
+        } else if (var2.equals("loop")) {
+            return new Lexeme(kind.LOOP, this.currentLine);
+        } else if (var2.equals("lambda")) {
+            return new Lexeme(kind.LAMBDA, this.currentLine);
+        } else if (var2.equals("and")) {
+            return new Lexeme(kind.AND, this.currentLine);
+        } else if (var2.equals("or")) {
+            return new Lexeme(kind.OR, this.currentLine);
+        } else if (var2.equals("include")) {    //include?
+            return new Lexeme(kind.INCLUDE, this.currentLine);
+        } else if (var2.equals("not")) {    //include?
+            return new Lexeme(kind.NOT, this.currentLine);
+        }else {
+            return new Lexeme(kind.VARIABLE, var2, this.currentLine);
+        }
+    }
+
+    private Lexeme lexString() throws EOFException {
+        String var2 = new String();
+        Character var1 = this.file.readNextRawCharacter();
+
+        while(var1 != '"' && !this.endOfFile) {
+            var2 = var2.concat(Character.toString(var1));
+
+            try {
+                var1 = this.file.readNextRawCharacter();
+            } catch (EOFException var4) {
+                this.endOfFile = true;
+            }
+        }
+
+        return new Lexeme(kind.STRING, var2, this.currentLine);
+    }
+
+    private Lexeme lexNumber() throws EOFException {
+        String var2 = new String();
+        Character var1 = this.file.readNextRawCharacter();
+        int dotFlagCount = 0;
+        //if((Character.isDigit(var1) || var1 == '.' || var1 == '-') && !this.endOfFile) {
+            while ((Character.isDigit(var1) || var1 == '.' || var1 == '-') && !this.endOfFile) {
+                var2 = var2.concat(Character.toString(var1));
+
+                try {
+                    var1 = this.file.readNextRawCharacter();
+                } catch (EOFException var6) {
+                    this.endOfFile = true;
+                }
+            }
+
+            this.file.pushbackCharacter(var1);
+            if (var2.contains(Character.toString('.'))) {
+                try {
+                    return new Lexeme(kind.REAL, Double.parseDouble(var2), this.currentLine);
+                } catch (NumberFormatException var4) {
+                    return new Lexeme(kind.UNKNOWN, this.currentLine);
+                }
+            } else {
+                try {
+                    return new Lexeme(kind.INTEGER, Integer.parseInt(var2), this.currentLine);
+                } catch (NumberFormatException var5) {
+                    return new Lexeme(kind.UNKNOWN, this.currentLine);
+                }
+            }
+        //}
+    }
+
+    private Lexeme lexComment() throws EOFException {
+        String var2 = new String();
+        Character var1 = this.file.readNextRawCharacter();
+        if (var1 == '*') {  //block comment
+            while (var1 != '$' && !this.endOfFile) {
+                if(var1 == '\n')
+                    this.currentLine = this.currentLine + 1;
+                var2 = var2.concat(Character.toString(var1));
+
+                try {
+                    var1 = this.file.readNextRawCharacter();
+                } catch (EOFException var4) {
+                    this.endOfFile = true;
+                }
+            }
+
+            return new Lexeme(kind.COMMENT, var2, this.currentLine);
+        }
+        else    {   //single line comment
+            while (var1 != '\n' && !this.endOfFile) {
+                var2 = var2.concat(Character.toString(var1));
+
+                try {
+                    var1 = this.file.readNextRawCharacter();
+                } catch (EOFException var4) {
+                    this.endOfFile = true;
+                }
+            }
+            this.currentLine = this.currentLine + 1;
+            return new Lexeme(kind.COMMENT, var2, this.currentLine-1);
+        }
+    }
+
+
+    public boolean statementPending() {
+        return
+                this.expressionPending()
+                || this.definitionPending()
+                || this.assignmentPending()
+                || this.ifStatementPending()
+                || this.loopPending()
+                || this.resultPending()
+                //|| this.conditionalPending()
+                //|| this.currentLexeme.check("INCLUDE")
+                || this.commentPending()
+                || this.currentLexeme.check("NEWLINE");
+    }
+
+    public boolean expressionPending() {
+        return
+                this.unaryPending();
+//                || this.binaryPending();
+    }
+
+    public boolean definitionPending() {
+        return this.currentLexeme.check("DEFINE");
+    }
+
+    public boolean assignmentPending() {
+        return this.currentLexeme.check("SET");
+    }
+
+    public boolean ifStatementPending() {
+        return this.currentLexeme.check("IF");
+    }
+
+    public boolean loopPending() {
+        return this.currentLexeme.check("LOOP");
+    }
+
+    public boolean resultPending() {
+        return this.currentLexeme.check("RESULT");
+    }
+
+    public boolean commentPending() {
+        return this.currentLexeme.check("DOLLAR_SIGN");
+    }
+
+    public boolean unaryPending() {
+        return
+                this.currentLexeme.check("INTEGER")
+                || this.currentLexeme.check("REAL")
+                || this.currentLexeme.check("STRING")
+                || this.currentLexeme.check("ASSIGN")
+                || this.currentLexeme.check("VARIABLE");
+//                || this.anonymousPending()
+ //               || this.currentLexeme.check(); //functionCall
+//                | lambda
+//                | list
+//                | object
+//                | O_PAREN expression C_PAREN
+//                | EX_POINT unary  //! x1
+//                | MINUS unary
+//                | arrayInit
+
+
+
+    }
+
+
+
+
+    public boolean functionDefPending() {
+        return this.currentLexeme.check("FUNCTION");
+    }
+
+    public boolean arrayDefPending() {
+        return this.currentLexeme.check("ARRAY");
+    }
+
+    public boolean classDefPending() {
+        return this.currentLexeme.check("CLASS");
+    }
+
+    public boolean objectDefPending() {
+        return this.currentLexeme.check("OBJECT");
+    }
+
+    public boolean initializerExpressionPending() {
+        return this.currentLexeme.check("OPEN_PAREN");
+    }
+
+    public boolean anonymousPending() {
+        return this.currentLexeme.check("ANONYMOUS") || this.currentLexeme.check("OPEN_PAREN");
+    }
+
+    public boolean objectExpressionPending() {
+        return this.currentLexeme.check("DOT");
+    }
+
+    public boolean variableExpressionPending() {
+        return this.currentLexeme.check("VARIABLE");
+    }
+
+    public boolean optParameterListPending() {
+        return this.currentLexeme.check("VARIABLE");
     }
 }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//import java.io.*;
-//import java.nio.charset.*;
-//import java.lang.*;
-//import java.util.*;
-//
-//
-//public class lexer extends lexeme {
-//
-//    public static void lexer(File filename) throws IOException {
-//        File file = filename;
-//        Character[] chArray = readFile(file);
-//        List<Character> charList = Arrays.asList(chArray);  //Zero based
-//        lex(charList);
-//    }
-//
-//    //Receive character, parse and analyze
-//    public static int lex(List<Character> charList) {
-//        List<Character> input = charList;
-//        int size = input.size();
-//        int index = 0;
-//        while(index < input.size()) {
-//            switch(input.get(index)) {
-//                case '{':
-//                    lexeme("OBRACE");
-//                    index++;
-//                    break;
-//                case '}':
-//                    lexeme("CBRACE");   //Signals ENDofINPUT?
-//                    if(input.size() == size) {
-//                        System.out.println("ENDofINPUT");
-//                    }
-//                    index++;
-//                    break;
-//                case '(':
-//                    lexeme("OPAREN");
-//                    index++;
-//                    break;
-//                case ')':
-//                    lexeme("CPAREN");
-//                    index++;
-//                    break;
-//                case ',':
-//                    lexeme("COMMA");
-//                    index++;
-//                    break;
-//                case ';':
-//                    lexeme("SEMICOLON");
-//                    index++;
-//                    break;
-//                case '<':
-//                    lexeme("LESSTHAN");
-//                    index++;
-//                    break;
-//                case '>':
-//                    lexeme("GREATERTHAN");
-//                    index++;
-//                    break;
-//                case '=':
-//                    lexeme("ASSIGN");
-//                    index++;
-//                    break;
-//                case '+':
-//                    lexeme("PLUS");     //What about ++ and +=
-//                    index++;
-//                    break;
-//                case '-':
-//                    lexeme("MINUS");
-//                    index++;
-//                    break;
-//                case '*':
-//                    lexeme("MULTIPLY");
-//                    index++;
-//                    break;
-//                case '/':
-//                    lexeme("DIVISION");
-//                    index++;
-//                    break;
-//                case '%':
-//                    lexeme("MODULUS");
-//                    index++;
-//                    break;
-//                //add any other single cases here
-//
-//                default:
-//                    //System.out.println("Default case");
-//                    if(Character.isWhitespace(input.get(index))) {
-//                        //System.out.println("Whitespace");
-//                    }
-//                    else if(Character.isDigit(input.get(index))) {
-//                        //System.out.println("Digit: " + input.get(index));
-//                        //send lexNumber the list and the current index
-//                        index = lexNumber(input, index);
-//                    }
-//                    else if(Character.isLetter(input.get(index))) {
-//                        index = lexVariable(input, index);
-//                        //index++;
-//                        //return lexVariable(input.get(index));
-//                    }
-//                    else if(input.get(index) == '"') {
-//                        index = lexString(input, index);
-//                    }
-//                    else
-//                        System.out.println("ENDofINPUT");
-//                        index++;
-//            }
-//        }
-//        return 0;
-//    }
-//
-//    private static boolean isWhitespace(Character ch) {
-//        if(Character.isWhitespace(ch)) {
-//            return true;
-//        }
-//        else
-//            return false;
-//    }
-//
-//    /* TODO */
-//    private static int lexNumber(List<Character> input, int index) {
-//        String digit = "";
-//        digit += input.get(index);
-//        while(Character.isDigit(input.get(index+1))) {
-//            digit += input.get(index+1);
-//            index += 1;
-//        }
-////        System.out.println("Digit: " + digit);
-//        lexeme(digit);
-//        return index;
-//    }
-//
-//    private static int lexVariable(List<Character> input, int index) {
-//        String variable = "";
-//        variable += input.get(index);
-//        while(Character.isLetter(input.get(index+1))) {
-//            variable += input.get(index+1);
-//            index += 1;
-//        }
-////        System.out.println("Variable : " + variable);
-//        lexeme(variable);
-//        return index;
-//    }
-//
-//    private static int lexString(List<Character> input, int index) {
-//        String quotes = "";
-//        quotes += input.get(index);
-//        index += 1;
-//        while(input.get(index) != '"') {
-//            quotes += input.get(index);
-//            index += 1;
-//        }
-//        quotes += '"';
-////        System.out.println("Quotes: " + quotes);
-//        lexeme(quotes);
-//        return index;
-//    }
-//
-//    private static boolean skipWhitespace(Character ch) {
-//        if(Character.isWhitespace(ch)) {
-//            return true;
-//        }
-//        else if(ch == '#') {
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//    private static Character[] readFile(File file) throws IOException {
-//        int r;
-//        Charset encoding = Charset.defaultCharset();
-//        List<Character> input = new ArrayList<Character>();
-//        System.out.println("Test file : " + file);
-//        System.out.println("File encoding : " + encoding);
-//        try {
-//            InputStream stream = new FileInputStream(file);
-//            Reader reader = new InputStreamReader(stream, encoding);
-//            Reader buffer = new BufferedReader(reader);
-//            while((r = buffer.read()) != -1) {
-//                char ch = (char) r;
-//                input.add(ch);
-//            }
-//            stream.close();
-//            reader.close();
-//            buffer.close();
-//        }
-//        catch (FileNotFoundException e) {
-//            System.err.println(e);
-//        }
-//        return input.toArray(new Character[input.size()]);
-//    }
-//}
