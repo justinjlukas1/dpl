@@ -8,7 +8,6 @@ public class testFile {
         zeta = Math.log(a * a);
 
         System.out.println("the value of zeta is " + zeta);
-
     }
-        }
+}
 

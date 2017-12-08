@@ -51,13 +51,13 @@ public class Lexeme {
         this.line = var3;
     }
 
-    public Lexeme(kind var1, int var2, int var3) {
+    public Lexeme(kind var1, Integer var2, int var3) {
         this.type = var1;
         this.intValue = var2;
         this.line = var3;
     }
 
-    public Lexeme(kind var1, double var2, int var3) {
+    public Lexeme(kind var1, Double var2, int var3) {
         this.type = var1;
         this.doubleValue = var2;
         this.line = var3;
@@ -86,10 +86,10 @@ public class Lexeme {
             System.out.print(": " + this.value + " ");
         }
         if (this.intValue != null) {
-            System.out.print(": " + this.value + " ");
+            System.out.print(": " + this.intValue + " ");
         }
         if (this.doubleValue != null) {
-            System.out.print(": " + this.value + " ");
+            System.out.print(": " + this.doubleValue + " ");
         }
         System.out.println();
     }

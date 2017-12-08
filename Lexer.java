@@ -34,22 +34,39 @@ public class Lexer {
 
     }
 
+
     public void advance() {
-        if (this.endOfFile) {
-            this.currentLexeme = new Lexeme(kind.ENDofINPUT, this.currentLine);
-        } else {
-            try {
-                this.currentLexeme = this.lex();
-            } catch (EOFException var2) {
+            if (this.endOfFile) {
                 this.currentLexeme = new Lexeme(kind.ENDofINPUT, this.currentLine);
+            } else {
+                try {
+                    this.currentLexeme = this.lex();
+                } catch (EOFException var2) {
+                    this.currentLexeme = new Lexeme(kind.ENDofINPUT, this.currentLine);
+                }
             }
         }
 
+
+    public List<Lexeme> getLexes() throws EOFException {
+        List<Lexeme> lexemes = new ArrayList<>();
+
+        this.currentLexeme = this.lex();
+
+        while(this.currentLexeme.type != kind.ENDofINPUT) {
+            lexemes.add(this.currentLexeme);
+
+            this.currentLexeme = this.lex();
+        }
+
+        return lexemes;
     }
 
     public Lexeme lex() throws EOFException {
         this.file.skipWhitespace();
         Character var1 = this.file.readNextRawCharacter();
+        if(this.endOfFile){ return new Lexeme(kind.ENDofINPUT, this.currentLine);}
+
         switch(var1) {
             case '\n':
                 this.currentLine = this.currentLine + 1;
@@ -196,7 +213,7 @@ public class Lexer {
         }
         this.file.pushbackCharacter(var1);
         if (var2.equals("define")) {
-            return new Lexeme(kind.RESULT, this.currentLine);
+            return new Lexeme(kind.DEFINE, this.currentLine);
         } else if (var2.equals("NULL")) {
             return new Lexeme(kind.NULL, this.currentLine);
         } else if (var2.equals("define")) {
@@ -223,6 +240,8 @@ public class Lexer {
             return new Lexeme(kind.INCLUDE, this.currentLine);
         } else if (var2.equals("not")) {    //include?
             return new Lexeme(kind.NOT, this.currentLine);
+        } else if (var2.equals("result")){
+            return new Lexeme(kind.RESULT, this.currentLine);
         }else {
             return new Lexeme(kind.VARIABLE, var2, this.currentLine);
         }
@@ -269,7 +288,8 @@ public class Lexer {
                 }
             } else {
                 try {
-                    return new Lexeme(kind.INTEGER, Integer.parseInt(var2), this.currentLine);
+                    Integer temp = Integer.parseInt(var2);
+                    return new Lexeme(kind.INTEGER, temp, this.currentLine);
                 } catch (NumberFormatException var5) {
                     return new Lexeme(kind.UNKNOWN, this.currentLine);
                 }

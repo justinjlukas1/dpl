@@ -6,18 +6,45 @@ import java.io.IOException;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EOFException {
+        FileInput file;
+        file = new FileInput("testCode.jjl");
 
-        System.out.println("test");
-//        String input = " if \"test\" 0 + 8 - / >= <= -9998 766; var xyz; func while \\Hello this is a comment :) \\ ";
+//        function scanner(filename)
+//                {
+//                        var token;
+//        var i = new lexer(fileName);
+//
+//        token = i.lex();
+//        while (token.type != ENDofINPUT)
+//        {
+//            Lexeme.display(token);
+//            token = i.lex();
+//        }
+//        }
+
+//        System.out.println("test");
+        //String input = " if \"test\" 0 + 8 - / >= <= -9998 766; var xyz; func while \\Hello this is a comment :) \\ ";
+//        Lexer l = new Lexer("testCode.jjl");
+//        l.scanner();
+
+        Lexer y = new Lexer("testCode.jjl");
+        y.scanner();
 //        Lexer l = new Lexer(input);
 //        List<Lexeme> lexList = l.getLexes();
 //
 //        for (Lexeme lex: lexList) {
 //            System.out.println(lex.toString());
 //        }
+//
 
-//        new Lexer("test.jjl");
+
+//        Lexer l = new Lexer("testCode.jjl");
+//        List<Lexeme> lexList = l.getLexes();
+//
+//        for (Lexeme lex: lexList) {
+//            System.out.println(lex.toString());
+//        }
 //        new Lexer("testFile.java");
     }
 //
