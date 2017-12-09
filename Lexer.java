@@ -34,7 +34,6 @@ public class Lexer {
 
     }
 
-
     public void advance() {
             if (this.endOfFile) {
                 this.currentLexeme = new Lexeme(kind.ENDofINPUT, this.currentLine);
@@ -46,7 +45,6 @@ public class Lexer {
                 }
             }
         }
-
 
     public List<Lexeme> getLexes() throws EOFException {
         List<Lexeme> lexemes = new ArrayList<>();
@@ -130,17 +128,18 @@ public class Lexer {
                     return new Lexeme(kind.PLUS, this.currentLine);
                 }
             case '-':   //subtract vs. negative number
-                this.file.skipWhitespace();
                 var1 = this.file.readNextRawCharacter();
+                if(Character.isDigit(var1)){
+                    this.file.pushbackCharacter(var1);
+                    this.file.pushbackCharacter('-');
+                    return this.lexNumber();
+                }
+                this.file.skipWhitespace();
                 if (var1 == '=') {
                     return new Lexeme(kind.MINUS_EQUALS, this.currentLine);
                 }
                 else if (var1 == '-') {
                     return new Lexeme(kind.DEC, this.currentLine);
-                }
-                else if(Character.isDigit(var1)){
-                    this.file.pushbackCharacter(var1);
-                    return this.lexNumber();
                 }
                 else {
                     this.file.pushbackCharacter(var1);
@@ -267,9 +266,35 @@ public class Lexer {
     private Lexeme lexNumber() throws EOFException {
         String var2 = new String();
         Character var1 = this.file.readNextRawCharacter();
-        int dotFlagCount = 0;
-        //if((Character.isDigit(var1) || var1 == '.' || var1 == '-') && !this.endOfFile) {
-            while ((Character.isDigit(var1) || var1 == '.' || var1 == '-') && !this.endOfFile) {
+        if(var1 == '-'){
+            while ((Character.isDigit(var1) || var1 == '.') && !this.endOfFile) {
+                var2 = var2.concat(Character.toString(var1));
+
+                try {
+                    var1 = this.file.readNextRawCharacter();
+                } catch (EOFException var6) {
+                    this.endOfFile = true;
+                }
+            }
+
+            this.file.pushbackCharacter(var1);
+            if (var2.contains(Character.toString('.'))) {
+                try {
+                    return new Lexeme(kind.NEGREAL, Double.parseDouble(var2), this.currentLine);
+                } catch (NumberFormatException var4) {
+                    return new Lexeme(kind.UNKNOWN, this.currentLine);
+                }
+            } else {
+                try {
+                    Integer temp = Integer.parseInt(var2);
+                    return new Lexeme(kind.NEGINTEGER, temp, this.currentLine);
+                } catch (NumberFormatException var5) {
+                    return new Lexeme(kind.UNKNOWN, this.currentLine);
+                }
+            }
+        }
+        else {
+            while ((Character.isDigit(var1) || var1 == '.') && !this.endOfFile) {
                 var2 = var2.concat(Character.toString(var1));
 
                 try {
@@ -294,7 +319,7 @@ public class Lexer {
                     return new Lexeme(kind.UNKNOWN, this.currentLine);
                 }
             }
-        //}
+        }
     }
 
     private Lexeme lexComment() throws EOFException {
@@ -329,6 +354,12 @@ public class Lexer {
             return new Lexeme(kind.COMMENT, var2, this.currentLine-1);
         }
     }
+
+
+
+
+
+
 
 
     public boolean statementPending() {
@@ -395,9 +426,6 @@ public class Lexer {
 
 
     }
-
-
-
 
     public boolean functionDefPending() {
         return this.currentLexeme.check("FUNCTION");
