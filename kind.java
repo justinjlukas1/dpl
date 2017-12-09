@@ -62,6 +62,7 @@ public enum kind {
     EXPRESSION,
     UNARY,
     BINARY,
+    GLUE,
 
 
     //Literals

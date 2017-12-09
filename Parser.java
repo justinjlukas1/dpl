@@ -20,7 +20,7 @@ public class Parser {
         if (!this.check(var1)) {
             Fatal.FATAL("Expected " + var1, this.l.getCurrentLexeme().getLine());
         }
-
+        System.out.println(var1);
         Lexeme var2 = this.l.getCurrentLexeme();
         this.l.advance();
         return var2;
@@ -42,16 +42,12 @@ public class Parser {
     private Lexeme statement() {
         Lexeme var1 = null;
         if (this.check(kind.NEWLINE)) {
-            System.out.println("test newline");
             this.match(kind.NEWLINE);
         } else if (this.check(kind.COMMENT)) {
-            System.out.println("test comment");
             this.match(kind.COMMENT);
         } else {
-            System.out.println("test not a new line or comment");
             var1 = new Lexeme(kind.STATEMENT, this.l.getCurrentLexeme().getLine());
             if (this.l.expressionPending()) {
-                System.out.println("expression pending");
                 var1.setLeft(this.expression());
             } //else if (this.l.variableDefPending()) {
 //                var1.setLeft(this.variableDef());
@@ -76,9 +72,10 @@ public class Parser {
 
     private Lexeme expression() {
         Lexeme var1 = new Lexeme(kind.EXPRESSION, this.l.getCurrentLexeme().getLine());
-        var1.setLeft(this.unary());
-        if (this.l.binaryPending()) {
-            var1.setRight(this.binary());
+        if(this.l.unaryPending()){
+            var1.setLeft(this.unary());
+        } else if (this.l.binaryPending()) {
+            var1.setLeft(this.binary());
         }
 
         return var1;
@@ -88,11 +85,11 @@ public class Parser {
         Lexeme var1 = new Lexeme(kind.UNARY, this.l.getCurrentLexeme().getLine());
         if (this.check(kind.INTEGER)) {
             var1.setLeft(this.match(kind.INTEGER));
+        } else if (this.check(kind.REAL)) {
+            var1.setLeft(this.match(kind.REAL));
+        } else if (this.check(kind.STRING)) {
+            var1.setLeft(this.match(kind.STRING));
         }
-//        } else if (this.check("REAL")) {
-//            var1.setLeft(this.match("REAL"));
-//        } else if (this.check("STRING")) {
-//            var1.setLeft(this.match("STRING"));
 //        } else if (this.l.anonymousPending()) {
 //            var1.setLeft(this.anonymousExpression());
 //        } else {
@@ -104,11 +101,76 @@ public class Parser {
 
     private Lexeme binary() {
         Lexeme var1 = new Lexeme(kind.BINARY, this.l.getCurrentLexeme().getLine());
+        Lexeme glue = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+        var1.setLeft(glue);
         if(this.check(kind.PLUS)){
-            var1.setLeft(this.match(kind.PLUS));
+            var1.getLeft().setLeft(this.match(kind.PLUS));
+        } else if(this.check(kind.INC)){
+            var1.getLeft().setLeft(this.match(kind.INC));
+        } else if(this.check(kind.PLUS_EQUALS)){
+            var1.getLeft().setLeft(this.match(kind.PLUS_EQUALS));
+        } else if(this.check(kind.MINUS)){
+            var1.getLeft().setLeft(this.match(kind.MINUS));
+        } else if(this.check(kind.DEC)){
+            var1.getLeft().setLeft(this.match(kind.DEC));
+        } else if(this.check(kind.MINUS_EQUALS)){
+            var1.getLeft().setLeft(this.match(kind.MINUS_EQUALS));
+        } else if(this.check(kind.MULTIPLY)){
+            var1.getLeft().setLeft(this.match(kind.MULTIPLY));
+        } else if(this.check(kind.MULTIPLY_EQUALS)){
+            var1.getLeft().setLeft(this.match(kind.MULTIPLY_EQUALS));
+        } else if(this.check(kind.DIVIDE)){
+            var1.getLeft().setLeft(this.match(kind.DIVIDE));
+        } else if(this.check(kind.DIVIDE_EQUALS)){
+            var1.getLeft().setLeft(this.match(kind.DIVIDE_EQUALS));
+        } else if(this.check(kind.EQUALS)){
+            var1.getLeft().setLeft(this.match(kind.EQUALS));
+        } else if(this.check(kind.LESS_THAN)){
+            var1.getLeft().setLeft(this.match(kind.LESS_THAN));
+        } else if(this.check(kind.GREATER_THAN)){
+            var1.getLeft().setLeft(this.match(kind.GREATER_THAN));
+        } else if(this.check(kind.LTE)){
+            var1.getLeft().setLeft(this.match(kind.LTE));
+        } else if(this.check(kind.GTE)){
+            var1.getLeft().setLeft(this.match(kind.GTE));
+        } else if(this.check(kind.INDEX)){
+            var1.getLeft().setLeft(this.match(kind.INDEX));
+        } else if(this.check(kind.AND)){
+            var1.getLeft().setLeft(this.match(kind.AND));
+        } else if(this.check(kind.OR)){
+            var1.getLeft().setLeft(this.match(kind.OR));
+        } else if(this.check(kind.NOT)){
+            var1.getLeft().setLeft(this.match(kind.NOT));
+        } else if(this.check(kind.NOT_EQUALS_EX)){
+            var1.getLeft().setLeft(this.match(kind.NOT_EQUALS_EX));
+        } else if(this.check(kind.NOT_EX)){
+            var1.getLeft().setLeft(this.match(kind.NOT_EX));
+        } else if(this.check(kind.EXPONENT)){
+            var1.getLeft().setLeft(this.match(kind.EXPONENT));
+        } else if(this.check(kind.EXPONENT_EQUALS)){
+            var1.getLeft().setLeft(this.match(kind.EXPONENT_EQUALS));
+        } else if(this.check(kind.MODULO)){
+            var1.getLeft().setLeft(this.match(kind.MODULO));
+        }
+        if(this.l.expressionPending()) {
+            var1.getLeft().setRight(this.expression());
+            var1.setRight(this.optBinaryItems());
+        }
+        else {
+            Fatal.FATAL("Expected Expression", this.l.getCurrentLexeme().getLine());
+            //Fatal.FATAL("Expected Expression" + var1, this.l.getCurrentLexeme().getLine());
         }
         return var1;
     }
+    private Lexeme optBinaryItems(){
+        Lexeme var1 = new Lexeme(kind.NULL, this.l.getCurrentLexeme().getLine());
+        if(this.l.expressionPending()){
+            System.out.println("inside optBinary Items");
+            var1.setLeft(this.expression());
 
+            var1.setRight(this.optBinaryItems());
+        }
+        return var1;
+    }
 
 }

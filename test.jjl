@@ -1,3 +1,13 @@
+and 4
+1
+4.8
+.4
+
+"hello "
+"hello world"
+$hello world
+1 . 5
+
 define plus4 as (x)  {
 result (+ x 4)
 }

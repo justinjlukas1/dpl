@@ -168,7 +168,15 @@ public class Lexer {
                     return new Lexeme(kind.DIVIDE, this.currentLine);
                 }
             case '.':
-                return new Lexeme(kind.DOT, this.currentLine);
+                var1 = this.file.readNextRawCharacter();
+                if(Character.isDigit(var1)){
+                    this.file.pushbackCharacter(var1);
+                    return this.lexNumber();
+                }
+                else {
+                    this.file.pushbackCharacter(var1);
+                    return new Lexeme(kind.DOT, this.currentLine);
+                }
             case '^':
                 var1 = this.file.readNextCharacter();
                 if (var1 == '=') {
@@ -183,6 +191,7 @@ public class Lexer {
             case '#':
                 return new Lexeme(kind.INDEX, this.currentLine);
             case '\"':
+                System.out.println("lexing strings");
                 return lexString();
             default:
                 if (!Character.isDigit(var1) && var1 != '-') {  //non number
@@ -252,7 +261,7 @@ public class Lexer {
         String var2 = new String();
         Character var1 = this.file.readNextRawCharacter();
 
-        while(var1 != '"' && !this.endOfFile) {
+        while(var1 != '\"' && !this.endOfFile) {
             var2 = var2.concat(Character.toString(var1));
 
             try {
@@ -361,7 +370,7 @@ public class Lexer {
 //recognizing / parsing
     public boolean statementPending() {
         return
-                this.expressionPending();
+                this.expressionPending()
 //                || this.definitionPending()
 //                || this.assignmentPending()
 //                || this.ifStatementPending()
@@ -369,21 +378,25 @@ public class Lexer {
 //                || this.resultPending()
 //                //|| this.conditionalPending()
 //                //|| this.currentLexeme.check("INCLUDE")
-//                || this.commentPending()
-//                || this.currentLexeme.check("NEWLINE");
+                || this.commentPending()
+                || this.currentLexeme.check(kind.NEWLINE);
     }
 
     public boolean expressionPending() {
         return
-                this.unaryPending();
-//                || this.binaryPending();
+                this.unaryPending()
+                || this.binaryPending();
+    }
+
+    public boolean commentPending(){
+        return this.currentLexeme.check(kind.COMMENT);
     }
 
     public boolean unaryPending() {
         return
-                this.currentLexeme.check(kind.INTEGER);
-//                        || this.currentLexeme.check("REAL")
-//                        || this.currentLexeme.check("STRING")
+                this.currentLexeme.check(kind.INTEGER)
+                || this.currentLexeme.check(kind.REAL)
+                || this.currentLexeme.check(kind.STRING);
 //                        || this.currentLexeme.check("ASSIGN")
 //                        || this.currentLexeme.check("VARIABLE");
 //                || this.anonymousPending()

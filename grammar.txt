@@ -17,7 +17,7 @@ expression      : unary
 binary          : operator expression optBinaryItems
 
 optBinaryItems  : expression optBinaryItems
-                | NULL
+                | *empty*
 
 unary           : INTEGER
                 | REAL
