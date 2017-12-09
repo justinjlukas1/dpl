@@ -1,3 +1,6 @@
+4 +
+
+
 define plus4 as (x)  {
 result (+ x 4)
 }

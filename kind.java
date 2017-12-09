@@ -11,8 +11,8 @@ public enum kind {
     INTEGER,
     REAL,
     STRING,
-    NEGINTEGER,
-    NEGREAL,
+    NEG_INTEGER,
+    NEG_REAL,
     DEFINE,
     AS,
     SET,
@@ -23,6 +23,8 @@ public enum kind {
     VARIABLE,
     DOT,
     LAMBDA,
+
+//operators
     PLUS,
     INC,
     PLUS_EQUALS,
@@ -30,9 +32,9 @@ public enum kind {
     DEC,
     MINUS_EQUALS,
     MULTIPLY,
-    MULTIPLYEQUALS,
+    MULTIPLY_EQUALS,
     DIVIDE,
-    DIVIDEEQUALS,
+    DIVIDE_EQUALS,
     EQUALS,
     LESS_THAN,
     GREATER_THAN,
@@ -42,19 +44,24 @@ public enum kind {
     AND,
     OR,
     NOT,
-    NOTEQUALSEX,
-    NOTEX,
+    NOT_EQUALS_EX,
+    NOT_EX,
     EXPONENT,
-    EXPONENTEQUALS,
+    EXPONENT_EQUALS,
     MODULO,
+
+
     NEWLINE,
     ENDofINPUT,
     COMMENT,
     INCLUDE,
     UNKNOWN,
 
-
-
+//parsing Kinds
+    STATEMENT,
+    EXPRESSION,
+    UNARY,
+    BINARY,
 
 
     //Literals

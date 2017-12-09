@@ -60,6 +60,8 @@ public class Lexer {
         return lexemes;
     }
 
+
+//lexing
     public Lexeme lex() throws EOFException {
         this.file.skipWhitespace();
         Character var1 = this.file.readNextRawCharacter();
@@ -88,11 +90,11 @@ public class Lexer {
                 this.file.skipWhitespace();
                 var1 = this.file.readNextRawCharacter();
                 if (var1 == '=') {
-                    return new Lexeme(kind.NOTEQUALSEX, this.currentLine);
+                    return new Lexeme(kind.NOT_EQUALS_EX, this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
-                    return new Lexeme(kind.NOTEX, this.currentLine);
+                    return new Lexeme(kind.NOT_EX, this.currentLine);
                 }
             case '<':
                 this.file.skipWhitespace();
@@ -150,7 +152,7 @@ public class Lexer {
             case '*':
                 var1 = this.file.readNextCharacter();
                 if (var1 == '=') {
-                    return new Lexeme(kind.MULTIPLYEQUALS, this.currentLine);
+                    return new Lexeme(kind.MULTIPLY_EQUALS, this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
@@ -159,7 +161,7 @@ public class Lexer {
             case '/':
                 var1 = this.file.readNextCharacter();
                 if (var1 == '=') {
-                    return new Lexeme(kind.DIVIDEEQUALS, this.currentLine);
+                    return new Lexeme(kind.DIVIDE_EQUALS, this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
@@ -170,7 +172,7 @@ public class Lexer {
             case '^':
                 var1 = this.file.readNextCharacter();
                 if (var1 == '=') {
-                    return new Lexeme(kind.EXPONENTEQUALS, this.currentLine);
+                    return new Lexeme(kind.EXPONENT_EQUALS, this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
@@ -280,14 +282,14 @@ public class Lexer {
             this.file.pushbackCharacter(var1);
             if (var2.contains(Character.toString('.'))) {
                 try {
-                    return new Lexeme(kind.NEGREAL, Double.parseDouble(var2), this.currentLine);
+                    return new Lexeme(kind.NEG_REAL, Double.parseDouble(var2), this.currentLine);
                 } catch (NumberFormatException var4) {
                     return new Lexeme(kind.UNKNOWN, this.currentLine);
                 }
             } else {
                 try {
                     Integer temp = Integer.parseInt(var2);
-                    return new Lexeme(kind.NEGINTEGER, temp, this.currentLine);
+                    return new Lexeme(kind.NEG_INTEGER, temp, this.currentLine);
                 } catch (NumberFormatException var5) {
                     return new Lexeme(kind.UNKNOWN, this.currentLine);
                 }
@@ -356,24 +358,19 @@ public class Lexer {
     }
 
 
-
-
-
-
-
-
+//recognizing / parsing
     public boolean statementPending() {
         return
-                this.expressionPending()
-                || this.definitionPending()
-                || this.assignmentPending()
-                || this.ifStatementPending()
-                || this.loopPending()
-                || this.resultPending()
-                //|| this.conditionalPending()
-                //|| this.currentLexeme.check("INCLUDE")
-                || this.commentPending()
-                || this.currentLexeme.check("NEWLINE");
+                this.expressionPending();
+//                || this.definitionPending()
+//                || this.assignmentPending()
+//                || this.ifStatementPending()
+//                || this.loopPending()
+//                || this.resultPending()
+//                //|| this.conditionalPending()
+//                //|| this.currentLexeme.check("INCLUDE")
+//                || this.commentPending()
+//                || this.currentLexeme.check("NEWLINE");
     }
 
     public boolean expressionPending() {
@@ -382,39 +379,15 @@ public class Lexer {
 //                || this.binaryPending();
     }
 
-    public boolean definitionPending() {
-        return this.currentLexeme.check("DEFINE");
-    }
-
-    public boolean assignmentPending() {
-        return this.currentLexeme.check("SET");
-    }
-
-    public boolean ifStatementPending() {
-        return this.currentLexeme.check("IF");
-    }
-
-    public boolean loopPending() {
-        return this.currentLexeme.check("LOOP");
-    }
-
-    public boolean resultPending() {
-        return this.currentLexeme.check("RESULT");
-    }
-
-    public boolean commentPending() {
-        return this.currentLexeme.check("DOLLAR_SIGN");
-    }
-
     public boolean unaryPending() {
         return
-                this.currentLexeme.check("INTEGER")
-                || this.currentLexeme.check("REAL")
-                || this.currentLexeme.check("STRING")
-                || this.currentLexeme.check("ASSIGN")
-                || this.currentLexeme.check("VARIABLE");
+                this.currentLexeme.check(kind.INTEGER);
+//                        || this.currentLexeme.check("REAL")
+//                        || this.currentLexeme.check("STRING")
+//                        || this.currentLexeme.check("ASSIGN")
+//                        || this.currentLexeme.check("VARIABLE");
 //                || this.anonymousPending()
- //               || this.currentLexeme.check(); //functionCall
+        //               || this.currentLexeme.check(); //functionCall
 //                | lambda
 //                | list
 //                | object
@@ -422,44 +395,98 @@ public class Lexer {
 //                | EX_POINT unary  //! x1
 //                | MINUS unary
 //                | arrayInit
-
-
-
     }
 
-    public boolean functionDefPending() {
-        return this.currentLexeme.check("FUNCTION");
+    public boolean binaryPending() {
+        return this.operatorPending();
     }
 
-    public boolean arrayDefPending() {
-        return this.currentLexeme.check("ARRAY");
+    public boolean operatorPending() {
+        return
+                this.currentLexeme.check(kind.PLUS)
+                || this.currentLexeme.check(kind.INC)
+                || this.currentLexeme.check(kind.PLUS_EQUALS)
+                || this.currentLexeme.check(kind.MINUS)
+                || this.currentLexeme.check(kind.DEC)
+                || this.currentLexeme.check(kind.MINUS_EQUALS)
+                || this.currentLexeme.check(kind.MULTIPLY)
+                || this.currentLexeme.check(kind.MULTIPLY_EQUALS)
+                || this.currentLexeme.check(kind.DIVIDE)
+                || this.currentLexeme.check(kind.DIVIDE_EQUALS)
+                || this.currentLexeme.check(kind.EQUALS)
+                || this.currentLexeme.check(kind.LESS_THAN)
+                || this.currentLexeme.check(kind.GREATER_THAN)
+                || this.currentLexeme.check(kind.LTE)
+                || this.currentLexeme.check(kind.GTE)
+                || this.currentLexeme.check(kind.INDEX)
+                || this.currentLexeme.check(kind.AND)
+                || this.currentLexeme.check(kind.OR)
+                || this.currentLexeme.check(kind.NOT)
+                || this.currentLexeme.check(kind.NOT_EQUALS_EX)
+                || this.currentLexeme.check(kind.NOT_EX)
+                || this.currentLexeme.check(kind.EXPONENT)
+                || this.currentLexeme.check(kind.EXPONENT_EQUALS)
+                || this.currentLexeme.check(kind.MODULO);
     }
 
-    public boolean classDefPending() {
-        return this.currentLexeme.check("CLASS");
-    }
-
-    public boolean objectDefPending() {
-        return this.currentLexeme.check("OBJECT");
-    }
-
-    public boolean initializerExpressionPending() {
-        return this.currentLexeme.check("OPEN_PAREN");
-    }
-
-    public boolean anonymousPending() {
-        return this.currentLexeme.check("ANONYMOUS") || this.currentLexeme.check("OPEN_PAREN");
-    }
-
-    public boolean objectExpressionPending() {
-        return this.currentLexeme.check("DOT");
-    }
-
-    public boolean variableExpressionPending() {
-        return this.currentLexeme.check("VARIABLE");
-    }
-
-    public boolean optParameterListPending() {
-        return this.currentLexeme.check("VARIABLE");
-    }
+//
+//    public boolean definitionPending() {
+//        return this.currentLexeme.check("DEFINE");
+//    }
+//
+//    public boolean assignmentPending() {
+//        return this.currentLexeme.check("SET");
+//    }
+//
+//    public boolean ifStatementPending() {
+//        return this.currentLexeme.check("IF");
+//    }
+//
+//    public boolean loopPending() {
+//        return this.currentLexeme.check("LOOP");
+//    }
+//
+//    public boolean resultPending() {
+//        return this.currentLexeme.check("RESULT");
+//    }
+//
+//    public boolean commentPending() {
+//        return this.currentLexeme.check("DOLLAR_SIGN");
+//    }
+//
+//    public boolean functionDefPending() {
+//        return this.currentLexeme.check("FUNCTION");
+//    }
+//
+//    public boolean arrayDefPending() {
+//        return this.currentLexeme.check("ARRAY");
+//    }
+//
+//    public boolean classDefPending() {
+//        return this.currentLexeme.check("CLASS");
+//    }
+//
+//    public boolean objectDefPending() {
+//        return this.currentLexeme.check("OBJECT");
+//    }
+//
+//    public boolean initializerExpressionPending() {
+//        return this.currentLexeme.check("OPEN_PAREN");
+//    }
+//
+//    public boolean anonymousPending() {
+//        return this.currentLexeme.check("ANONYMOUS") || this.currentLexeme.check("OPEN_PAREN");
+//    }
+//
+//    public boolean objectExpressionPending() {
+//        return this.currentLexeme.check("DOT");
+//    }
+//
+//    public boolean variableExpressionPending() {
+//        return this.currentLexeme.check("VARIABLE");
+//    }
+//
+//    public boolean optParameterListPending() {
+//        return this.currentLexeme.check("VARIABLE");
+//    }
 }

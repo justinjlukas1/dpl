@@ -16,7 +16,7 @@ expression      : unary
 
 binary          : operator expression optBinaryItems
 
-optBinaryItems  : expression
+optBinaryItems  : expression optBinaryItems
                 | NULL
 
 unary           : INTEGER

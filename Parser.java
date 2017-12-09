@@ -4,7 +4,7 @@ public class Parser {
 
     public Parser(String fileName){
         this.l = new Lexer(fileName);
-        l.scanner();
+        //l.scanner();
     }
 
     public Lexeme execute(){
@@ -12,11 +12,11 @@ public class Parser {
         return this.root;
     }
 
-    private boolean check(String var1) {
+    private boolean check(kind var1) {
         return this.l.getCurrentLexeme().check(var1);
     }
 
-    private Lexeme match(String var1) {
+    private Lexeme match(kind var1) {
         if (!this.check(var1)) {
             Fatal.FATAL("Expected " + var1, this.l.getCurrentLexeme().getLine());
         }
@@ -38,18 +38,22 @@ public class Parser {
 
         return var1;
     }
-//
-//    private Lexeme statement() {
-//        Lexeme var1 = null;
-//        if (this.check("NEWLINE")) {
-//            this.match("NEWLINE");
-//        } else if (this.check("COMMENT")) {
-//            this.match("COMMENT");
-//        } else {
-//            var1 = new Lexeme("STATEMENT", this.l.getCurrentLexeme().getLine());
-//            if (this.l.expressionPending()) {
-//                var1.setLeft(this.expression());
-//            } else if (this.l.variableDefPending()) {
+
+    private Lexeme statement() {
+        Lexeme var1 = null;
+        if (this.check(kind.NEWLINE)) {
+            System.out.println("test newline");
+            this.match(kind.NEWLINE);
+        } else if (this.check(kind.COMMENT)) {
+            System.out.println("test comment");
+            this.match(kind.COMMENT);
+        } else {
+            System.out.println("test not a new line or comment");
+            var1 = new Lexeme(kind.STATEMENT, this.l.getCurrentLexeme().getLine());
+            if (this.l.expressionPending()) {
+                System.out.println("expression pending");
+                var1.setLeft(this.expression());
+            } //else if (this.l.variableDefPending()) {
 //                var1.setLeft(this.variableDef());
 //            } else if (this.l.functionDefPending()) {
 //                var1.setLeft(this.functionDef());
@@ -64,9 +68,47 @@ public class Parser {
 //            } else if (this.check("INCLUDE")) {
 //                var1.setLeft(this.include());
 //            }
+
+        }
+
+        return var1;
+    }
+
+    private Lexeme expression() {
+        Lexeme var1 = new Lexeme(kind.EXPRESSION, this.l.getCurrentLexeme().getLine());
+        var1.setLeft(this.unary());
+        if (this.l.binaryPending()) {
+            var1.setRight(this.binary());
+        }
+
+        return var1;
+    }
+
+    private Lexeme unary() {
+        Lexeme var1 = new Lexeme(kind.UNARY, this.l.getCurrentLexeme().getLine());
+        if (this.check(kind.INTEGER)) {
+            var1.setLeft(this.match(kind.INTEGER));
+        }
+//        } else if (this.check("REAL")) {
+//            var1.setLeft(this.match("REAL"));
+//        } else if (this.check("STRING")) {
+//            var1.setLeft(this.match("STRING"));
+//        } else if (this.l.anonymousPending()) {
+//            var1.setLeft(this.anonymousExpression());
+//        } else {
+//            var1.setLeft(this.variableExpression());
 //        }
-//
-//        return var1;
-//    }
+
+        return var1;
+    }
+
+    private Lexeme binary() {
+        Lexeme var1 = new Lexeme(kind.BINARY, this.l.getCurrentLexeme().getLine());
+        if(this.check(kind.PLUS)){
+            var1.setLeft(this.match(kind.PLUS));
+        }
+        return var1;
+    }
+
 
 }

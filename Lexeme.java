@@ -62,7 +62,7 @@ public class Lexeme {
         System.out.println();
     }
 
-    public boolean check(String var1) {
+    public boolean check(kind var1) {
         return this.type.equals(var1);
     }
 
