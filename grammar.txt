@@ -31,9 +31,9 @@ unary           : INTEGER
                 | O_PAREN expression C_PAREN
                 //| EX_POINT unary  //! x1 operator not unary
                 //| MINUS unary   //neg number? NEG_REAL and NEG_INTEGER
-                | arrayInit
+//                | arrayInit
 
-arrayInit       : O_BRACKET listItem C_BRACKET
+//arrayInit       : O_BRACKET listItem C_BRACKET
 
 object          : VARIABLE
                 | VARIABLE DOT object
@@ -44,10 +44,10 @@ lambda          : LAMBDA procedure
 
 procedure       : list body
 
-list            : O_PAREN listItem C_PAREN
+list            : O_BRACKET listItem C_BRACKET
 
-listItem        : expression
-                | expression listItem
+listItem        : unary
+                | unary listItem
                 | NULL
 
 definition	    : DEFINE object

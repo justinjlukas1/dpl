@@ -7,7 +7,7 @@ statement       : expression
                 | definition
                 | assignment
                 | ifStatement
-                | loop
+                | loopStatement
                 | RESULT expression
                 | comments
 
@@ -29,11 +29,12 @@ unary           : INTEGER
                 | list
                 | object
                 | O_PAREN expression C_PAREN
-                | EX_POINT unary  //! x1
-                | MINUS unary   //neg number?
+                //| EX_POINT unary  //! x1 operator not unary
+                //| MINUS unary   //neg number? NEG_REAL and NEG_INTEGER
                 | arrayInit
 
 arrayInit       : O_BRACKET listItem C_BRACKET
+
 object          : VARIABLE
                 | VARIABLE DOT object
 
@@ -45,13 +46,15 @@ procedure       : list body
 
 list            : O_PAREN listItem C_PAREN
 
-listItem        : expression
-                | expression listItem
+listItem        : unary
+                | unary listItem
                 | NULL
 
 definition	    : DEFINE object
-                | DEFINE object AS expression
-                | DEFINE object AS procedure
+                | DEFINE object defObj
+
+defObj          : AS expression
+                | AS procedure
 
 assignment	    : SET object TO expression
                 | SET object TO procedure
@@ -62,16 +65,17 @@ optBlock        : body
                 | statement
 
 optIfElse       : NULL
-                | ELSE ifStatement
-                | ELSE body
+                | elseStatement
 
-//forLoop       : FLOOP O_PAREN unary
+elseStatement   : ELSE ifStatement
+                | ELSE optBlock
 
-
-loop            : LOOP O_PAREN optVar unary optExp C_PAREN optBlock
+loopStatement   : LOOP O_PAREN optVar unary optExp C_PAREN optBlock
 
 optVar          : NULL
-                | VARIABLE unary
+                | var
+
+var             : VARIABLE unary
 
 optExp          : NULL
                 | expression
@@ -94,10 +98,15 @@ operator        : PLUS
 
 comments        : DOLLAR_SIGN optBlockComment
 
-optBlockComment : STAR *stuff* STAR DOLLAR_SIGN
-                | STUFF NEWLINE
+optBlockComment : blockComment
+                | oneLineComment
 
+blockComment    : STAR *stuff* STAR DOLLAR_SIGN
+
+oneLineComment  : *stuff* NEWLINE
+
+//newline not needed? handled elsewhere?
 displayOpt      : DISPLAY optDisplayItems
-                | displayln optDisplayItems NEWLINE
+                | DISPLAYLN optDisplayItems NEWLINE
 
 optDisplayItems : unary optDisplayItems

@@ -23,6 +23,9 @@ public enum kind {
     VARIABLE,
     DOT,
     LAMBDA,
+    ARRAYINIT,
+    LISTITEM,
+    LIST,
 
 //operators
     PLUS,
@@ -63,6 +66,8 @@ public enum kind {
     UNARY,
     BINARY,
     GLUE,
+    DEFINITION,
+    OBJECT,
 
 
     //Literals

@@ -76,13 +76,13 @@ public class Lexer {
             case ')':
                 return new Lexeme(kind.C_PAREN, this.currentLine);
             case '[':
-                return new Lexeme(kind.O_BRACE, this.currentLine);
-            case ']':
-                return new Lexeme(kind.C_BRACE, this.currentLine);
-            case '{':
                 return new Lexeme(kind.O_BRACKET, this.currentLine);
-            case '}':
+            case ']':
                 return new Lexeme(kind.C_BRACKET, this.currentLine);
+            case '{':
+                return new Lexeme(kind.O_BRACE, this.currentLine);
+            case '}':
+                return new Lexeme(kind.C_BRACE, this.currentLine);
             case '$':
                 return lexComment();
         //don't need to include a value
@@ -372,7 +372,7 @@ public class Lexer {
     public boolean statementPending() {
         return
                 this.expressionPending()
-//                || this.definitionPending()
+                || this.definitionPending()
 //                || this.assignmentPending()
 //                || this.ifStatementPending()
 //                || this.loopPending()
@@ -381,6 +381,10 @@ public class Lexer {
 //                //|| this.currentLexeme.check("INCLUDE")
                 || this.commentPending()
                 || this.currentLexeme.check(kind.NEWLINE);
+    }
+
+    public boolean definitionPending(){
+        return this.currentLexeme.check(kind.DEFINE);
     }
 
     public boolean expressionPending() {
@@ -400,7 +404,8 @@ public class Lexer {
                 || this.currentLexeme.check(kind.STRING)
                 || this.currentLexeme.check(kind.NEG_REAL)
                 || this.currentLexeme.check(kind.NEG_INTEGER)
-                || this.currentLexeme.check(kind.O_PAREN);
+                //|| this.currentLexeme.check(kind.O_PAREN);
+                || this.currentLexeme.check(kind.O_BRACKET);
 //                        || this.currentLexeme.check("ASSIGN")
 //                        || this.currentLexeme.check("VARIABLE");
 //                || this.anonymousPending()

@@ -49,8 +49,8 @@ public class Parser {
             var1 = new Lexeme(kind.STATEMENT, this.l.getCurrentLexeme().getLine());
             if (this.l.expressionPending()) {
                 var1.setLeft(this.expression());
-            } //else if (this.l.variableDefPending()) {
-//                var1.setLeft(this.variableDef());
+            } else if (this.l.definitionPending()) {
+                var1.setLeft(this.variableDefinition());
 //            } else if (this.l.functionDefPending()) {
 //                var1.setLeft(this.functionDef());
 //            } else if (this.l.arrayDefPending()) {
@@ -63,13 +63,28 @@ public class Parser {
 //                var1.setLeft(this.conditional());
 //            } else if (this.check("INCLUDE")) {
 //                var1.setLeft(this.include());
-//            }
+            }
 
         }
 
         return var1;
     }
 
+    private Lexeme variableDefinition(){
+        Lexeme var1 = new Lexeme(kind.DEFINITION, this.l.getCurrentLexeme().getLine());
+        Lexeme var2 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+        var1.setLeft(var2);
+        var1.getLeft().setLeft(this.match(kind.DEFINE));
+        var1.getLeft().setRight(this.object());
+
+        return var1;
+    }
+
+    private Lexeme object() {
+        Lexeme var1 = new Lexeme(kind.DEFINITION, this.l.getCurrentLexeme().getLine());
+        Lexeme var2 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+        var1.setLeft(this.match(kind.OBJECT));
+    }
     private Lexeme expression() {
         Lexeme var1 = new Lexeme(kind.EXPRESSION, this.l.getCurrentLexeme().getLine());
         if(this.l.unaryPending()){
@@ -93,11 +108,36 @@ public class Parser {
             var1.setLeft(this.match(kind.NEG_INTEGER));
         } else if (this.check(kind.NEG_REAL)) {
             var1.setLeft(this.match(kind.NEG_REAL));
+        } else if (this.check(kind.O_BRACKET))  {
+            var1.setLeft(this.listInit());
         }
             //var1.setLeft(this.anonymousExpression());
 //        } else {
 //            var1.setLeft(this.variableExpression());
 //        }
+
+        return var1;
+    }
+
+    private Lexeme listInit() {
+        Lexeme var1 = new Lexeme(kind.LIST, this.l.getCurrentLexeme().getLine());
+        var1.setLeft((this.match(kind.O_BRACKET)));
+        var1.setRight(this.listItem());
+        this.match(kind.C_BRACKET);
+
+
+        return var1;
+    }
+
+    private Lexeme listItem()   {
+        Lexeme var1 = new Lexeme(kind.LISTITEM, this.l.getCurrentLexeme().getLine());
+        if(this.l.unaryPending()) {
+            var1.setLeft(this.unary());
+            //if(this.l.unaryPending()) {
+                var1.setRight(this.listItem());
+            //}
+        }
+        //set null?
 
         return var1;
     }
@@ -168,7 +208,6 @@ public class Parser {
     private Lexeme optBinaryItems(){
         Lexeme var1 = new Lexeme(kind.NULL, this.l.getCurrentLexeme().getLine());
         if(this.l.expressionPending()){
-            System.out.println("inside optBinary Items");
             var1.setLeft(this.expression());
 
             var1.setRight(this.optBinaryItems());
