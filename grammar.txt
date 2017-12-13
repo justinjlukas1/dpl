@@ -7,7 +7,7 @@ statement       : expression
                 | definition
                 | assignment
                 | ifStatement
-                | loop
+                | loopStatement
                 | RESULT expression
                 | comments
 
@@ -68,13 +68,14 @@ optIfElse       : NULL
                 | elseStatement
 
 elseStatement   : ELSE ifStatement
-                | ELSE body
+                | ELSE optBlock
 
-
-loop            : LOOP O_PAREN optVar unary optExp C_PAREN optBlock
+loopStatement   : LOOP O_PAREN optVar unary optExp C_PAREN optBlock
 
 optVar          : NULL
-                | VARIABLE unary
+                | var
+
+var             : VARIABLE unary
 
 optExp          : NULL
                 | expression
@@ -97,10 +98,15 @@ operator        : PLUS
 
 comments        : DOLLAR_SIGN optBlockComment
 
-optBlockComment : STAR *stuff* STAR DOLLAR_SIGN
-                | STUFF NEWLINE
+optBlockComment : blockComment
+                | oneLineComment
 
+blockComment    : STAR *stuff* STAR DOLLAR_SIGN
+
+oneLineComment  : *stuff* NEWLINE
+
+//newline not needed? handled elsewhere?
 displayOpt      : DISPLAY optDisplayItems
-                | displayln optDisplayItems NEWLINE
+                | DISPLAYLN optDisplayItems NEWLINE
 
 optDisplayItems : unary optDisplayItems
