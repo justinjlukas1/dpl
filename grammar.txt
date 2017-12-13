@@ -22,16 +22,19 @@ optBinaryItems  : expression optBinaryItems
 unary           : INTEGER
                 | REAL
                 | STRING
+                | NEG_REAL
+                | NEG_INTEGER
                 | functionCall
                 | lambda
                 | list
                 | object
                 | O_PAREN expression C_PAREN
-                | EX_POINT unary  //! x1
-                | MINUS unary
+                //| EX_POINT unary  //! x1 operator not unary
+                //| MINUS unary   //neg number? NEG_REAL and NEG_INTEGER
                 | arrayInit
 
 arrayInit       : O_BRACKET listItem C_BRACKET
+
 object          : VARIABLE
                 | VARIABLE DOT object
 
@@ -48,8 +51,10 @@ listItem        : expression
                 | NULL
 
 definition	    : DEFINE object
-                | DEFINE object AS expression
-                | DEFINE object AS procedure
+                | DEFINE object defObj
+
+defObj          : AS expression
+                | AS procedure
 
 assignment	    : SET object TO expression
                 | SET object TO procedure
@@ -60,10 +65,10 @@ optBlock        : body
                 | statement
 
 optIfElse       : NULL
-                | ELSE ifStatement
-                | ELSE body
+                | elseStatement
 
-//forLoop       : FLOOP O_PAREN unary
+elseStatement   : ELSE ifStatement
+                | ELSE body
 
 
 loop            : LOOP O_PAREN optVar unary optExp C_PAREN optBlock

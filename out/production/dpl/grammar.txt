@@ -22,13 +22,15 @@ optBinaryItems  : expression optBinaryItems
 unary           : INTEGER
                 | REAL
                 | STRING
+                | NEG_REAL
+                | NEG_INTEGER
                 | functionCall
                 | lambda
                 | list
                 | object
                 | O_PAREN expression C_PAREN
                 | EX_POINT unary  //! x1
-                | MINUS unary
+                | MINUS unary   //neg number?
                 | arrayInit
 
 arrayInit       : O_BRACKET listItem C_BRACKET

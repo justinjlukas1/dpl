@@ -191,7 +191,6 @@ public class Lexer {
             case '#':
                 return new Lexeme(kind.INDEX, this.currentLine);
             case '\"':
-                System.out.println("lexing strings");
                 return lexString();
             default:
                 if (!Character.isDigit(var1) && var1 != '-') {  //non number
@@ -278,6 +277,8 @@ public class Lexer {
         String var2 = new String();
         Character var1 = this.file.readNextRawCharacter();
         if(var1 == '-'){
+            var2 = var2.concat(Character.toString(var1));
+            var1 = this.file.readNextRawCharacter();
             while ((Character.isDigit(var1) || var1 == '.') && !this.endOfFile) {
                 var2 = var2.concat(Character.toString(var1));
 
@@ -396,7 +397,10 @@ public class Lexer {
         return
                 this.currentLexeme.check(kind.INTEGER)
                 || this.currentLexeme.check(kind.REAL)
-                || this.currentLexeme.check(kind.STRING);
+                || this.currentLexeme.check(kind.STRING)
+                || this.currentLexeme.check(kind.NEG_REAL)
+                || this.currentLexeme.check(kind.NEG_INTEGER)
+                || this.currentLexeme.check(kind.O_PAREN);
 //                        || this.currentLexeme.check("ASSIGN")
 //                        || this.currentLexeme.check("VARIABLE");
 //                || this.anonymousPending()

@@ -89,9 +89,12 @@ public class Parser {
             var1.setLeft(this.match(kind.REAL));
         } else if (this.check(kind.STRING)) {
             var1.setLeft(this.match(kind.STRING));
+        } else if (this.check(kind.NEG_INTEGER)) {
+            var1.setLeft(this.match(kind.NEG_INTEGER));
+        } else if (this.check(kind.NEG_REAL)) {
+            var1.setLeft(this.match(kind.NEG_REAL));
         }
-//        } else if (this.l.anonymousPending()) {
-//            var1.setLeft(this.anonymousExpression());
+            //var1.setLeft(this.anonymousExpression());
 //        } else {
 //            var1.setLeft(this.variableExpression());
 //        }
@@ -99,7 +102,7 @@ public class Parser {
         return var1;
     }
 
-    private Lexeme binary() {
+    private Lexeme binary() {   //I think binary works and is done...maybe not glue
         Lexeme var1 = new Lexeme(kind.BINARY, this.l.getCurrentLexeme().getLine());
         Lexeme glue = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
         var1.setLeft(glue);
