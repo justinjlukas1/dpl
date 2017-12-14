@@ -8,9 +8,11 @@ statement       : expression
                 | assignment
                 | ifStatement
                 | loopStatement
-                | RESULT expression
+                | resultExpr
                 | comments
 
+resultExpr      : RESULT expression
+                | RESULT <null>
 expression      : unary
                 | binary
 
