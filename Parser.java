@@ -50,9 +50,9 @@ public class Parser {
             if (this.l.expressionPending()) {
                 var1.setLeft(this.expression());
             } else if (this.l.definitionPending()) {
-                var1.setLeft(this.variableDefinition());
-//            } else if (this.l.functionDefPending()) {
-//                var1.setLeft(this.functionDef());
+                var1.setLeft(this.definition());
+            } else if (this.check(kind.RESULT)) {
+                var1.setLeft(this.result());
 //            } else if (this.l.arrayDefPending()) {
 //                var1.setLeft(this.arrayDef());
 //            } else if (this.l.classDefPending()) {
@@ -70,24 +70,92 @@ public class Parser {
         return var1;
     }
 
-    private Lexeme variableDefinition(){
+    private Lexeme result() {
+        Lexeme var1 = new Lexeme(kind.RETURN, this.l.getCurrentLexeme().getLine());
+        var1.setLeft(this.match(kind.RESULT));
+        if(this.l.expressionPending()) {
+            var1.setRight(this.expression());
+        }
+
+        return var1;
+    }
+
+    private Lexeme definition(){
         Lexeme var1 = new Lexeme(kind.DEFINITION, this.l.getCurrentLexeme().getLine());
         Lexeme var2 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+        Lexeme var3 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
         var1.setLeft(var2);
         var1.getLeft().setLeft(this.match(kind.DEFINE));
-        var1.getLeft().setRight(this.object());
+        var1.getLeft().setRight(var3);
+        if(this.check(kind.FUNCTION)) {
+            var1.getLeft().getRight().setLeft(this.match(kind.FUNCTION));
+            var1.getLeft().getRight().setRight(this.object());
+            var1.setRight(defObjProc());
+        }
+        else {
+            var1.getLeft().getRight().setRight(this.object());
+            if (this.check(kind.AS)) {
+                var1.setRight(this.defObjExpr());
+            }
+        }
+        return var1;
+    }
+
+    private Lexeme defObjProc(){
+        Lexeme var1 = new Lexeme(kind.DEFOBJPROC, this.l.getCurrentLexeme().getLine());
+        var1.setLeft(this.match(kind.AS));
+        var1.setRight(this.procedure());
+        return var1;
+    }
+
+    private Lexeme defObjExpr(){
+        Lexeme var1 = new Lexeme(kind.DEFOBJEXPR, this.l.getCurrentLexeme().getLine());
+        var1.setLeft(this.match(kind.AS));
+        var1.setRight(this.expression());
+
+        return var1;
+    }
+
+    private Lexeme procedure() {
+        Lexeme var1 = new Lexeme(kind.PROCEDURE, this.l.getCurrentLexeme().getLine());
+        if(this.l.listPending()){
+            var1.setLeft(this.listInit());
+
+        }
+        System.out.println(this.l.getCurrentLexeme().getType());
+        if(this.l.bodyPending()) {
+            System.out.println("body pending");
+            var1.setRight(this.body());
+        }
+        return var1;
+    }
+
+    private Lexeme body() {
+        Lexeme var1 = new Lexeme(kind.BODY, this.l.getCurrentLexeme().getLine());
+        var1.setLeft(this.match(kind.O_BRACE));
+        var1.setRight(this.statements());
+        this.match(kind.C_BRACE);
 
         return var1;
     }
 
     private Lexeme object() {
-        Lexeme var1 = new Lexeme(kind.DEFINITION, this.l.getCurrentLexeme().getLine());
+        Lexeme var1 = new Lexeme(kind.OBJECT, this.l.getCurrentLexeme().getLine());
         Lexeme var2 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
-        var1.setLeft(this.match(kind.OBJECT));
+        var1.setLeft(this.match(kind.VARIABLE));
+        if(this.l.dotPending()) {
+            var1.setRight(var2);
+            var1.getRight().setLeft(this.match(kind.DOT));
+            var1.getRight().setRight(this.object());
+        }
+
+        return var1;
     }
+
     private Lexeme expression() {
         Lexeme var1 = new Lexeme(kind.EXPRESSION, this.l.getCurrentLexeme().getLine());
         if(this.l.unaryPending()){
+            System.out.println("Unary Pending: " + this.l.getCurrentLexeme().getType());
             var1.setLeft(this.unary());
         } else if (this.l.binaryPending()) {
             var1.setLeft(this.binary());
@@ -110,6 +178,12 @@ public class Parser {
             var1.setLeft(this.match(kind.NEG_REAL));
         } else if (this.check(kind.O_BRACKET))  {
             var1.setLeft(this.listInit());
+        } else if (this.l.objectPending()){
+            var1.setLeft(this.object());
+        } else if (this.check(kind.O_PAREN)){
+            var1.setLeft(this.match(kind.O_PAREN));
+            var1.setRight(this.expression());
+            this.match(kind.C_PAREN);
         }
             //var1.setLeft(this.anonymousExpression());
 //        } else {
@@ -125,7 +199,6 @@ public class Parser {
         var1.setRight(this.listItem());
         this.match(kind.C_BRACKET);
 
-
         return var1;
     }
 
@@ -138,7 +211,6 @@ public class Parser {
             //}
         }
         //set null?
-
         return var1;
     }
 

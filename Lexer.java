@@ -247,12 +247,15 @@ public class Lexer {
             return new Lexeme(kind.OR, this.currentLine);
         } else if (var2.equals("include")) {    //include?
             return new Lexeme(kind.INCLUDE, this.currentLine);
-        } else if (var2.equals("not")) {    //include?
+        } else if (var2.equals("not")) {
             return new Lexeme(kind.NOT, this.currentLine);
         } else if (var2.equals("result")){
             return new Lexeme(kind.RESULT, this.currentLine);
-        }else {
+        } else if (var2.equals("function")) {
+            return new Lexeme(kind.FUNCTION, this.currentLine);
+        } else {
             return new Lexeme(kind.VARIABLE, var2, this.currentLine);
+
         }
     }
 
@@ -373,7 +376,7 @@ public class Lexer {
         return
                 this.expressionPending()
                 || this.definitionPending()
-//                || this.assignmentPending()
+                || this.returnPending()
 //                || this.ifStatementPending()
 //                || this.loopPending()
 //                || this.resultPending()
@@ -383,6 +386,9 @@ public class Lexer {
                 || this.currentLexeme.check(kind.NEWLINE);
     }
 
+    public boolean returnPending() {
+        return this.currentLexeme.check(kind.RESULT);
+    }
     public boolean definitionPending(){
         return this.currentLexeme.check(kind.DEFINE);
     }
@@ -397,6 +403,19 @@ public class Lexer {
         return this.currentLexeme.check(kind.COMMENT);
     }
 
+    public boolean dotPending(){
+        return this.currentLexeme.check(kind.DOT);
+    }
+
+    public boolean listPending() {
+        return this.currentLexeme.check(kind.O_BRACKET);
+    }
+
+    public boolean bodyPending() {
+        System.out.println(this.getCurrentLexeme().getType());
+        return this.currentLexeme.check(kind.O_BRACE);
+    }
+
     public boolean unaryPending() {
         return
                 this.currentLexeme.check(kind.INTEGER)
@@ -404,9 +423,9 @@ public class Lexer {
                 || this.currentLexeme.check(kind.STRING)
                 || this.currentLexeme.check(kind.NEG_REAL)
                 || this.currentLexeme.check(kind.NEG_INTEGER)
-                //|| this.currentLexeme.check(kind.O_PAREN);
-                || this.currentLexeme.check(kind.O_BRACKET);
-//                        || this.currentLexeme.check("ASSIGN")
+                || this.objectPending()
+                || this.currentLexeme.check(kind.O_BRACKET)
+                || this.currentLexeme.check(kind.O_PAREN);
 //                        || this.currentLexeme.check("VARIABLE");
 //                || this.anonymousPending()
         //               || this.currentLexeme.check(); //functionCall
@@ -421,6 +440,12 @@ public class Lexer {
 
     public boolean binaryPending() {
         return this.operatorPending();
+    }
+
+    public boolean objectPending() {
+        return
+                this.currentLexeme.check(kind.VARIABLE)
+                || this.currentLexeme.check(kind.OBJECT);
     }
 
     public boolean operatorPending() {

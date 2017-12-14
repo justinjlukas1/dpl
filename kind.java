@@ -68,6 +68,12 @@ public enum kind {
     GLUE,
     DEFINITION,
     OBJECT,
+    DEFOBJEXPR,
+    DEFOBJPROC,
+    PROCEDURE,
+    BODY,
+    FUNCTION,
+    RETURN,
 
 
     //Literals
