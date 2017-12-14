@@ -57,8 +57,8 @@ public class Parser {
                 var1.setLeft(this.assignment());
             } else if (this.l.ifStatementPending()) {
                 var1.setLeft(this.ifStatement());
-//            } else if (this.l.objectDefPending()) {
-//                var1.setLeft(this.objectDef());
+            } else if (this.l.loopPending()) {
+                var1.setLeft(this.loop());
 //            } else if (this.l.conditionalPending()) {
 //                var1.setLeft(this.conditional());
 //            } else if (this.check("INCLUDE")) {
@@ -67,6 +67,38 @@ public class Parser {
 
         }
 
+        return var1;
+    }
+
+    private Lexeme loop() {
+        Lexeme var1 = new Lexeme(kind.LOOPSTATEMENT, this.l.getCurrentLexeme().getLine());
+        Lexeme var2 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+        Lexeme var3 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+        Lexeme var4 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+        Lexeme var5 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+        Lexeme var6 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+        var1.setLeft(var2);
+        var1.setRight(var3);
+        var1.getLeft().setRight(var4);
+        var1.getRight().setLeft(var5);
+        var1.getLeft().setLeft(this.match(kind.LOOP));
+        var1.getLeft().getRight().setLeft(this.match(kind.O_PAREN));
+        if(this.l.objectPending()) {
+            var1.getLeft().getRight().setRight(var6);
+            var1.getLeft().getRight().getRight().setLeft(this.object());
+            var1.getLeft().getRight().getRight().setRight(this.unary());
+        }
+        var1.getRight().getLeft().setLeft(this.unary());
+        if(this.l.expressionPending()) {
+            var1.getRight().getLeft().setRight(this.expression());
+        }
+        this.match(kind.C_PAREN);
+        if(this.l.bodyPending()) {
+            var1.getRight().setRight(this.body());
+        }
+        else {
+            var1.getRight().setRight(this.statement());
+        }
         return var1;
     }
 

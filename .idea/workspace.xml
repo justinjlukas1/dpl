@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df9fcf72-48b1-4483-853a-b7290d64c018" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Lexer.java" afterPath="$PROJECT_DIR$/Lexer.java" />
       <change beforePath="$PROJECT_DIR$/Parser.java" afterPath="$PROJECT_DIR$/Parser.java" />
       <change beforePath="$PROJECT_DIR$/kind.java" afterPath="$PROJECT_DIR$/kind.java" />
-      <change beforePath="$PROJECT_DIR$/out/production/dpl/Lexer.class" afterPath="$PROJECT_DIR$/out/production/dpl/Lexer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/dpl/Parser.class" afterPath="$PROJECT_DIR$/out/production/dpl/Parser.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/dpl/kind.class" afterPath="$PROJECT_DIR$/out/production/dpl/kind.class" />
+      <change beforePath="$PROJECT_DIR$/test.jjl" afterPath="$PROJECT_DIR$/test.jjl" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="174" column="21" lean-forward="false" selection-start-line="174" selection-start-column="21" selection-end-line="174" selection-end-column="21" />
+            <state relative-caret-position="217">
+              <caret line="93" column="9" lean-forward="true" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
               <folding>
                 <element signature="e#311#312#0" expanded="true" />
                 <element signature="e#371#372#0" expanded="true" />
@@ -38,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.jjl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test.jjl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.jjl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+            <state relative-caret-position="345">
+              <caret line="23" column="1" lean-forward="false" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -71,8 +68,8 @@
       <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="397" column="49" lean-forward="false" selection-start-line="397" selection-start-column="49" selection-end-line="397" selection-end-column="49" />
+            <state relative-caret-position="335">
+              <caret line="393" column="49" lean-forward="false" selection-start-line="393" selection-start-column="49" selection-end-line="393" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#scanner#0;class#Lexer#0" expanded="false" />
@@ -83,24 +80,28 @@
                 <element signature="method#lexString#0;class#Lexer#0" expanded="false" />
                 <element signature="method#lexNumber#0;class#Lexer#0" expanded="false" />
                 <element signature="method#lexComment#0;class#Lexer#0" expanded="false" />
-                <element signature="e#14614#14615#0" expanded="true" />
-                <element signature="e#14674#14675#0" expanded="true" />
-                <element signature="e#14717#14718#0" expanded="true" />
-                <element signature="e#14773#14774#0" expanded="true" />
+                <element signature="e#14612#14613#0" expanded="true" />
+                <element signature="e#14672#14673#0" expanded="true" />
+                <element signature="e#14708#14709#0" expanded="true" />
+                <element signature="e#14766#14767#0" expanded="true" />
                 <element signature="e#14809#14810#0" expanded="true" />
-                <element signature="e#14867#14868#0" expanded="true" />
-                <element signature="e#14908#14909#0" expanded="true" />
-                <element signature="e#14968#14969#0" expanded="true" />
-                <element signature="e#15009#15010#0" expanded="true" />
-                <element signature="e#15066#15067#0" expanded="true" />
-                <element signature="e#15244#15245#0" expanded="true" />
-                <element signature="e#15305#15306#0" expanded="true" />
-                <element signature="e#15339#15340#0" expanded="true" />
-                <element signature="e#15396#15397#0" expanded="true" />
-                <element signature="e#15432#15433#0" expanded="true" />
-                <element signature="e#15495#15496#0" expanded="true" />
-                <element signature="e#16612#16613#0" expanded="true" />
-                <element signature="e#16657#16658#0" expanded="true" />
+                <element signature="e#14865#14866#0" expanded="true" />
+                <element signature="e#14901#14902#0" expanded="true" />
+                <element signature="e#14959#14960#0" expanded="true" />
+                <element signature="e#15000#15001#0" expanded="true" />
+                <element signature="e#15060#15061#0" expanded="true" />
+                <element signature="e#15101#15102#0" expanded="true" />
+                <element signature="e#15158#15159#0" expanded="true" />
+                <element signature="e#15336#15337#0" expanded="true" />
+                <element signature="e#15397#15398#0" expanded="true" />
+                <element signature="e#15431#15432#0" expanded="true" />
+                <element signature="e#15488#15489#0" expanded="true" />
+                <element signature="e#15524#15525#0" expanded="true" />
+                <element signature="e#15587#15588#0" expanded="true" />
+                <element signature="e#15623#15624#0" expanded="true" />
+                <element signature="e#15684#15685#0" expanded="true" />
+                <element signature="e#16641#16642#0" expanded="true" />
+                <element signature="e#16686#16687#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,8 +122,8 @@
       <file leaf-file-name="kind.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kind.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="70" column="4" lean-forward="false" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+            <state relative-caret-position="248">
+              <caret line="77" column="18" lean-forward="false" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -139,9 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>scanInteger</find>
-      <find>Lexeme.kind</find>
-      <find>var1</find>
       <find>lexStr</find>
       <find>var4</find>
       <find>lexString</find>
@@ -169,6 +167,9 @@
       <find>DEFOBJEXPR</find>
       <find>System.</find>
       <find>kind.TO</find>
+      <find>System</find>
+      <find>statement</find>
+      <find>stateme</find>
     </findStrings>
     <replaceStrings>
       <replace>type</replace>
@@ -790,8 +791,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="397" column="49" lean-forward="false" selection-start-line="397" selection-start-column="49" selection-end-line="397" selection-end-column="49" />
+        <state relative-caret-position="335">
+          <caret line="393" column="49" lean-forward="false" selection-start-line="393" selection-start-column="49" selection-end-line="393" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#scanner#0;class#Lexer#0" expanded="false" />
@@ -802,40 +803,52 @@
             <element signature="method#lexString#0;class#Lexer#0" expanded="false" />
             <element signature="method#lexNumber#0;class#Lexer#0" expanded="false" />
             <element signature="method#lexComment#0;class#Lexer#0" expanded="false" />
-            <element signature="e#14614#14615#0" expanded="true" />
-            <element signature="e#14674#14675#0" expanded="true" />
-            <element signature="e#14717#14718#0" expanded="true" />
-            <element signature="e#14773#14774#0" expanded="true" />
+            <element signature="e#14612#14613#0" expanded="true" />
+            <element signature="e#14672#14673#0" expanded="true" />
+            <element signature="e#14708#14709#0" expanded="true" />
+            <element signature="e#14766#14767#0" expanded="true" />
             <element signature="e#14809#14810#0" expanded="true" />
-            <element signature="e#14867#14868#0" expanded="true" />
-            <element signature="e#14908#14909#0" expanded="true" />
-            <element signature="e#14968#14969#0" expanded="true" />
-            <element signature="e#15009#15010#0" expanded="true" />
-            <element signature="e#15066#15067#0" expanded="true" />
-            <element signature="e#15244#15245#0" expanded="true" />
-            <element signature="e#15305#15306#0" expanded="true" />
-            <element signature="e#15339#15340#0" expanded="true" />
-            <element signature="e#15396#15397#0" expanded="true" />
-            <element signature="e#15432#15433#0" expanded="true" />
-            <element signature="e#15495#15496#0" expanded="true" />
-            <element signature="e#16612#16613#0" expanded="true" />
-            <element signature="e#16657#16658#0" expanded="true" />
+            <element signature="e#14865#14866#0" expanded="true" />
+            <element signature="e#14901#14902#0" expanded="true" />
+            <element signature="e#14959#14960#0" expanded="true" />
+            <element signature="e#15000#15001#0" expanded="true" />
+            <element signature="e#15060#15061#0" expanded="true" />
+            <element signature="e#15101#15102#0" expanded="true" />
+            <element signature="e#15158#15159#0" expanded="true" />
+            <element signature="e#15336#15337#0" expanded="true" />
+            <element signature="e#15397#15398#0" expanded="true" />
+            <element signature="e#15431#15432#0" expanded="true" />
+            <element signature="e#15488#15489#0" expanded="true" />
+            <element signature="e#15524#15525#0" expanded="true" />
+            <element signature="e#15587#15588#0" expanded="true" />
+            <element signature="e#15623#15624#0" expanded="true" />
+            <element signature="e#15684#15685#0" expanded="true" />
+            <element signature="e#16641#16642#0" expanded="true" />
+            <element signature="e#16686#16687#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kind.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="70" column="4" lean-forward="false" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+        <state relative-caret-position="248">
+          <caret line="77" column="18" lean-forward="false" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.jjl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="1" lean-forward="false" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="174" column="21" lean-forward="false" selection-start-line="174" selection-start-column="21" selection-end-line="174" selection-end-column="21" />
+        <state relative-caret-position="217">
+          <caret line="93" column="9" lean-forward="true" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
           <folding>
             <element signature="e#311#312#0" expanded="true" />
             <element signature="e#371#372#0" expanded="true" />
@@ -845,14 +858,6 @@
             <element signature="method#binary#0;class#Parser#0" expanded="false" />
             <element signature="method#optBinaryItems#0;class#Parser#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.jjl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>

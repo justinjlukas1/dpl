@@ -379,7 +379,7 @@ public class Lexer {
                 || this.returnPending()
                 || this.assignmentPending()
                 || this.ifStatementPending()
-//                || this.loopPending()
+                || this.loopPending()
 //                //|| this.conditionalPending()
 //                //|| this.currentLexeme.check("INCLUDE")
                 || this.commentPending()
@@ -388,6 +388,10 @@ public class Lexer {
 
     public boolean returnPending() {
         return this.currentLexeme.check(kind.RESULT);
+    }
+
+    public boolean loopPending() {
+        return this.currentLexeme.check(kind.LOOP);
     }
 
     public boolean ifStatementPending() {
@@ -425,7 +429,6 @@ public class Lexer {
     }
 
     public boolean bodyPending() {
-        System.out.println(this.getCurrentLexeme().getType());
         return this.currentLexeme.check(kind.O_BRACE);
     }
 

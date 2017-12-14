@@ -1,4 +1,4 @@
-define x as 5
+$*define x as 5
 define function plus4 as [x] {
     result (+ x (+ x 4))
 }
@@ -7,3 +7,19 @@ set function plus4 to [y z] {
 }
 
 set x to 6
+
+if (= x 4) {
+test
+}
+else if
+ test2
+else
+    test 3
+    *$
+
+loop(x 5 (< x 10) ++x)
+    test
+
+loop((<x 10)) {
+ test
+}
