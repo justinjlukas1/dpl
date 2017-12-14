@@ -393,6 +393,11 @@ public class Lexer {
     public boolean ifStatementPending() {
         return this.currentLexeme.check(kind.IF);
     }
+
+    public boolean elsePending() {
+        return this.currentLexeme.check(kind.ELSE);
+    }
+
     public boolean definitionPending(){
         return this.currentLexeme.check(kind.DEFINE);
     }
