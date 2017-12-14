@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df9fcf72-48b1-4483-853a-b7290d64c018" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/PrettyPrinter.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Lexer.java" afterPath="$PROJECT_DIR$/Lexer.java" />
       <change beforePath="$PROJECT_DIR$/Main.java" afterPath="$PROJECT_DIR$/Main.java" />
-      <change beforePath="$PROJECT_DIR$/Parser.java" afterPath="$PROJECT_DIR$/Parser.java" />
-      <change beforePath="$PROJECT_DIR$/kind.java" afterPath="$PROJECT_DIR$/kind.java" />
-      <change beforePath="$PROJECT_DIR$/out/production/dpl/Lexer.class" afterPath="$PROJECT_DIR$/out/production/dpl/Lexer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/dpl/Parser.class" afterPath="$PROJECT_DIR$/out/production/dpl/Parser.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/dpl/kind.class" afterPath="$PROJECT_DIR$/out/production/dpl/kind.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/dpl/test.jjl" afterPath="$PROJECT_DIR$/out/production/dpl/test.jjl" />
-      <change beforePath="$PROJECT_DIR$/out/production/dpl/testCode.jjl" afterPath="$PROJECT_DIR$/out/production/dpl/testCode.jjl" />
-      <change beforePath="$PROJECT_DIR$/test.jjl" afterPath="$PROJECT_DIR$/test.jjl" />
-      <change beforePath="$PROJECT_DIR$/testCode.jjl" afterPath="$PROJECT_DIR$/testCode.jjl" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,16 +16,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="22" column="14" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="14" />
+            <state relative-caret-position="750">
+              <caret line="120" column="88" lean-forward="true" selection-start-line="119" selection-start-column="4" selection-end-line="120" selection-end-column="88" />
               <folding>
                 <element signature="method#Parser#0;class#Parser#0" expanded="false" />
                 <element signature="method#execute#0;class#Parser#0" expanded="false" />
+                <element signature="method#match#0;class#Parser#0" expanded="false" />
                 <element signature="method#statements#0;class#Parser#0" expanded="false" />
-                <element signature="method#statement#0;class#Parser#0" expanded="false" />
                 <element signature="method#display#0;class#Parser#0" expanded="false" />
                 <element signature="method#loop#0;class#Parser#0" expanded="false" />
                 <element signature="method#assignment#0;class#Parser#0" expanded="false" />
@@ -53,6 +44,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="PrettyPrinter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PrettyPrinter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2032">
+              <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="test.jjl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.jjl">
           <provider selected="true" editor-type-id="text-editor">
@@ -66,8 +67,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="42" lean-forward="false" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+            <state relative-caret-position="195">
+              <caret line="13" column="36" lean-forward="false" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -83,7 +84,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testCode.jjl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="testCode.jjl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testCode.jjl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1905">
@@ -153,7 +154,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>[</find>
       <find>variable</find>
       <find>expression</find>
       <find>]</find>
@@ -183,6 +183,7 @@
       <find>System</find>
       <find>System.</find>
       <find>$*</find>
+      <find>ifStat</find>
     </findStrings>
     <replaceStrings>
       <replace>type</replace>
@@ -218,8 +219,9 @@
         <option value="$PROJECT_DIR$/Parser.java" />
         <option value="$PROJECT_DIR$/Lexer.java" />
         <option value="$PROJECT_DIR$/test.jjl" />
-        <option value="$PROJECT_DIR$/Main.java" />
         <option value="$PROJECT_DIR$/testCode.jjl" />
+        <option value="$PROJECT_DIR$/PrettyPrinter.java" />
+        <option value="$PROJECT_DIR$/Main.java" />
       </list>
     </option>
   </component>
@@ -425,8 +427,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3457627" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3457627" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17826618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -823,32 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="22" column="14" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="14" />
-          <folding>
-            <element signature="method#Parser#0;class#Parser#0" expanded="false" />
-            <element signature="method#execute#0;class#Parser#0" expanded="false" />
-            <element signature="method#statements#0;class#Parser#0" expanded="false" />
-            <element signature="method#statement#0;class#Parser#0" expanded="false" />
-            <element signature="method#display#0;class#Parser#0" expanded="false" />
-            <element signature="method#loop#0;class#Parser#0" expanded="false" />
-            <element signature="method#assignment#0;class#Parser#0" expanded="false" />
-            <element signature="method#result#0;class#Parser#0" expanded="false" />
-            <element signature="method#definition#0;class#Parser#0" expanded="false" />
-            <element signature="method#objProc#0;class#Parser#0" expanded="false" />
-            <element signature="method#objExpr#0;class#Parser#0" expanded="false" />
-            <element signature="method#procedure#0;class#Parser#0" expanded="false" />
-            <element signature="method#body#0;class#Parser#0" expanded="false" />
-            <element signature="method#lambda#0;class#Parser#0" expanded="false" />
-            <element signature="method#listInit#0;class#Parser#0" expanded="false" />
-            <element signature="method#listItem#0;class#Parser#0" expanded="false" />
-            <element signature="method#optBinaryItems#0;class#Parser#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -882,19 +858,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="42" lean-forward="false" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testCode.jjl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1905">
           <caret line="127" column="29" lean-forward="false" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="36" lean-forward="false" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PrettyPrinter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2032">
+          <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="120" column="88" lean-forward="true" selection-start-line="119" selection-start-column="4" selection-end-line="120" selection-end-column="88" />
+          <folding>
+            <element signature="method#Parser#0;class#Parser#0" expanded="false" />
+            <element signature="method#execute#0;class#Parser#0" expanded="false" />
+            <element signature="method#match#0;class#Parser#0" expanded="false" />
+            <element signature="method#statements#0;class#Parser#0" expanded="false" />
+            <element signature="method#display#0;class#Parser#0" expanded="false" />
+            <element signature="method#loop#0;class#Parser#0" expanded="false" />
+            <element signature="method#assignment#0;class#Parser#0" expanded="false" />
+            <element signature="method#result#0;class#Parser#0" expanded="false" />
+            <element signature="method#definition#0;class#Parser#0" expanded="false" />
+            <element signature="method#objProc#0;class#Parser#0" expanded="false" />
+            <element signature="method#objExpr#0;class#Parser#0" expanded="false" />
+            <element signature="method#procedure#0;class#Parser#0" expanded="false" />
+            <element signature="method#body#0;class#Parser#0" expanded="false" />
+            <element signature="method#lambda#0;class#Parser#0" expanded="false" />
+            <element signature="method#listInit#0;class#Parser#0" expanded="false" />
+            <element signature="method#listItem#0;class#Parser#0" expanded="false" />
+            <element signature="method#optBinaryItems#0;class#Parser#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

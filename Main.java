@@ -10,7 +10,8 @@ public class Main {
         //Parser var1 = new Parser(args[0]);
         Parser var1 = new Parser("testCode.jjl");
         Lexeme var2 = var1.execute();
-
+        PrettyPrinter var3 = new PrettyPrinter();
+        var3.displayParseTree(var2);
         //PrettyPrinter var3 = new PrettyPrinter();
         //var3.displayParseTree(var2);
 
