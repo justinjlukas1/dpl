@@ -85,7 +85,6 @@ public class Lexer {
                 return new Lexeme(kind.C_BRACE, this.currentLine);
             case '$':
                 return lexComment();
-        //don't need to include a value
             case '!':
                 this.file.skipWhitespace();
                 var1 = this.file.readNextRawCharacter();
@@ -208,10 +207,11 @@ public class Lexer {
     }
 
     private Lexeme lexVarOrKeyword() throws EOFException {
+        boolean flag = false;
         String var2 = new String();
         Character var1 = this.file.readNextRawCharacter();
 
-        while(Character.isLetterOrDigit(var1) && !this.endOfFile) {
+        while(Character.isLetterOrDigit(var1) && !this.endOfFile ) {
             var2 = var2.concat(Character.toString(var1));
 
             try {
@@ -219,6 +219,9 @@ public class Lexer {
             } catch (EOFException var4) {
                 this.endOfFile = true;
             }
+        }
+        if(var1 == '(') {
+            flag = true;
         }
         this.file.pushbackCharacter(var1);
         if (var2.equals("define")) {
@@ -254,7 +257,12 @@ public class Lexer {
         } else if (var2.equals("function")) {
             return new Lexeme(kind.FUNCTION, this.currentLine);
         } else {
-            return new Lexeme(kind.VARIABLE, var2, this.currentLine);
+        //    if(flag) {
+      //          return new Lexeme(kind.FUNCTIONCALL, var2, this.currentLine);
+    //        }
+  //          else {
+                return new Lexeme(kind.VARIABLE, var2, this.currentLine);
+//            }
 
         }
     }
@@ -349,10 +357,10 @@ public class Lexer {
                 try {
                     var1 = this.file.readNextRawCharacter();
                 } catch (EOFException var4) {
+
                     this.endOfFile = true;
                 }
             }
-
             return new Lexeme(kind.COMMENT, var2, this.currentLine);
         }
         else    {   //single line comment
@@ -370,7 +378,6 @@ public class Lexer {
         }
     }
 
-
 //recognizing / parsing
     public boolean statementPending() {
         return
@@ -380,8 +387,6 @@ public class Lexer {
                 || this.assignmentPending()
                 || this.ifStatementPending()
                 || this.loopPending()
-//                //|| this.conditionalPending()
-//                //|| this.currentLexeme.check("INCLUDE")
                 || this.commentPending()
                 || this.currentLexeme.check(kind.NEWLINE);
     }
@@ -442,7 +447,7 @@ public class Lexer {
                 || this.objectPending()
                 || this.currentLexeme.check(kind.O_BRACKET)
                 || this.currentLexeme.check(kind.O_PAREN);
-//                        || this.currentLexeme.check("VARIABLE");
+                //|| this.currentLexeme.check(kind.FUNCTIONCALL);
 //                || this.anonymousPending()
         //               || this.currentLexeme.check(); //functionCall
 //                | lambda

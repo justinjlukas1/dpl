@@ -26,16 +26,17 @@ unary           : INTEGER
                 | STRING
                 | NEG_REAL
                 | NEG_INTEGER
-                | functionCall
+                | fnCallOrObject
                 | lambda
                 | list
-                | object
                 | O_PAREN expression C_PAREN
                 //| EX_POINT unary  //! x1 operator not unary
-                //| MINUS unary   //neg number? NEG_REAL and NEG_INTEGER
-//                | arrayInit
+                | MINUS unary   //neg number? NEG_REAL and NEG_INTEGER
 
 //arrayInit       : O_BRACKET listItem C_BRACKET
+
+fnCallOrObject  : object
+                | object list
 
 object          : VARIABLE
                 | VARIABLE DOT object

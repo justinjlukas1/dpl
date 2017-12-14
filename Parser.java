@@ -52,6 +52,7 @@ public class Parser {
             } else if (this.l.definitionPending()) {
                 var1.setLeft(this.definition());
             } else if (this.check(kind.RESULT)) {
+                System.out.println("result was found");
                 var1.setLeft(this.result());
             } else if (this.l.assignmentPending()) {
                 var1.setLeft(this.assignment());
@@ -184,11 +185,13 @@ public class Parser {
             var1.getLeft().getRight().setLeft(this.match(kind.FUNCTION));
             var1.getLeft().getRight().setRight(this.object());
             var1.getRight().setLeft(this.match(kind.AS));
+            System.out.println("check for function was true, defining procedure");
             var1.getRight().setRight(this.objProc());
         }
         else {
             var1.getLeft().getRight().setRight(this.object());
             if (this.check(kind.AS)) {
+                System.out.println("check for function was false, defining procedure");
                 var1.getRight().setLeft(this.match(kind.AS));
             }
             var1.getRight().setRight(objExpr());
@@ -238,6 +241,13 @@ public class Parser {
             var1.setRight(var2);
             var1.getRight().setLeft(this.match(kind.DOT));
             var1.getRight().setRight(this.object());
+        }
+        else if(this.l.listPending()) {
+            System.out.println("list pending inside object, so function call");
+            Lexeme var3 = new Lexeme(kind.FUNCTIONCALL, this.l.getCurrentLexeme().getLine());
+            var3.setLeft(var1);
+            var3.setRight(this.listInit());
+            return var3;
         }
 
         return var1;

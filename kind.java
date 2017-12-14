@@ -76,6 +76,7 @@ public enum kind {
     RETURN,
     IFSTATEMENT,
     LOOPSTATEMENT,
+    FUNCTIONCALL,
 
 
     //Literals
