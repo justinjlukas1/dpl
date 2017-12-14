@@ -8,7 +8,7 @@ public class Main {
 //        }
 
         //Parser var1 = new Parser(args[0]);
-        Parser var1 = new Parser("test.jjl");
+        Parser var1 = new Parser("testCode.jjl");
         Lexeme var2 = var1.execute();
         PrettyPrinter var3 = new PrettyPrinter(var2);
         var3.displayStatements(var2);

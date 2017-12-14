@@ -19,10 +19,11 @@ public class PrettyPrinter {
 
     public void displayStatements(Lexeme l) {
 
-        if (l != null)
+        if (l != null) {
             displayStatement(l);
-        if (l.getRight() != null)
-            displayStatements(l.getRight());
+            if (l.getRight() != null)
+                displayStatements(l.getRight());
+        }
     }
 
     private void displayStatement(Lexeme l) {
@@ -47,57 +48,121 @@ public class PrettyPrinter {
     }
 
     private void displayExpression(Lexeme l) {
-        Lexeme v = l.getLeft(); //this is an expression
-        if (v != null) {
-            if (v.getLeft().check(kind.UNARY)) {
-                displayUnary(v);
+            if (l.getLeft().check(kind.UNARY)) {
+                displayUnary(l.getLeft());
             } else {    //binary
-                displayBinary(v);
+                displayBinary(l.getLeft());
             }
-        }
     }
     private void displayResult(Lexeme l) {
-        System.out.println("result ");
+        System.out.print("result ");
         if(l.getRight() != null) {
             displayExpression(l.getRight());
         }
     }
     private void displayBinary(Lexeme l) {
-        System.out.println(l.getLeft().getLeft().getValue());
+        System.out.print(l.getLeft().getLeft().getValue() + " ");
         displayExpression(l.getLeft().getRight());
-        if(l.getRight() != null)
+        if(l.getRight() != null) {
             displayOptBinaryItems(l.getRight());
+        }
     }
     private void displayOptBinaryItems(Lexeme l) {
-        if(l.getLeft() != null)
+        System.out.print(" ");
+        if(l.getLeft() != null) {
             displayExpression(l.getLeft());
             displayOptBinaryItems(l.getRight());
+        }
     }
-    private void displayUnary(Lexeme v) {
-        Lexeme l = v.getLeft();
-        if (digitPending(l))    //numbers
-            System.out.print(l.getValue());
-        else if (l.check(kind.STRING))
-            System.out.print("\"" + l.getValue() + "\"");
-        else if (l.check(kind.OBJECT))
+    private void displayUnary(Lexeme l) {
+        if (digitPending(l.getLeft()))    //numbers
+            System.out.print(l.getLeft().getValue() + " ");
+        else if (l.getLeft().check(kind.STRING))
+            System.out.print("\"" + l.getLeft().getValue() + "\" ");
+        else if (l.getLeft().check(kind.OBJECT))
             displayObject(l.getLeft());
-        else if (l.check(kind.FUNCTIONCALL))
+        else if (l.getLeft().check(kind.FUNCTIONCALL)) {
             displayFunctionCall(l.getLeft());
-        else if (l.check(kind.LAMBDA))
-            displayLambda(l.getLeft());
-        else if (l.check(kind.LIST))
+
+        } else if (l.getLeft().check(kind.LAMBDA))
+            displayLambda(l.getLeft().getLeft());
+        else if (l.getLeft().check(kind.LIST))
             displayList(l.getLeft());
-        else if(l.check(kind.O_PAREN)) {
-            System.out.println("(");
+        else if(l.getLeft().check(kind.O_PAREN)) {
+            System.out.print("(");
             displayExpression(l.getRight());
-            System.out.println(")");
+            System.out.print(") ");
         }
         else
-            System.out.println("unrecognized value");
+            System.out.println("Fatal, unknown kind: " + l.getLeft().getType());
 
     }
     private void displayDefine(Lexeme l) {
-        
+        boolean flag = false;
+        System.out.print("define ");
+        if(l.getLeft().getRight().getLeft() != null) {
+            System.out.print("function ");
+            flag = true;
+        }
+        displayObject(l.getLeft().getRight().getRight());
+        if(l.getRight().getLeft() != null) {
+            System.out.print(" as ");
+            if (flag) {
+                displayProcedure(l.getRight().getRight());
+            } else {
+                displayExpression(l.getRight().getRight());
+            }
+        }
+    }
+    private void displayAssignment(Lexeme l) {
+        boolean flag = false;
+        System.out.print("set ");
+        if(l.getLeft().getRight().getLeft() != null) {
+            System.out.print("function ");
+            flag = true;
+        }
+        displayObject(l.getLeft().getRight().getRight());
+            System.out.print(" to ");
+            if (flag) {
+                displayProcedure(l.getRight().getRight());
+            } else {
+                displayExpression(l.getRight().getRight());
+            }
+    }
+    private void displayIfStatement(Lexeme l) {
+        System.out.print("if ");
+        displayUnary(l.getLeft().getRight());
+        if(l.getRight().getLeft().check(kind.BODY))
+            displayBody(l.getRight().getLeft());
+        else
+            displayStatement(l.getRight().getLeft());
+        if(l.getRight().getRight() != null) {
+            System.out.print("else ");
+            if(l.getRight().getRight().getRight().check(kind.BODY)) {
+                displayBody(l.getRight().getRight().getRight());
+            } else if(l.getRight().getRight().getRight().check(kind.STATEMENT)) {
+                displayStatement(l.getRight().getRight().getRight());
+            } else {
+                displayIfStatement(l.getRight().getRight().getRight());
+            }
+        }
+    }
+    private void displayLoop(Lexeme l) {
+        System.out.print("loop(");
+        if(l.getLeft().getRight().getRight()!= null) { //should have two unaries
+            displayUnary(l.getLeft().getRight().getRight().getLeft());
+            System.out.print(" ");
+            displayUnary(l.getLeft().getRight().getRight().getRight());
+        }
+
+        displayUnary(l.getRight().getLeft().getLeft());
+        if(l.getRight().getLeft().getRight() != null)
+            displayExpression(l.getRight().getLeft().getRight());
+        System.out.print(") \n");
+        if(l.getRight().getRight().check(kind.BODY))
+            displayBody(l.getRight().getRight());
+        else
+            displayStatement(l.getRight().getRight());
     }
     private boolean digitPending(Lexeme l){
         return
@@ -108,29 +173,32 @@ public class PrettyPrinter {
     }
     private void displayObject(Lexeme l) {
         //root is object
-        System.out.println(l.getLeft().getValue());
+        System.out.print(l.getLeft().getValue());
         if(l.getRight() != null) {
-            System.out.println(l.getRight().getLeft().getValue());
+            System.out.print(l.getRight().getLeft().getValue());  //could be changed to just print out '.'
             displayObject(l.getRight().getRight());
         }
+        System.out.print(" ");
     }
     private void displayFunctionCall(Lexeme l) {
         displayObject(l.getLeft());
         displayList(l.getRight());
     }
     private void displayList(Lexeme l) {
-        System.out.println(l.getLeft().getValue()); // '['
+        System.out.print("["); // '['
         displayListItem(l.getRight());
+        System.out.print("] ");
     }
     private void displayListItem(Lexeme l) {
-        if(l.getLeft().check(kind.UNARY)) {
-            displayUnary(l.getLeft());
-            displayListItem(l.getRight());
+        if(l.getLeft() != null) {
+            if (l.getLeft().check(kind.UNARY)) {
+                displayUnary(l.getLeft());
+                displayListItem(l.getRight());
+            }
         }
-        System.out.println("]");
     }
     private void displayLambda(Lexeme l) {
-        System.out.println("lambda ");
+        System.out.print("lambda ");
         displayProcedure(l.getRight());
     }
     private void displayProcedure(Lexeme l) {
@@ -140,7 +208,17 @@ public class PrettyPrinter {
     private void displayBody(Lexeme l) {
         System.out.println("{");
         displayStatements(l.getRight());
-        System.out.println("}");
+        System.out.print("} ");
+    }
+    private void displayPrintln(Lexeme l) {
+        System.out.print("displayln ");
+        if(l.getRight() != null)
+            displayExpression(l.getRight());
+    }
+    private void displayPrint(Lexeme l) {
+        System.out.print("display ");
+        if(l.getRight() != null)
+            displayExpression(l.getRight());
     }
 }
 

@@ -103,16 +103,22 @@ public class Parser {
         var1.getLeft().setLeft(this.match(kind.LOOP));
         var1.getLeft().getRight().setLeft(this.match(kind.O_PAREN));
             Lexeme tempUnary1 = this.unary();
+            //System.out.print(tempUnary1.getType() + " ");
             if(this.l.unaryPending()) {
                 Lexeme tempUnary2 = this.unary();
+                //System.out.print(tempUnary2.getType() + " ");
                 if (this.l.unaryPending()) {
                     Lexeme tempUnary3 = this.unary();
+                    //System.out.print(tempUnary3.getType() + " ");
                     if (this.l.expressionPending()) {
+                        //System.out.println(tempUnary3.getType() + " " + tempUnary3.getRight().getType());
                         var1.getLeft().getRight().setRight(var6);
                         var1.getLeft().getRight().getRight().setLeft(tempUnary1);
+                        //System.out.println("\t\t "+ var1.getLeft().getRight().getRight().getLeft().getType());
                         var1.getLeft().getRight().getRight().setRight(tempUnary2);
                         var1.getRight().getLeft().setLeft(tempUnary3);
                         var1.getRight().getLeft().setRight(this.expression());
+                        //System.out.print("loop, found four inputs\n");
 
                     } else {
                         var1.getLeft().getRight().setRight(var6);
@@ -128,7 +134,9 @@ public class Parser {
                 var1.getRight().getLeft().setLeft(tempUnary1);
             }
             //needed?
-        this.match(kind.C_PAREN);
+        if(this.check(kind.C_PAREN)) {
+            this.match(kind.C_PAREN);
+        }
         if(this.l.bodyPending()) {
             var1.getRight().setRight(this.body());
         }
@@ -136,7 +144,7 @@ public class Parser {
             if(this.check(kind.NEWLINE)){
                 this.match(kind.NEWLINE);
             }
-            var1.getRight().setLeft(statement());
+            var1.getRight().setRight(statement());
         }
         return var1;
     }   //kind.LOOP
@@ -271,7 +279,7 @@ public class Parser {
         }
         else if(this.l.listPending()) {
             Lexeme var3 = new Lexeme(kind.FUNCTIONCALL, this.l.getCurrentLexeme().getLine());
-            var3.setLeft(this.object());
+            var3.setLeft(var1);
             var3.setRight(this.listInit());
             return var3;
         }

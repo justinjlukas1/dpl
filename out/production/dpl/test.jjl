@@ -1,3 +1,9 @@
+$(test)
+$(< x length[a])
+
+loop (temp 0 test ++x)
+    display
+
 $* define x as 5
 define function plus4 as [x] {
     result (+ x (+ x 4))
@@ -73,7 +79,24 @@ loop(x 5 (< x 5))
 loop(x 5 (< x 5) ++x)
     display
 
-*$
+define function length as [x] {
+    result length
+}
+
+
+length[a]
+
+
+(< x length[a])
+
+
+
+
+
+loop(temp 0 (< x length[a]) (+ temp 1)) {
+    display # temp x
+}
+
 
 if(x)
     display
@@ -82,4 +105,7 @@ else if(y)
 else
     display
 
+5 6 7
+[5 6 7]
+*$
 $comment
