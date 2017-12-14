@@ -49,10 +49,37 @@ if (= a[0] 1) {display "a[0] is 1"}
 else if (test)
     display
 
-*$
+
 define function map as [func list] {
   if(not list)
     nil
   else
     display list
 }
+
+loop(test) {
+
+}
+
+loop(test)
+    display
+
+loop(test (+test 1))
+    display
+
+loop(x 5 (< x 5))
+    display
+
+loop(x 5 (< x 5) ++x)
+    display
+
+*$
+
+if(x)
+    display
+else if(y)
+    display
+else
+    display
+
+$comment

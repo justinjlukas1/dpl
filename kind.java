@@ -79,6 +79,7 @@ public enum kind {
     FUNCTIONCALL,
     DISPLAY,
     DISPLAYLN,
+    BINARYITEM,
 
 
     //Literals
