@@ -53,8 +53,8 @@ public class Parser {
                 var1.setLeft(this.definition());
             } else if (this.check(kind.RESULT)) {
                 var1.setLeft(this.result());
-//            } else if (this.l.arrayDefPending()) {
-//                var1.setLeft(this.arrayDef());
+            } else if (this.l.assignmentPending()) {
+                var1.setLeft(this.assignment());
 //            } else if (this.l.classDefPending()) {
 //                var1.setLeft(this.classDef());
 //            } else if (this.l.objectDefPending()) {
@@ -67,6 +67,31 @@ public class Parser {
 
         }
 
+        return var1;
+    }
+
+    private Lexeme assignment(){
+        Lexeme var1 = new Lexeme(kind.DEFINITION, this.l.getCurrentLexeme().getLine());
+        Lexeme var2 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+        Lexeme var3 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+        Lexeme var4 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
+
+        var1.setLeft(var2);
+        var1.setRight(var4);
+
+        var1.getLeft().setLeft(this.match(kind.SET));
+        var1.getLeft().setRight(var3);
+        if(this.check(kind.FUNCTION)) {
+            var1.getLeft().getRight().setLeft(this.match(kind.FUNCTION));
+            var1.getLeft().getRight().setRight(this.object());
+            var1.getRight().setLeft(this.match(kind.TO));
+            var1.getRight().setRight(defObjProc());
+        }
+        else {
+            var1.getLeft().getRight().setRight(this.object());
+            var1.getRight().setLeft(this.match(kind.TO));
+            var1.getRight().setRight(defObjExpr());
+        }
         return var1;
     }
 
@@ -155,7 +180,6 @@ public class Parser {
     private Lexeme expression() {
         Lexeme var1 = new Lexeme(kind.EXPRESSION, this.l.getCurrentLexeme().getLine());
         if(this.l.unaryPending()){
-            System.out.println("Unary Pending: " + this.l.getCurrentLexeme().getType());
             var1.setLeft(this.unary());
         } else if (this.l.binaryPending()) {
             var1.setLeft(this.binary());

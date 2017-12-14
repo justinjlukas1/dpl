@@ -377,9 +377,9 @@ public class Lexer {
                 this.expressionPending()
                 || this.definitionPending()
                 || this.returnPending()
-//                || this.ifStatementPending()
+                || this.assignmentPending()
+                || this.ifStatementPending()
 //                || this.loopPending()
-//                || this.resultPending()
 //                //|| this.conditionalPending()
 //                //|| this.currentLexeme.check("INCLUDE")
                 || this.commentPending()
@@ -389,8 +389,16 @@ public class Lexer {
     public boolean returnPending() {
         return this.currentLexeme.check(kind.RESULT);
     }
+
+    public boolean ifStatementPending() {
+        return this.currentLexeme.check(kind.IF);
+    }
     public boolean definitionPending(){
         return this.currentLexeme.check(kind.DEFINE);
+    }
+
+    public boolean assignmentPending(){
+        return this.currentLexeme.check(kind.SET);
     }
 
     public boolean expressionPending() {
@@ -477,13 +485,6 @@ public class Lexer {
     }
 
 //
-//    public boolean definitionPending() {
-//        return this.currentLexeme.check("DEFINE");
-//    }
-//
-//    public boolean assignmentPending() {
-//        return this.currentLexeme.check("SET");
-//    }
 //
 //    public boolean ifStatementPending() {
 //        return this.currentLexeme.check("IF");
@@ -501,13 +502,6 @@ public class Lexer {
 //        return this.currentLexeme.check("DOLLAR_SIGN");
 //    }
 //
-//    public boolean functionDefPending() {
-//        return this.currentLexeme.check("FUNCTION");
-//    }
-//
-//    public boolean arrayDefPending() {
-//        return this.currentLexeme.check("ARRAY");
-//    }
 //
 //    public boolean classDefPending() {
 //        return this.currentLexeme.check("CLASS");

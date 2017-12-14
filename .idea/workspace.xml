@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df9fcf72-48b1-4483-853a-b7290d64c018" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/grammar.txt" afterPath="$PROJECT_DIR$/grammar.txt" />
+      <change beforePath="$PROJECT_DIR$/Lexer.java" afterPath="$PROJECT_DIR$/Lexer.java" />
+      <change beforePath="$PROJECT_DIR$/Parser.java" afterPath="$PROJECT_DIR$/Parser.java" />
+      <change beforePath="$PROJECT_DIR$/test.jjl" afterPath="$PROJECT_DIR$/test.jjl" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +19,8 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1485">
-              <caret line="157" column="51" lean-forward="false" selection-start-line="157" selection-start-column="51" selection-end-line="157" selection-end-column="51" />
+            <state relative-caret-position="2445">
+              <caret line="182" column="39" lean-forward="true" selection-start-line="182" selection-start-column="39" selection-end-line="182" selection-end-column="39" />
               <folding>
                 <element signature="e#311#312#0" expanded="true" />
                 <element signature="e#371#372#0" expanded="true" />
@@ -35,14 +37,14 @@
       <file leaf-file-name="test.jjl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.jjl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grammar.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="grammar.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grammar.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
@@ -62,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1750">
-              <caret line="389" column="53" lean-forward="false" selection-start-line="389" selection-start-column="53" selection-end-line="389" selection-end-column="53" />
+            <state relative-caret-position="232">
+              <caret line="393" column="49" lean-forward="false" selection-start-line="393" selection-start-column="49" selection-end-line="393" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#scanner#0;class#Lexer#0" expanded="false" />
@@ -79,16 +81,20 @@
                 <element signature="method#lexComment#0;class#Lexer#0" expanded="false" />
                 <element signature="e#14614#14615#0" expanded="true" />
                 <element signature="e#14674#14675#0" expanded="true" />
-                <element signature="e#14714#14715#0" expanded="true" />
-                <element signature="e#14774#14775#0" expanded="true" />
-                <element signature="e#14952#14953#0" expanded="true" />
-                <element signature="e#15013#15014#0" expanded="true" />
-                <element signature="e#15047#15048#0" expanded="true" />
-                <element signature="e#15104#15105#0" expanded="true" />
-                <element signature="e#15140#15141#0" expanded="true" />
-                <element signature="e#15203#15204#0" expanded="true" />
-                <element signature="e#16320#16321#0" expanded="true" />
-                <element signature="e#16365#16366#0" expanded="true" />
+                <element signature="e#14717#14718#0" expanded="true" />
+                <element signature="e#14773#14774#0" expanded="true" />
+                <element signature="e#14813#14814#0" expanded="true" />
+                <element signature="e#14873#14874#0" expanded="true" />
+                <element signature="e#14914#14915#0" expanded="true" />
+                <element signature="e#14971#14972#0" expanded="true" />
+                <element signature="e#15149#15150#0" expanded="true" />
+                <element signature="e#15210#15211#0" expanded="true" />
+                <element signature="e#15244#15245#0" expanded="true" />
+                <element signature="e#15301#15302#0" expanded="true" />
+                <element signature="e#15337#15338#0" expanded="true" />
+                <element signature="e#15400#15401#0" expanded="true" />
+                <element signature="e#16517#16518#0" expanded="true" />
+                <element signature="e#16562#16563#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -127,7 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>linePos</find>
       <find>kind</find>
       <find>Type</find>
       <find>LexemeKind</find>
@@ -149,14 +154,15 @@
       <find>!</find>
       <find>loop</find>
       <find>[</find>
-      <find>O_BRACK</find>
       <find>variable</find>
       <find>expression</find>
       <find>]</find>
-      <find>unary</find>
       <find>object</find>
+      <find>O_BRACK</find>
       <find>obje</find>
       <find>STATEM</find>
+      <find>assignmentPending</find>
+      <find>unary</find>
     </findStrings>
     <replaceStrings>
       <replace>type</replace>
@@ -188,10 +194,10 @@
         <option value="$PROJECT_DIR$/Main.java" />
         <option value="$PROJECT_DIR$/Lexeme.java" />
         <option value="$PROJECT_DIR$/kind.java" />
+        <option value="$PROJECT_DIR$/grammar.txt" />
+        <option value="$PROJECT_DIR$/test.jjl" />
         <option value="$PROJECT_DIR$/Parser.java" />
         <option value="$PROJECT_DIR$/Lexer.java" />
-        <option value="$PROJECT_DIR$/test.jjl" />
-        <option value="$PROJECT_DIR$/grammar.txt" />
       </list>
     </option>
   </component>
@@ -397,7 +403,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2440678" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2440678" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -775,48 +781,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lexer.java">
+    <entry file="file://$PROJECT_DIR$/grammar.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1750">
-          <caret line="389" column="53" lean-forward="false" selection-start-line="389" selection-start-column="53" selection-end-line="389" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#scanner#0;class#Lexer#0" expanded="false" />
-            <element signature="method#advance#0;class#Lexer#0" expanded="false" />
-            <element signature="method#getLexes#0;class#Lexer#0" expanded="false" />
-            <element signature="method#lex#0;class#Lexer#0" expanded="false" />
-            <element signature="method#lexVarOrKeyword#0;class#Lexer#0" expanded="false" />
-            <element signature="method#lexString#0;class#Lexer#0" expanded="false" />
-            <element signature="method#lexNumber#0;class#Lexer#0" expanded="false" />
-            <element signature="method#lexComment#0;class#Lexer#0" expanded="false" />
-            <element signature="e#14614#14615#0" expanded="true" />
-            <element signature="e#14674#14675#0" expanded="true" />
-            <element signature="e#14714#14715#0" expanded="true" />
-            <element signature="e#14774#14775#0" expanded="true" />
-            <element signature="e#14952#14953#0" expanded="true" />
-            <element signature="e#15013#15014#0" expanded="true" />
-            <element signature="e#15047#15048#0" expanded="true" />
-            <element signature="e#15104#15105#0" expanded="true" />
-            <element signature="e#15140#15141#0" expanded="true" />
-            <element signature="e#15203#15204#0" expanded="true" />
-            <element signature="e#16320#16321#0" expanded="true" />
-            <element signature="e#16365#16366#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.jjl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="210">
+          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="157" column="51" lean-forward="false" selection-start-line="157" selection-start-column="51" selection-end-line="157" selection-end-column="51" />
+        <state relative-caret-position="2445">
+          <caret line="182" column="39" lean-forward="true" selection-start-line="182" selection-start-column="39" selection-end-line="182" selection-end-column="39" />
           <folding>
             <element signature="e#311#312#0" expanded="true" />
             <element signature="e#371#372#0" expanded="true" />
@@ -829,11 +805,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grammar.txt">
+    <entry file="file://$PROJECT_DIR$/test.jjl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+        <state relative-caret-position="120">
+          <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="393" column="49" lean-forward="false" selection-start-line="393" selection-start-column="49" selection-end-line="393" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#scanner#0;class#Lexer#0" expanded="false" />
+            <element signature="method#advance#0;class#Lexer#0" expanded="false" />
+            <element signature="method#getLexes#0;class#Lexer#0" expanded="false" />
+            <element signature="method#lex#0;class#Lexer#0" expanded="false" />
+            <element signature="method#lexVarOrKeyword#0;class#Lexer#0" expanded="false" />
+            <element signature="method#lexString#0;class#Lexer#0" expanded="false" />
+            <element signature="method#lexNumber#0;class#Lexer#0" expanded="false" />
+            <element signature="method#lexComment#0;class#Lexer#0" expanded="false" />
+            <element signature="e#14614#14615#0" expanded="true" />
+            <element signature="e#14674#14675#0" expanded="true" />
+            <element signature="e#14717#14718#0" expanded="true" />
+            <element signature="e#14773#14774#0" expanded="true" />
+            <element signature="e#14813#14814#0" expanded="true" />
+            <element signature="e#14873#14874#0" expanded="true" />
+            <element signature="e#14914#14915#0" expanded="true" />
+            <element signature="e#14971#14972#0" expanded="true" />
+            <element signature="e#15149#15150#0" expanded="true" />
+            <element signature="e#15210#15211#0" expanded="true" />
+            <element signature="e#15244#15245#0" expanded="true" />
+            <element signature="e#15301#15302#0" expanded="true" />
+            <element signature="e#15337#15338#0" expanded="true" />
+            <element signature="e#15400#15401#0" expanded="true" />
+            <element signature="e#16517#16518#0" expanded="true" />
+            <element signature="e#16562#16563#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
