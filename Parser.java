@@ -20,7 +20,7 @@ public class Parser {
         if (!this.check(var1)) {
             Fatal.FATAL("Expected " + var1, this.l.getCurrentLexeme().getLine());
         }
-        System.out.println(var1);
+        //System.out.println(var1);
         Lexeme var2 = this.l.getCurrentLexeme();
         this.l.advance();
         return var2;
@@ -262,7 +262,7 @@ public class Parser {
     private Lexeme object() {
         Lexeme var1 = new Lexeme(kind.OBJECT, this.l.getCurrentLexeme().getLine());
         Lexeme var2 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
-        System.out.println(this.l.getCurrentLexeme().getType() + " " + this.l.getCurrentLexeme().getValue());
+        //System.out.println(this.l.getCurrentLexeme().getType() + " " + this.l.getCurrentLexeme().getValue());
         var1.setLeft(this.match(kind.VARIABLE));
         if(this.l.dotPending()) {
             var1.setRight(var2);

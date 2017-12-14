@@ -3,7 +3,6 @@ public class PrettyPrinter {
     private Lexeme parseTree;
 
     public PrettyPrinter(Lexeme parseTree) {
-
         this.parseTree = parseTree;
     }
 
@@ -27,22 +26,125 @@ public class PrettyPrinter {
     }
 
     private void displayStatement(Lexeme l) {
-        if(l.getLeft().check(kind.EXPRESSION))
+        if (l.getLeft().check(kind.EXPRESSION))
             displayExpression(l.getLeft());
-        else if (l.getLeft().check(Lexeme.Type.VarKeyword))
-            displayVariableDef(l.getLeft());
-        else if (l.getLeft().check(Lexeme.Type.FuncKeyword))
-            displayFunction(l.getLeft());
-        else if (l.getLeft().check(Lexeme.Type.ArrayKeyword))
-            displayArray(l.getLeft());
-        else if (l.getLeft().check(Lexeme.Type.ObjectKeyword))
-            displayObject(l.getLeft());
-        else if (l.getLeft().check(Lexeme.Type.Conditional))
-            displayConditional(l.getLeft());
+        else if (l.getLeft().check(kind.DEFINE))
+            displayDefine(l.getLeft());
+        else if (l.getLeft().check(kind.RESULT))
+            displayResult(l.getLeft());
+        else if (l.getLeft().check(kind.SET))
+            displayAssignment(l.getLeft());
+        else if (l.getLeft().check(kind.IF))
+            displayIfStatement(l.getLeft());
+        else if (l.getLeft().check(kind.LOOP))
+            displayLoop(l.getLeft());
+        else if (l.getLeft().check(kind.DISPLAYLN))
+            displayPrintln(l.getLeft());
+        else if (l.getLeft().check(kind.DISPLAY))
+            displayPrint(l.getLeft());
 
-        System.out.println("");
+        System.out.println();
     }
 
+    private void displayExpression(Lexeme l) {
+        Lexeme v = l.getLeft(); //this is an expression
+        if (v != null) {
+            if (v.getLeft().check(kind.UNARY)) {
+                displayUnary(v);
+            } else {    //binary
+                displayBinary(v);
+            }
+        }
+    }
+    private void displayResult(Lexeme l) {
+        System.out.println("result ");
+        if(l.getRight() != null) {
+            displayExpression(l.getRight());
+        }
+    }
+    private void displayBinary(Lexeme l) {
+        System.out.println(l.getLeft().getLeft().getValue());
+        displayExpression(l.getLeft().getRight());
+        if(l.getRight() != null)
+            displayOptBinaryItems(l.getRight());
+    }
+    private void displayOptBinaryItems(Lexeme l) {
+        if(l.getLeft() != null)
+            displayExpression(l.getLeft());
+            displayOptBinaryItems(l.getRight());
+    }
+    private void displayUnary(Lexeme v) {
+        Lexeme l = v.getLeft();
+        if (digitPending(l))    //numbers
+            System.out.print(l.getValue());
+        else if (l.check(kind.STRING))
+            System.out.print("\"" + l.getValue() + "\"");
+        else if (l.check(kind.OBJECT))
+            displayObject(l.getLeft());
+        else if (l.check(kind.FUNCTIONCALL))
+            displayFunctionCall(l.getLeft());
+        else if (l.check(kind.LAMBDA))
+            displayLambda(l.getLeft());
+        else if (l.check(kind.LIST))
+            displayList(l.getLeft());
+        else if(l.check(kind.O_PAREN)) {
+            System.out.println("(");
+            displayExpression(l.getRight());
+            System.out.println(")");
+        }
+        else
+            System.out.println("unrecognized value");
+
+    }
+    private void displayDefine(Lexeme l) {
+        
+    }
+    private boolean digitPending(Lexeme l){
+        return
+                l.check(kind.INTEGER)
+                || l.check(kind.NEG_INTEGER)
+                || l.check(kind.NEG_REAL)
+                || l.check(kind.REAL);
+    }
+    private void displayObject(Lexeme l) {
+        //root is object
+        System.out.println(l.getLeft().getValue());
+        if(l.getRight() != null) {
+            System.out.println(l.getRight().getLeft().getValue());
+            displayObject(l.getRight().getRight());
+        }
+    }
+    private void displayFunctionCall(Lexeme l) {
+        displayObject(l.getLeft());
+        displayList(l.getRight());
+    }
+    private void displayList(Lexeme l) {
+        System.out.println(l.getLeft().getValue()); // '['
+        displayListItem(l.getRight());
+    }
+    private void displayListItem(Lexeme l) {
+        if(l.getLeft().check(kind.UNARY)) {
+            displayUnary(l.getLeft());
+            displayListItem(l.getRight());
+        }
+        System.out.println("]");
+    }
+    private void displayLambda(Lexeme l) {
+        System.out.println("lambda ");
+        displayProcedure(l.getRight());
+    }
+    private void displayProcedure(Lexeme l) {
+        displayList(l.getLeft());
+        displayBody(l.getRight());
+    }
+    private void displayBody(Lexeme l) {
+        System.out.println("{");
+        displayStatements(l.getRight());
+        System.out.println("}");
+    }
+}
+
+/*
     private void displayConditional(Lexeme l) {
 
         if (l.getLeft().check(Lexeme.Type.IfKeyword))
@@ -103,39 +205,6 @@ public class PrettyPrinter {
         displayVariable(l.getLeft());
         displayParameterExpression(l.getLeft().getLeft());
         displayBlock(l.getRight());
-
-    }
-
-    private void displayExpression(Lexeme l) {
-
-        Lexeme v = l.getLeft();
-        if (v != null) {
-            displayUnary(v);
-
-            if (l.getRight() != null) {
-                System.out.print(" ");
-                displayExpression(l.getRight());
-            }
-        }
-    }
-
-    private void displayUnary(Lexeme v) {
-
-        Lexeme l = v.getLeft();
-        if (l.check(Lexeme.Type.IntegerType))
-            System.out.print(l.getValue());
-        else if (l.check(Lexeme.Type.StringType))
-            System.out.print("\"" + l.getValue() + "\"");
-        else if (l.check(Lexeme.Type.ObjectExpression))
-            displayObjectExpression(l.getLeft());
-        else if (l.check(Lexeme.Type.AnonymousExpression))
-            displayAnonymousExpression(l.getLeft());
-        else
-            displayVariableExpression(l);
-    }
-
-    private void displayBinary(Lexeme l) {
-
 
     }
 
@@ -251,6 +320,7 @@ public class PrettyPrinter {
     }
 }
 
+*/
 /*
 public class PrettyPrinter {
     public PrettyPrinter() {

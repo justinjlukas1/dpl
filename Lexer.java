@@ -89,44 +89,44 @@ public class Lexer {
                 this.file.skipWhitespace();
                 var1 = this.file.readNextRawCharacter();
                 if (var1 == '=') {
-                    return new Lexeme(kind.NOT_EQUALS_EX, this.currentLine);
+                    return new Lexeme(kind.NOT_EQUALS_EX, "!=", this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
-                    return new Lexeme(kind.NOT_EX, this.currentLine);
+                    return new Lexeme(kind.NOT_EX, "!", this.currentLine);
                 }
             case '<':
                 this.file.skipWhitespace();
                 var1 = this.file.readNextRawCharacter();
                 if (var1 == '=') {
-                    return new Lexeme(kind.LTE, this.currentLine);
+                    return new Lexeme(kind.LTE, "<=", this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
-                    return new Lexeme(kind.LESS_THAN, this.currentLine);
+                    return new Lexeme(kind.LESS_THAN, "<", this.currentLine);
                 }
             case '>':
                 this.file.skipWhitespace();
                 var1 = this.file.readNextRawCharacter();
                 if (var1 == '=') {
-                    return new Lexeme(kind.GTE, this.currentLine);
+                    return new Lexeme(kind.GTE, ">=", this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
-                    return new Lexeme(kind.GREATER_THAN, this.currentLine);
+                    return new Lexeme(kind.GREATER_THAN, ">", this.currentLine);
                 }
             case '+':
                 this.file.skipWhitespace();
                 var1 = this.file.readNextRawCharacter();
                 if (var1 == '=') {
-                    return new Lexeme(kind.PLUS_EQUALS, this.currentLine);
+                    return new Lexeme(kind.PLUS_EQUALS, "+=", this.currentLine);
                 }
                 else if (var1 == '+') {
-                    return new Lexeme(kind.INC, this.currentLine);
+                    return new Lexeme(kind.INC, "++", this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
-                    return new Lexeme(kind.PLUS, this.currentLine);
+                    return new Lexeme(kind.PLUS, "+", this.currentLine);
                 }
             case '-':   //subtract vs. negative number
                 var1 = this.file.readNextRawCharacter();
@@ -137,34 +137,34 @@ public class Lexer {
                 }
                 this.file.skipWhitespace();
                 if (var1 == '=') {
-                    return new Lexeme(kind.MINUS_EQUALS, this.currentLine);
+                    return new Lexeme(kind.MINUS_EQUALS, "-=", this.currentLine);
                 }
                 else if (var1 == '-') {
-                    return new Lexeme(kind.DEC, this.currentLine);
+                    return new Lexeme(kind.DEC, "--", this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
-                    return new Lexeme(kind.MINUS, this.currentLine);
+                    return new Lexeme(kind.MINUS, "-", this.currentLine);
                 }
             case '%':
-                return new Lexeme(kind.MODULO, this.currentLine);
+                return new Lexeme(kind.MODULO, "%", this.currentLine);
             case '*':
                 var1 = this.file.readNextCharacter();
                 if (var1 == '=') {
-                    return new Lexeme(kind.MULTIPLY_EQUALS, this.currentLine);
+                    return new Lexeme(kind.MULTIPLY_EQUALS, "*=", this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
-                    return new Lexeme(kind.MULTIPLY, this.currentLine);
+                    return new Lexeme(kind.MULTIPLY, "*", this.currentLine);
                 }
             case '/':
                 var1 = this.file.readNextCharacter();
                 if (var1 == '=') {
-                    return new Lexeme(kind.DIVIDE_EQUALS, this.currentLine);
+                    return new Lexeme(kind.DIVIDE_EQUALS, "/=", this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
-                    return new Lexeme(kind.DIVIDE, this.currentLine);
+                    return new Lexeme(kind.DIVIDE, "/", this.currentLine);
                 }
             case '.':
                 var1 = this.file.readNextRawCharacter();
@@ -179,16 +179,16 @@ public class Lexer {
             case '^':
                 var1 = this.file.readNextCharacter();
                 if (var1 == '=') {
-                    return new Lexeme(kind.EXPONENT_EQUALS, this.currentLine);
+                    return new Lexeme(kind.EXPONENT_EQUALS, "^=", this.currentLine);
                 }
                 else {
                     this.file.pushbackCharacter(var1);
-                    return new Lexeme(kind.EXPONENT, this.currentLine);
+                    return new Lexeme(kind.EXPONENT, "^", this.currentLine);
                 }
             case '=':
-                return new Lexeme(kind.EQUALS, this.currentLine);
+                return new Lexeme(kind.EQUALS, "=", this.currentLine);
             case '#':
-                return new Lexeme(kind.INDEX, this.currentLine);
+                return new Lexeme(kind.INDEX, "#", this.currentLine);
             case '\"':
                 return lexString();
             default:
@@ -225,41 +225,39 @@ public class Lexer {
         }
         this.file.pushbackCharacter(var1);
         if (var2.equals("define")) {
-            return new Lexeme(kind.DEFINE, this.currentLine);
+            return new Lexeme(kind.DEFINE, "define", this.currentLine);
         } else if (var2.equals("NULL")) {
-            return new Lexeme(kind.NULL, this.currentLine);
-        } else if (var2.equals("define")) {
-            return new Lexeme(kind.DEFINE, this.currentLine);
+            return new Lexeme(kind.NULL, "null", this.currentLine);
         } else if (var2.equals("as")) {
-            return new Lexeme(kind.AS, this.currentLine);
+            return new Lexeme(kind.AS, "as", this.currentLine);
         } else if (var2.equals("set")) {
-            return new Lexeme(kind.SET, this.currentLine);
+            return new Lexeme(kind.SET, "set", this.currentLine);
         } else if (var2.equals("to")) {
-            return new Lexeme(kind.TO, this.currentLine);
+            return new Lexeme(kind.TO, "to", this.currentLine);
         } else if (var2.equals("if")) {
-            return new Lexeme(kind.IF, this.currentLine);
+            return new Lexeme(kind.IF, "if", this.currentLine);
         } else if (var2.equals("else")) {
-            return new Lexeme(kind.ELSE, this.currentLine);
+            return new Lexeme(kind.ELSE, "else", this.currentLine);
         } else if (var2.equals("loop")) {
-            return new Lexeme(kind.LOOP, this.currentLine);
+            return new Lexeme(kind.LOOP, "loop", this.currentLine);
         } else if (var2.equals("lambda")) {
-            return new Lexeme(kind.LAMBDA, this.currentLine);
+            return new Lexeme(kind.LAMBDA, "lambda", this.currentLine);
         } else if (var2.equals("and")) {
-            return new Lexeme(kind.AND, this.currentLine);
+            return new Lexeme(kind.AND, "and", this.currentLine);
         } else if (var2.equals("or")) {
-            return new Lexeme(kind.OR, this.currentLine);
+            return new Lexeme(kind.OR, "or", this.currentLine);
         } else if (var2.equals("include")) {    //include?
-            return new Lexeme(kind.INCLUDE, this.currentLine);
+            return new Lexeme(kind.INCLUDE, "include", this.currentLine);
         } else if (var2.equals("not")) {
-            return new Lexeme(kind.NOT, this.currentLine);
+            return new Lexeme(kind.NOT, "not", this.currentLine);
         } else if (var2.equals("result")){
-            return new Lexeme(kind.RESULT, this.currentLine);
+            return new Lexeme(kind.RESULT, "result", this.currentLine);
         } else if (var2.equals("function")) {
-            return new Lexeme(kind.FUNCTION, this.currentLine);
+            return new Lexeme(kind.FUNCTION, "function", this.currentLine);
         } else if (var2.equals("display")){
-            return new Lexeme(kind.DISPLAY, this.currentLine);
+            return new Lexeme(kind.DISPLAY, "display", this.currentLine);
         } else if (var2.equals("displayln")) {
-            return new Lexeme(kind.DISPLAYLN, this.currentLine);
+            return new Lexeme(kind.DISPLAYLN, "displayln", this.currentLine);
         }else {
         //    if(flag) {
       //          return new Lexeme(kind.FUNCTIONCALL, var2, this.currentLine);

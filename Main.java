@@ -11,7 +11,7 @@ public class Main {
         Parser var1 = new Parser("test.jjl");
         Lexeme var2 = var1.execute();
         PrettyPrinter var3 = new PrettyPrinter(var2);
-        var3.displayParseTree(var2);
+        var3.displayStatements(var2);
         //PrettyPrinter var3 = new PrettyPrinter();
         //var3.displayParseTree(var2);
 
