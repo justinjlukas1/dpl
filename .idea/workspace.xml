@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df9fcf72-48b1-4483-853a-b7290d64c018" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Lexer.java" afterPath="$PROJECT_DIR$/Lexer.java" />
+      <change beforePath="$PROJECT_DIR$/Main.java" afterPath="$PROJECT_DIR$/Main.java" />
       <change beforePath="$PROJECT_DIR$/Parser.java" afterPath="$PROJECT_DIR$/Parser.java" />
-      <change beforePath="$PROJECT_DIR$/grammar.txt" afterPath="$PROJECT_DIR$/grammar.txt" />
       <change beforePath="$PROJECT_DIR$/kind.java" afterPath="$PROJECT_DIR$/kind.java" />
+      <change beforePath="$PROJECT_DIR$/out/production/dpl/Lexer.class" afterPath="$PROJECT_DIR$/out/production/dpl/Lexer.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/dpl/Parser.class" afterPath="$PROJECT_DIR$/out/production/dpl/Parser.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/dpl/kind.class" afterPath="$PROJECT_DIR$/out/production/dpl/kind.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/dpl/test.jjl" afterPath="$PROJECT_DIR$/out/production/dpl/test.jjl" />
+      <change beforePath="$PROJECT_DIR$/out/production/dpl/testCode.jjl" afterPath="$PROJECT_DIR$/out/production/dpl/testCode.jjl" />
       <change beforePath="$PROJECT_DIR$/test.jjl" afterPath="$PROJECT_DIR$/test.jjl" />
+      <change beforePath="$PROJECT_DIR$/testCode.jjl" afterPath="$PROJECT_DIR$/testCode.jjl" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,25 +28,46 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="193" column="64" lean-forward="false" selection-start-line="193" selection-start-column="64" selection-end-line="193" selection-end-column="64" />
+            <state relative-caret-position="166">
+              <caret line="22" column="14" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="14" />
               <folding>
-                <element signature="e#311#312#0" expanded="true" />
-                <element signature="e#371#372#0" expanded="true" />
-                <element signature="method#match#0;class#Parser#0" expanded="false" />
+                <element signature="method#Parser#0;class#Parser#0" expanded="false" />
+                <element signature="method#execute#0;class#Parser#0" expanded="false" />
+                <element signature="method#statements#0;class#Parser#0" expanded="false" />
+                <element signature="method#statement#0;class#Parser#0" expanded="false" />
+                <element signature="method#display#0;class#Parser#0" expanded="false" />
+                <element signature="method#loop#0;class#Parser#0" expanded="false" />
+                <element signature="method#assignment#0;class#Parser#0" expanded="false" />
+                <element signature="method#result#0;class#Parser#0" expanded="false" />
+                <element signature="method#definition#0;class#Parser#0" expanded="false" />
+                <element signature="method#objProc#0;class#Parser#0" expanded="false" />
+                <element signature="method#objExpr#0;class#Parser#0" expanded="false" />
+                <element signature="method#procedure#0;class#Parser#0" expanded="false" />
+                <element signature="method#body#0;class#Parser#0" expanded="false" />
+                <element signature="method#lambda#0;class#Parser#0" expanded="false" />
+                <element signature="method#listInit#0;class#Parser#0" expanded="false" />
                 <element signature="method#listItem#0;class#Parser#0" expanded="false" />
-                <element signature="method#binary#0;class#Parser#0" expanded="false" />
                 <element signature="method#optBinaryItems#0;class#Parser#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.jjl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test.jjl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.jjl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+            <state relative-caret-position="431">
+              <caret line="56" column="16" lean-forward="false" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="42" lean-forward="false" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -55,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testCode.jjl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="testCode.jjl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testCode.jjl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1905">
-              <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="129" selection-end-column="1" />
+              <caret line="127" column="29" lean-forward="false" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -68,20 +96,25 @@
       <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="86" column="36" lean-forward="true" selection-start-line="86" selection-start-column="36" selection-end-line="86" selection-end-column="36" />
+            <state relative-caret-position="195">
+              <caret line="417" column="51" lean-forward="true" selection-start-line="417" selection-start-column="51" selection-end-line="417" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#scanner#0;class#Lexer#0" expanded="false" />
                 <element signature="method#advance#0;class#Lexer#0" expanded="false" />
                 <element signature="method#getLexes#0;class#Lexer#0" expanded="false" />
-                <element signature="method#lexVarOrKeyword#0;class#Lexer#0" expanded="false" />
+                <element signature="method#lex#0;class#Lexer#0" expanded="false" />
                 <element signature="method#lexString#0;class#Lexer#0" expanded="false" />
                 <element signature="method#lexNumber#0;class#Lexer#0" expanded="false" />
-                <element signature="method#statementPending#0;class#Lexer#0" expanded="false" />
+                <element signature="method#lexComment#0;class#Lexer#0" expanded="false" />
+                <element signature="method#displayPending#0;class#Lexer#0" expanded="false" />
+                <element signature="e#15441#15442#0" expanded="true" />
+                <element signature="e#15499#15500#0" expanded="true" />
                 <element signature="method#expressionPending#0;class#Lexer#0" expanded="false" />
+                <element signature="method#unaryPending#0;class#Lexer#0" expanded="false" />
                 <element signature="method#objectPending#0;class#Lexer#0" expanded="false" />
                 <element signature="method#operatorPending#0;class#Lexer#0" expanded="false" />
+                <element signature="e#18873#18875#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -90,7 +123,7 @@
       <file leaf-file-name="Lexeme.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lexeme.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
+            <state relative-caret-position="42">
               <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
               <folding>
                 <element signature="method#display#0;class#Lexeme#0" expanded="false" />
@@ -102,8 +135,8 @@
       <file leaf-file-name="kind.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kind.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="78" column="17" lean-forward="false" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
+            <state relative-caret-position="468">
+              <caret line="80" column="14" lean-forward="false" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -120,13 +153,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>integer</find>
-      <find>expre</find>
-      <find>expressionPending</find>
-      <find>System.out</find>
-      <find>fatal</find>
-      <find>!</find>
-      <find>loop</find>
       <find>[</find>
       <find>variable</find>
       <find>expression</find>
@@ -137,19 +163,26 @@
       <find>assignmentPending</find>
       <find>assign</find>
       <find>DEFOBJEXPR</find>
-      <find>System.</find>
       <find>kind.TO</find>
-      <find>System</find>
       <find>statement</find>
       <find>stateme</find>
       <find>obj</find>
-      <find>fun</find>
-      <find>unary</find>
       <find>comm</find>
       <find>comment found</find>
       <find>result</find>
       <find>object</find>
       <find>AS</find>
+      <find>System.out</find>
+      <find>procedure</find>
+      <find>displayP</find>
+      <find>fun</find>
+      <find>unary</find>
+      <find>binary()</find>
+      <find>elseP</find>
+      <find>kind.e</find>
+      <find>System</find>
+      <find>System.</find>
+      <find>$*</find>
     </findStrings>
     <replaceStrings>
       <replace>type</replace>
@@ -179,13 +212,14 @@
         <option value="$PROJECT_DIR$/FileInput.java" />
         <option value="$PROJECT_DIR$/testFile.java" />
         <option value="$PROJECT_DIR$/Fatal.java" />
-        <option value="$PROJECT_DIR$/Main.java" />
         <option value="$PROJECT_DIR$/Lexeme.java" />
-        <option value="$PROJECT_DIR$/kind.java" />
         <option value="$PROJECT_DIR$/grammar.txt" />
-        <option value="$PROJECT_DIR$/Lexer.java" />
+        <option value="$PROJECT_DIR$/kind.java" />
         <option value="$PROJECT_DIR$/Parser.java" />
+        <option value="$PROJECT_DIR$/Lexer.java" />
         <option value="$PROJECT_DIR$/test.jjl" />
+        <option value="$PROJECT_DIR$/Main.java" />
+        <option value="$PROJECT_DIR$/testCode.jjl" />
       </list>
     </option>
   </component>
@@ -391,7 +425,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44745764" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3457627" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -755,14 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FileInput.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -771,17 +797,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kind.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="78" column="17" lean-forward="false" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lexeme.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
+        <state relative-caret-position="42">
           <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
           <folding>
             <element signature="method#display#0;class#Lexeme#0" expanded="false" />
@@ -789,10 +807,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testCode.jjl">
+    <entry file="file://$PROJECT_DIR$/kind.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1905">
-          <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="129" selection-end-column="1" />
+        <state relative-caret-position="468">
+          <caret line="80" column="14" lean-forward="false" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -805,45 +823,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="22" column="14" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="14" />
+          <folding>
+            <element signature="method#Parser#0;class#Parser#0" expanded="false" />
+            <element signature="method#execute#0;class#Parser#0" expanded="false" />
+            <element signature="method#statements#0;class#Parser#0" expanded="false" />
+            <element signature="method#statement#0;class#Parser#0" expanded="false" />
+            <element signature="method#display#0;class#Parser#0" expanded="false" />
+            <element signature="method#loop#0;class#Parser#0" expanded="false" />
+            <element signature="method#assignment#0;class#Parser#0" expanded="false" />
+            <element signature="method#result#0;class#Parser#0" expanded="false" />
+            <element signature="method#definition#0;class#Parser#0" expanded="false" />
+            <element signature="method#objProc#0;class#Parser#0" expanded="false" />
+            <element signature="method#objExpr#0;class#Parser#0" expanded="false" />
+            <element signature="method#procedure#0;class#Parser#0" expanded="false" />
+            <element signature="method#body#0;class#Parser#0" expanded="false" />
+            <element signature="method#lambda#0;class#Parser#0" expanded="false" />
+            <element signature="method#listInit#0;class#Parser#0" expanded="false" />
+            <element signature="method#listItem#0;class#Parser#0" expanded="false" />
+            <element signature="method#optBinaryItems#0;class#Parser#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Lexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="86" column="36" lean-forward="true" selection-start-line="86" selection-start-column="36" selection-end-line="86" selection-end-column="36" />
+        <state relative-caret-position="195">
+          <caret line="417" column="51" lean-forward="true" selection-start-line="417" selection-start-column="51" selection-end-line="417" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#scanner#0;class#Lexer#0" expanded="false" />
             <element signature="method#advance#0;class#Lexer#0" expanded="false" />
             <element signature="method#getLexes#0;class#Lexer#0" expanded="false" />
-            <element signature="method#lexVarOrKeyword#0;class#Lexer#0" expanded="false" />
+            <element signature="method#lex#0;class#Lexer#0" expanded="false" />
             <element signature="method#lexString#0;class#Lexer#0" expanded="false" />
             <element signature="method#lexNumber#0;class#Lexer#0" expanded="false" />
-            <element signature="method#statementPending#0;class#Lexer#0" expanded="false" />
+            <element signature="method#lexComment#0;class#Lexer#0" expanded="false" />
+            <element signature="method#displayPending#0;class#Lexer#0" expanded="false" />
+            <element signature="e#15441#15442#0" expanded="true" />
+            <element signature="e#15499#15500#0" expanded="true" />
             <element signature="method#expressionPending#0;class#Lexer#0" expanded="false" />
+            <element signature="method#unaryPending#0;class#Lexer#0" expanded="false" />
             <element signature="method#objectPending#0;class#Lexer#0" expanded="false" />
             <element signature="method#operatorPending#0;class#Lexer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="193" column="64" lean-forward="false" selection-start-line="193" selection-start-column="64" selection-end-line="193" selection-end-column="64" />
-          <folding>
-            <element signature="e#311#312#0" expanded="true" />
-            <element signature="e#371#372#0" expanded="true" />
-            <element signature="method#match#0;class#Parser#0" expanded="false" />
-            <element signature="method#listItem#0;class#Parser#0" expanded="false" />
-            <element signature="method#binary#0;class#Parser#0" expanded="false" />
-            <element signature="method#optBinaryItems#0;class#Parser#0" expanded="false" />
+            <element signature="e#18873#18875#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.jjl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+        <state relative-caret-position="431">
+          <caret line="56" column="16" lean-forward="false" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="42" lean-forward="false" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testCode.jjl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1905">
+          <caret line="127" column="29" lean-forward="false" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
           <folding />
         </state>
       </provider>

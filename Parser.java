@@ -52,7 +52,6 @@ public class Parser {
             } else if (this.l.definitionPending()) {
                 var1.setLeft(this.definition());
             } else if (this.check(kind.RESULT)) {
-                System.out.println("result was found");
                 var1.setLeft(this.result());
             } else if (this.l.assignmentPending()) {
                 var1.setLeft(this.assignment());
@@ -60,14 +59,29 @@ public class Parser {
                 var1.setLeft(this.ifStatement());
             } else if (this.l.loopPending()) {
                 var1.setLeft(this.loop());
-//            } else if (this.l.conditionalPending()) {
-//                var1.setLeft(this.conditional());
+            } else if (this.l.displayPending()) {
+                var1.setLeft(this.display());
 //            } else if (this.check("INCLUDE")) {
 //                var1.setLeft(this.include());
             }
 
         }
 
+        return var1;
+    }
+
+    private Lexeme display() {
+        Lexeme var1;
+        if (this.check(kind.DISPLAYLN)) {
+            var1 = new Lexeme(kind.DISPLAYLN, this.l.getCurrentLexeme().getLine());
+            var1.setLeft(this.match(kind.DISPLAYLN));
+            var1.setRight(expression());
+        }
+        else {
+            var1 = new Lexeme(kind.DISPLAY, this.l.getCurrentLexeme().getLine());
+            var1.setLeft(this.match(kind.DISPLAY));
+            var1.setRight(expression());
+        }
         return var1;
     }
 
@@ -116,7 +130,13 @@ public class Parser {
             var1.getRight().setLeft(body());
         }
         else {
+            if(this.check(kind.NEWLINE)){
+                this.match(kind.NEWLINE);
+            }
             var1.getRight().setLeft(statement());
+        }
+        if(this.check(kind.NEWLINE)){
+            this.match(kind.NEWLINE);
         }
         if(this.l.elsePending()) {
             var1.getRight().setRight(var4);
@@ -136,6 +156,7 @@ public class Parser {
 
         return var1;
     }
+
     private Lexeme assignment(){
         Lexeme var1 = new Lexeme(kind.DEFINITION, this.l.getCurrentLexeme().getLine());
         Lexeme var2 = new Lexeme(kind.GLUE, this.l.getCurrentLexeme().getLine());
@@ -185,13 +206,11 @@ public class Parser {
             var1.getLeft().getRight().setLeft(this.match(kind.FUNCTION));
             var1.getLeft().getRight().setRight(this.object());
             var1.getRight().setLeft(this.match(kind.AS));
-            System.out.println("check for function was true, defining procedure");
             var1.getRight().setRight(this.objProc());
         }
         else {
             var1.getLeft().getRight().setRight(this.object());
             if (this.check(kind.AS)) {
-                System.out.println("check for function was false, defining procedure");
                 var1.getRight().setLeft(this.match(kind.AS));
             }
             var1.getRight().setRight(objExpr());
@@ -243,7 +262,6 @@ public class Parser {
             var1.getRight().setRight(this.object());
         }
         else if(this.l.listPending()) {
-            System.out.println("list pending inside object, so function call");
             Lexeme var3 = new Lexeme(kind.FUNCTIONCALL, this.l.getCurrentLexeme().getLine());
             var3.setLeft(var1);
             var3.setRight(this.listInit());
@@ -280,10 +298,12 @@ public class Parser {
             var1.setLeft(this.listInit());
         } else if (this.l.objectPending()){
             var1.setLeft(this.object());
-        } else if (this.check(kind.O_PAREN)){
+        } else if (this.check(kind.O_PAREN)) {
             var1.setLeft(this.match(kind.O_PAREN));
             var1.setRight(this.expression());
             this.match(kind.C_PAREN);
+        } else if (this.check(kind.LAMBDA)) {
+            var1.setLeft(this.lambda());
         }
             //var1.setLeft(this.anonymousExpression());
 //        } else {
@@ -293,6 +313,14 @@ public class Parser {
         return var1;
     }
 
+    private Lexeme lambda() {
+        Lexeme var1 = new Lexeme (kind.LAMBDA, this.l.getCurrentLexeme().getLine());
+        var1.setLeft(this.match(kind.LAMBDA));
+        var1.setRight(this.procedure());
+
+
+        return var1;
+    }
     private Lexeme listInit() {
         Lexeme var1 = new Lexeme(kind.LIST, this.l.getCurrentLexeme().getLine());
         var1.setLeft((this.match(kind.O_BRACKET)));

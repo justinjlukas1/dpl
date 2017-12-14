@@ -256,7 +256,11 @@ public class Lexer {
             return new Lexeme(kind.RESULT, this.currentLine);
         } else if (var2.equals("function")) {
             return new Lexeme(kind.FUNCTION, this.currentLine);
-        } else {
+        } else if (var2.equals("display")){
+            return new Lexeme(kind.DISPLAY, this.currentLine);
+        } else if (var2.equals("displayln")) {
+            return new Lexeme(kind.DISPLAYLN, this.currentLine);
+        }else {
         //    if(flag) {
       //          return new Lexeme(kind.FUNCTIONCALL, var2, this.currentLine);
     //        }
@@ -388,7 +392,14 @@ public class Lexer {
                 || this.ifStatementPending()
                 || this.loopPending()
                 || this.commentPending()
+                || this.displayPending()
                 || this.currentLexeme.check(kind.NEWLINE);
+    }
+
+    public boolean displayPending() {
+        return
+                this.currentLexeme.check(kind.DISPLAY)
+                || this.currentLexeme.check(kind.DISPLAYLN);
     }
 
     public boolean returnPending() {
@@ -446,9 +457,8 @@ public class Lexer {
                 || this.currentLexeme.check(kind.NEG_INTEGER)
                 || this.objectPending()
                 || this.currentLexeme.check(kind.O_BRACKET)
-                || this.currentLexeme.check(kind.O_PAREN);
-                //|| this.currentLexeme.check(kind.FUNCTIONCALL);
-//                || this.anonymousPending()
+                || this.currentLexeme.check(kind.O_PAREN)
+                || this.lambdaPending();
         //               || this.currentLexeme.check(); //functionCall
 //                | lambda
 //                | list
@@ -458,6 +468,8 @@ public class Lexer {
 //                | MINUS unary
 //                | arrayInit
     }
+
+    public boolean lambdaPending() { return this.currentLexeme.check(kind.LAMBDA); }
 
     public boolean binaryPending() {
         return this.operatorPending();

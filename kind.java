@@ -77,6 +77,8 @@ public enum kind {
     IFSTATEMENT,
     LOOPSTATEMENT,
     FUNCTIONCALL,
+    DISPLAY,
+    DISPLAYLN,
 
 
     //Literals

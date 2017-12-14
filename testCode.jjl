@@ -11,11 +11,13 @@ $variable declarations
 
 define testVariable as 20
 
-define testFunction as (testVariable) {
+define function testFunction as [testVariable] {
   display (+ "this is my testVariable" testVariable "\n")
-  displayln
+  displayln()
   result (+ testVariable 1)
 }
+
+
 
 $ loops and iterations
 $floop(x 0 (< x testVariable)(+ x 1))
@@ -24,10 +26,10 @@ $    display x
 $define fLoopTest as 0
 
 $traditional for loops
-loop(x 0 (< x 10) (x++))
+loop(x 0 (< x 10) (++x))
   display x
 
-loop(x 0 (< x 10) (x++))  {
+loop(x 0 (< x 10) (++x))  {
   display x
 }
 
@@ -38,10 +40,10 @@ loop(< x 10)  {
 }
 
 $for loop without definition
-loop((< x 10) (x++))
+loop((< x 10) (++x))
   display x
 
-loop((< x 10) (x++))  {
+loop((< x 10) (++x))  {
   display x
 }
 
@@ -51,6 +53,20 @@ loop(x 0 (< x 10))  {
   display x
   set x to (+ x 1)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+displayln
 
 
 
@@ -64,13 +80,17 @@ $  set x to (+ x 1)
 $  if(= x testVariable)  {break}
 
 $}
-
-$ arrays
+displayln
+$* arrays didn't implement, might be for Thursday / Friday after pretty print
 define size as 10
 define a as [1 2 3 4 5]
-define b as allocate(size)  $how to do this?
-$dynamically allocate size array?
-loop(temp 0 (< x length(a)) (+ temp 1)) {
+define b as allocate(size)  //how to do this?
+dynamically allocate size array?
+*$
+
+displayln
+
+loop(temp 0 (< x length[a]) (+ temp 1)) {
     display # temp x
 }
 
@@ -101,14 +121,15 @@ else if(not false)  {display "false keyword"}
 else if(true) {abs x1}
 else  {nil}
 
+display
 
 $ functions
 
-define square as (x)  {
+define function square as [x]  {
   result (* x x)
 }
 
-define list l as (1 2 3)
+define l as [1 2 3]
 
 $ (define (map proc items)
 $    (if (null? items)
@@ -117,22 +138,29 @@ $      (cons (proc (car items)) (map (proc (cdr items))))))
 
 $ map (lambda (x) (sscale S x)) @
 
-define map as (func list) {
+define function map as [func list] {
   if(not list)
     nil
   else
-    cons(f(car list) map(f (cdr 1)))
+    display x
+    $cons(f(car list) map(f (cdr 1)))
 }
 
 
-define plus4 as (x)  {
-result (+ x 4)
+define function plus4 as [x]  {
+    result (+ x 4)
 }
 
 $equivalent to
 
-define plus4  as () {
-  lambda (x)  {
+define function plus4  as [] {
+  lambda [x]  {
+    result (+ x 4)
+  }
+}
+
+define function plus4 as {
+  lambda [x]  {
     result (+ x 4)
   }
 }
