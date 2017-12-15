@@ -110,9 +110,9 @@ public class Parser {
                 if (this.l.unaryPending()) {
                     Lexeme tempUnary3 = this.unary();
                     //System.out.print(tempUnary3.getType() + " ");
+                    var1.getLeft().getRight().setRight(var6);
                     if (this.l.expressionPending()) {
                         //System.out.println(tempUnary3.getType() + " " + tempUnary3.getRight().getType());
-                        var1.getLeft().getRight().setRight(var6);
                         var1.getLeft().getRight().getRight().setLeft(tempUnary1);
                         //System.out.println("\t\t "+ var1.getLeft().getRight().getRight().getLeft().getType());
                         var1.getLeft().getRight().getRight().setRight(tempUnary2);
@@ -121,14 +121,15 @@ public class Parser {
                         //System.out.print("loop, found four inputs\n");
 
                     } else {
-                        var1.getLeft().getRight().setRight(var6);
                         var1.getLeft().getRight().getRight().setLeft(tempUnary1);
                         var1.getLeft().getRight().getRight().setRight(tempUnary2);
                         var1.getRight().getLeft().setLeft(tempUnary3);
                     }
                 } else {
                     var1.getRight().getLeft().setLeft(tempUnary1);
-                    var1.getRight().getLeft().setRight(tempUnary2);
+                    Lexeme varExpression = new Lexeme(kind.EXPRESSION, this.l.getCurrentLexeme().getLine());
+                    varExpression.setLeft(tempUnary2);
+                    var1.getRight().getLeft().setRight(varExpression);
                 }
             } else {
                 var1.getRight().getLeft().setLeft(tempUnary1);
@@ -137,13 +138,14 @@ public class Parser {
         if(this.check(kind.C_PAREN)) {
             this.match(kind.C_PAREN);
         }
+        if(this.check(kind.NEWLINE)){
+            this.match(kind.NEWLINE);
+        }
+
         if(this.l.bodyPending()) {
             var1.getRight().setRight(this.body());
         }
         else {
-            if(this.check(kind.NEWLINE)){
-                this.match(kind.NEWLINE);
-            }
             var1.getRight().setRight(statement());
         }
         return var1;
@@ -158,6 +160,9 @@ public class Parser {
         var1.setRight(var3);
         var1.getLeft().setLeft(this.match(kind.IF));
         var1.getLeft().setRight(this.unary());
+        if(this.check(kind.NEWLINE)){
+            this.match(kind.NEWLINE);
+        }
         if(this.l.bodyPending()){
             var1.getRight().setLeft(body());
         }
@@ -177,6 +182,9 @@ public class Parser {
                 var1.getRight().getRight().setRight(ifStatement());
             }
             else {
+                if(this.check(kind.NEWLINE)){
+                    this.match(kind.NEWLINE);
+                }
                 if(this.l.bodyPending()){
                     var1.getRight().getRight().setRight(body());
                 }

@@ -6,13 +6,11 @@
       <change beforePath="$PROJECT_DIR$/Main.java" afterPath="$PROJECT_DIR$/Main.java" />
       <change beforePath="$PROJECT_DIR$/Parser.java" afterPath="$PROJECT_DIR$/Parser.java" />
       <change beforePath="$PROJECT_DIR$/PrettyPrinter.java" afterPath="$PROJECT_DIR$/PrettyPrinter.java" />
-      <change beforePath="$PROJECT_DIR$/out/production/dpl/Lexer.class" afterPath="$PROJECT_DIR$/out/production/dpl/Lexer.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/dpl/Main.class" afterPath="$PROJECT_DIR$/out/production/dpl/Main.class" />
       <change beforePath="$PROJECT_DIR$/out/production/dpl/Parser.class" afterPath="$PROJECT_DIR$/out/production/dpl/Parser.class" />
       <change beforePath="$PROJECT_DIR$/out/production/dpl/PrettyPrinter.class" afterPath="$PROJECT_DIR$/out/production/dpl/PrettyPrinter.class" />
       <change beforePath="$PROJECT_DIR$/out/production/dpl/test.jjl" afterPath="$PROJECT_DIR$/out/production/dpl/test.jjl" />
-      <change beforePath="$PROJECT_DIR$/out/production/dpl/testCode.jjl" afterPath="$PROJECT_DIR$/out/production/dpl/testCode.jjl" />
       <change beforePath="$PROJECT_DIR$/test.jjl" afterPath="$PROJECT_DIR$/test.jjl" />
-      <change beforePath="$PROJECT_DIR$/testCode.jjl" afterPath="$PROJECT_DIR$/testCode.jjl" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,24 +25,21 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="31" column="44" lean-forward="false" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+            <state relative-caret-position="-1114">
+              <caret line="186" column="17" lean-forward="false" selection-start-line="186" selection-start-column="17" selection-end-line="186" selection-end-column="17" />
               <folding>
                 <element signature="method#Parser#0;class#Parser#0" expanded="false" />
                 <element signature="method#execute#0;class#Parser#0" expanded="false" />
+                <element signature="method#statements#0;class#Parser#0" expanded="false" />
                 <element signature="method#statement#0;class#Parser#0" expanded="false" />
                 <element signature="method#display#0;class#Parser#0" expanded="false" />
-                <element signature="method#ifStatement#0;class#Parser#0" expanded="false" />
+                <element signature="method#loop#0;class#Parser#0" expanded="false" />
                 <element signature="method#assignment#0;class#Parser#0" expanded="false" />
                 <element signature="method#result#0;class#Parser#0" expanded="false" />
                 <element signature="method#definition#0;class#Parser#0" expanded="false" />
-                <element signature="method#procedure#0;class#Parser#0" expanded="false" />
                 <element signature="method#body#0;class#Parser#0" expanded="false" />
                 <element signature="method#object#0;class#Parser#0" expanded="false" />
                 <element signature="method#expression#0;class#Parser#0" expanded="false" />
-                <element signature="method#lambda#0;class#Parser#0" expanded="false" />
-                <element signature="method#listInit#0;class#Parser#0" expanded="false" />
-                <element signature="method#listItem#0;class#Parser#0" expanded="false" />
                 <element signature="method#binary#0;class#Parser#0" expanded="false" />
                 <element signature="method#optBinaryItems#0;class#Parser#0" expanded="false" />
               </folding>
@@ -52,67 +47,66 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PrettyPrinter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PrettyPrinter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PrettyPrinter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+            <state relative-caret-position="213">
+              <caret line="33" column="48" lean-forward="true" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
               <folding>
                 <element signature="method#displayParseTree#0;class#PrettyPrinter#0" expanded="false" />
+                <element signature="method#displayStatements#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayExpression#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayResult#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayBinary#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayOptBinaryItems#0;class#PrettyPrinter#0" expanded="false" />
+                <element signature="method#displayUnary#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayDefine#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayAssignment#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayIfStatement#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#digitPending#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayObject#0;class#PrettyPrinter#0" expanded="false" />
-                <element signature="method#displayList#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayListItem#0;class#PrettyPrinter#0" expanded="false" />
-                <element signature="method#displayLambda#0;class#PrettyPrinter#0" expanded="false" />
-                <element signature="method#displayProcedure#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayBody#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayPrintln#0;class#PrettyPrinter#0" expanded="false" />
                 <element signature="method#displayPrint#0;class#PrettyPrinter#0" expanded="false" />
-                <marker date="1513290664000" expanded="false" signature="7857:8071" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="8434:8629" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="8680:8833" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="8876:9009" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="9051:9186" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="9231:9409" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="9462:10139" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="10197:10346" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="10402:10908" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="10964:11113" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="11160:11458" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="11500:11649" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="11704:12026" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="12071:12119" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="12167:12322" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="12629:12888" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="12938:13128" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="15503:15777" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="15831:16011" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="16059:16262" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="16307:16456" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="16501:16634" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="16680:16830" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="16881:17455" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="17502:17614" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="17661:17773" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="19349:19537" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="19694:19871" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="19913:20240" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="20285:20483" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="20532:20742" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="20798:21531" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="21589:21935" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="21980:22152" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="22208:22541" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="22588:22791" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="22846:22994" ph="{...}" />
-                <marker date="1513290664000" expanded="false" signature="23047:23338" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="7858:8072" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="8435:8630" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="8681:8834" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="8877:9010" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="9052:9187" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="9232:9410" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="9463:10140" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="10198:10347" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="10403:10909" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="10965:11114" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="11161:11459" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="11501:11650" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="11705:12027" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="12072:12120" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="12168:12323" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="12630:12889" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="12939:13129" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="15504:15778" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="15832:16012" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="16060:16263" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="16308:16457" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="16502:16635" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="16681:16831" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="16882:17456" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="17503:17615" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="17662:17774" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="19350:19538" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="19695:19872" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="19914:20241" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="20286:20484" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="20533:20743" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="20799:21532" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="21590:21936" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="21981:22153" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="22209:22542" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="22589:22792" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="22847:22995" ph="{...}" />
+                <marker date="1513293458000" expanded="false" signature="23048:23339" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -121,8 +115,8 @@
       <file leaf-file-name="test.jjl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.jjl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+            <state relative-caret-position="75">
+              <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -131,8 +125,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+            <state relative-caret-position="150">
+              <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -151,8 +145,18 @@
       <file leaf-file-name="testCode.jjl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testCode.jjl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="42" column="15" lean-forward="false" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
+            <state relative-caret-position="538">
+              <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="temp.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/temp.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -161,8 +165,8 @@
       <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="175">
+              <caret line="445" column="12" lean-forward="false" selection-start-line="445" selection-start-column="12" selection-end-line="445" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#scanner#0;class#Lexer#0" expanded="false" />
@@ -178,6 +182,8 @@
                 <element signature="e#15596#15597#0" expanded="true" />
                 <element signature="e#15654#15655#0" expanded="true" />
                 <element signature="method#expressionPending#0;class#Lexer#0" expanded="false" />
+                <element signature="e#16318#16319#0" expanded="true" />
+                <element signature="e#16379#16380#0" expanded="true" />
                 <element signature="method#unaryPending#0;class#Lexer#0" expanded="false" />
                 <element signature="method#objectPending#0;class#Lexer#0" expanded="false" />
                 <element signature="method#operatorPending#0;class#Lexer#0" expanded="false" />
@@ -220,10 +226,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>AS</find>
-      <find>System.out</find>
-      <find>procedure</find>
-      <find>displayP</find>
       <find>fun</find>
       <find>unary</find>
       <find>binary()</find>
@@ -245,11 +247,15 @@
       <find>bo</find>
       <find>assign</find>
       <find>System.out.println</find>
-      <find>bodyP</find>
-      <find>loop</find>
       <find>contains</find>
       <find>System.out.print</find>
+      <find>expression()</find>
+      <find>displayLa</find>
+      <find>loop</find>
       <find>$*</find>
+      <find>\t\t</find>
+      <find>bodyP</find>
+      <find>body</find>
     </findStrings>
     <replaceStrings>
       <replace>type</replace>
@@ -282,16 +288,17 @@
         <option value="$PROJECT_DIR$/Lexeme.java" />
         <option value="$PROJECT_DIR$/grammar.txt" />
         <option value="$PROJECT_DIR$/kind.java" />
-        <option value="$PROJECT_DIR$/Lexer.java" />
-        <option value="$PROJECT_DIR$/test.jjl" />
-        <option value="$PROJECT_DIR$/Parser.java" />
-        <option value="$PROJECT_DIR$/PrettyPrinter.java" />
-        <option value="$PROJECT_DIR$/Main.java" />
         <option value="$PROJECT_DIR$/testCode.jjl" />
+        <option value="$PROJECT_DIR$/test.jjl" />
+        <option value="$PROJECT_DIR$/PrettyPrinter.java" />
+        <option value="$PROJECT_DIR$/temp.txt" />
+        <option value="$PROJECT_DIR$/Main.java" />
+        <option value="$PROJECT_DIR$/Lexer.java" />
+        <option value="$PROJECT_DIR$/Parser.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="873" />
     <option name="height" value="980" />
@@ -481,7 +488,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="873" height="980" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="980" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -494,10 +501,10 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3898305" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.03276836" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.319774" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.04211793" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2014652" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24969475" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -571,7 +578,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -891,10 +898,97 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.jjl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testCode.jjl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PrettyPrinter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="33" column="48" lean-forward="true" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
+          <folding>
+            <element signature="method#displayParseTree#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayStatements#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayExpression#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayResult#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayBinary#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayOptBinaryItems#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayUnary#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayDefine#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayAssignment#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayIfStatement#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#digitPending#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayObject#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayListItem#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayBody#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayPrintln#0;class#PrettyPrinter#0" expanded="false" />
+            <element signature="method#displayPrint#0;class#PrettyPrinter#0" expanded="false" />
+            <marker date="1513293458000" expanded="false" signature="7858:8072" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="8435:8630" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="8681:8834" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="8877:9010" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="9052:9187" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="9232:9410" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="9463:10140" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="10198:10347" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="10403:10909" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="10965:11114" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="11161:11459" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="11501:11650" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="11705:12027" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="12072:12120" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="12168:12323" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="12630:12889" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="12939:13129" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="15504:15778" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="15832:16012" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="16060:16263" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="16308:16457" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="16502:16635" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="16681:16831" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="16882:17456" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="17503:17615" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="17662:17774" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="19350:19538" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="19695:19872" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="19914:20241" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="20286:20484" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="20533:20743" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="20799:21532" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="21590:21936" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="21981:22153" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="22209:22542" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="22589:22792" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="22847:22995" ph="{...}" />
+            <marker date="1513293458000" expanded="false" signature="23048:23339" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Lexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="175">
+          <caret line="445" column="12" lean-forward="false" selection-start-line="445" selection-start-column="12" selection-end-line="445" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#scanner#0;class#Lexer#0" expanded="false" />
@@ -910,6 +1004,8 @@
             <element signature="e#15596#15597#0" expanded="true" />
             <element signature="e#15654#15655#0" expanded="true" />
             <element signature="method#expressionPending#0;class#Lexer#0" expanded="false" />
+            <element signature="e#16318#16319#0" expanded="true" />
+            <element signature="e#16379#16380#0" expanded="true" />
             <element signature="method#unaryPending#0;class#Lexer#0" expanded="false" />
             <element signature="method#objectPending#0;class#Lexer#0" expanded="false" />
             <element signature="method#operatorPending#0;class#Lexer#0" expanded="false" />
@@ -918,117 +1014,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.jjl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="31" column="44" lean-forward="false" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+        <state relative-caret-position="-1114">
+          <caret line="186" column="17" lean-forward="false" selection-start-line="186" selection-start-column="17" selection-end-line="186" selection-end-column="17" />
           <folding>
             <element signature="method#Parser#0;class#Parser#0" expanded="false" />
             <element signature="method#execute#0;class#Parser#0" expanded="false" />
+            <element signature="method#statements#0;class#Parser#0" expanded="false" />
             <element signature="method#statement#0;class#Parser#0" expanded="false" />
             <element signature="method#display#0;class#Parser#0" expanded="false" />
-            <element signature="method#ifStatement#0;class#Parser#0" expanded="false" />
+            <element signature="method#loop#0;class#Parser#0" expanded="false" />
             <element signature="method#assignment#0;class#Parser#0" expanded="false" />
             <element signature="method#result#0;class#Parser#0" expanded="false" />
             <element signature="method#definition#0;class#Parser#0" expanded="false" />
-            <element signature="method#procedure#0;class#Parser#0" expanded="false" />
             <element signature="method#body#0;class#Parser#0" expanded="false" />
             <element signature="method#object#0;class#Parser#0" expanded="false" />
             <element signature="method#expression#0;class#Parser#0" expanded="false" />
-            <element signature="method#lambda#0;class#Parser#0" expanded="false" />
-            <element signature="method#listInit#0;class#Parser#0" expanded="false" />
-            <element signature="method#listItem#0;class#Parser#0" expanded="false" />
             <element signature="method#binary#0;class#Parser#0" expanded="false" />
             <element signature="method#optBinaryItems#0;class#Parser#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main.java">
+    <entry file="file://$PROJECT_DIR$/temp.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+        <state relative-caret-position="272">
+          <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testCode.jjl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="42" column="15" lean-forward="false" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PrettyPrinter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
-          <folding>
-            <element signature="method#displayParseTree#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayExpression#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayResult#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayBinary#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayOptBinaryItems#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayDefine#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayAssignment#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayIfStatement#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#digitPending#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayObject#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayList#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayListItem#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayLambda#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayProcedure#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayBody#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayPrintln#0;class#PrettyPrinter#0" expanded="false" />
-            <element signature="method#displayPrint#0;class#PrettyPrinter#0" expanded="false" />
-            <marker date="1513290664000" expanded="false" signature="7857:8071" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="8434:8629" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="8680:8833" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="8876:9009" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="9051:9186" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="9231:9409" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="9462:10139" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="10197:10346" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="10402:10908" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="10964:11113" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="11160:11458" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="11500:11649" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="11704:12026" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="12071:12119" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="12167:12322" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="12629:12888" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="12938:13128" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="15503:15777" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="15831:16011" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="16059:16262" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="16307:16456" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="16501:16634" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="16680:16830" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="16881:17455" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="17502:17614" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="17661:17773" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="19349:19537" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="19694:19871" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="19913:20240" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="20285:20483" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="20532:20742" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="20798:21531" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="21589:21935" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="21980:22152" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="22208:22541" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="22588:22791" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="22846:22994" ph="{...}" />
-            <marker date="1513290664000" expanded="false" signature="23047:23338" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>

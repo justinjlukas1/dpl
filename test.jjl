@@ -1,10 +1,18 @@
 $(test)
 $(< x length[a])
 
+
+define function list as [a b c d] {
+    lambda [x] {
+    display
+    }
+}
+
+$*
 loop (temp 0 test ++x)
     display
 
-$* define x as 5
+define x as 5
 define function plus4 as [x] {
     result (+ x (+ x 4))
 }

@@ -85,7 +85,7 @@ public class PrettyPrinter {
             displayFunctionCall(l.getLeft());
 
         } else if (l.getLeft().check(kind.LAMBDA))
-            displayLambda(l.getLeft().getLeft());
+            displayLambda(l.getLeft());
         else if (l.getLeft().check(kind.LIST))
             displayList(l.getLeft());
         else if(l.getLeft().check(kind.O_PAREN)) {
@@ -154,10 +154,10 @@ public class PrettyPrinter {
             System.out.print(" ");
             displayUnary(l.getLeft().getRight().getRight().getRight());
         }
-
         displayUnary(l.getRight().getLeft().getLeft());
-        if(l.getRight().getLeft().getRight() != null)
+        if(l.getRight().getLeft().getRight() != null) {
             displayExpression(l.getRight().getLeft().getRight());
+        }
         System.out.print(") \n");
         if(l.getRight().getRight().check(kind.BODY))
             displayBody(l.getRight().getRight());
